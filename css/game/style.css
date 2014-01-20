@@ -1,0 +1,48 @@
+.mainBox{
+    height: 50%;
+    width: 100%;
+    background-color:#b3b3b3 ;
+}
+.mainBox h1{
+    margin:0;
+    padding:35% 20%;
+}
+.wrapTab{
+    background-color: #fbb450;
+}
+a {
+    color: #ffffff;
+}
+.nav a{
+    background-color: #fbb450;
+}
+#topTab li{
+    width: 50%;
+}
+#topTab li a{
+    padding:  12px 26%;
+}
+.nav .active a{
+    background-color: #c43c35;
+    color: #ffffff;
+
+}
+.panel-title a{
+    color: #ffffff;
+    font-size: 24px;
+    text-decoration: none;
+    padding: 0 10% ;
+    margin: 2px 0;
+    line-height: 50px;
+    display: block;
+    background-color: #3a87ad;
+}
+.panel-body ul a{
+    color: #000000;
+}
+.panel-body {
+    background-color: #a9dba9;
+}
+.panel-heading,.panel-body{
+    padding: 0;
+}
