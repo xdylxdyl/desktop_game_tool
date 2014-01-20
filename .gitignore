@@ -1,0 +1,10 @@
+/.settings
+/.idea
+/target
+/.project
+/.classpath
+/db/*
+/record
+/db
+/jdbm
+Thumbs.db
