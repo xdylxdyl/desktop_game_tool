@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
 <!--    <link rel="stylesheet" type="text/css" href="../css/game/style.css">-->
     <script src="../js/framework/angular/angular.js"></script>
+    <script src="../js/game/game.js"></script>
 </head>
 <body>
     <!-- Nav tabs -->
@@ -17,57 +18,26 @@
         </ul>
     </div>
     <!-- Tab panes -->
-    <div class="tab-content">
-        <div class="tab-pane active" id="home">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
+    <div class="tab-content" >
+        <div class="tab-pane active" id="home" >
+            <div class="panel-group" id="accordion" ng-controller="gameModelList">
+                <div class="panel panel-default" ng-repeat="model in modelList">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                狼人杀
+                            <a data-toggle="collapse"data-parent="#accordion" href="#{{model.title}}">
+                                {{model.title}}
                             </a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="{{model.title}}" class="panel-collapse collapse">
                         <div class="panel-body">
                             <ul>
-                                <li><a href="#">1.0</a></li>
-                                <li><a href="#">2.0</a></li>
+                                <li ng-repeat="version in model.versions"><a href="gameInit.html">{{version.name}}</a></li>
                             </ul>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                杀人游戏2
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            杀人游戏2
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                杀人游戏3
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            杀人游戏3
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="tab-pane" id="userDefine">2</div>
     </div>
