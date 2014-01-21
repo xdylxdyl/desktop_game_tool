@@ -950,3 +950,40 @@ var myStringUtils = {
 
 }
 
+
+/**
+ *
+ * @param url
+ * @param param
+ */
+function getParameterFromUrl(url, param) {
+    var params=getUrlVars(url);
+    if(params==null){
+        return null;
+    }else{
+        return params[param];
+    }
+
+}
+
+function getUrlVars(url)
+{
+    var vars = [], hash;
+    var index=url.indexOf('?');
+    if(index<=0){
+        return null;
+    }else{
+
+    }
+    var params= url.slice(index+ 1);
+    var hashes =params.split('&');
+
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
