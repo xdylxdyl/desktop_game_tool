@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>用户自定义</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
+    <script src="../js/framework/angular/angular.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <button class="btn btn-default">杀人游戏</button>
+    <button class="btn btn-default">保存自定义</button>
+</nav>
+<div class="roleChooser">
+    <form ng-controller="test">
+        输入总人数
+        <input type="number" name="peopleNum" ng-model="value" min="0" max="12"/>
+
+        <ul class="list-unstyled">
+            <li >
+                <span>法官</span><input placeholder="输入人数" type="text" />
+            </li>
+            <li>
+                <span>警察</span><input placeholder="输入人数" type="text" />
+            </li>
+            <li>
+                <span>杀人犯</span><input placeholder="输入人数" type="text" />
+            </li>
+            <li>
+                <span>好人</span><input placeholder="输入人数" type="text" />
+            </li>
+            <li>
+                <span>医生</span><input placeholder="输入人数" type="text" />
+            </li>
+            <li>
+                <span>秘密警察</span><input placeholder="输入人数" type="text" />
+            </li>
+        </ul>
+        <button class="btn btn-primary">+</button>
+    </form>
+
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+    <button class="btn btn-default">终止游戏</button>
+    <button class="btn btn-default">开始游戏</button>
+</nav>
+</body>
+</html>
