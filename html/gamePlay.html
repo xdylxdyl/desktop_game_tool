@@ -7,33 +7,94 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
     <script src="../js/framework/angular/angular.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
-    <button class="btn btn-default">杀人游戏</button>
-    <button class="btn btn-default">法官查看角色</button>
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">杀人游戏</a>
+        <button type="button" class="btn btn-warning navbar-btn center-block">
+            法官查看角色
+        </button>
+    </div>
 </nav>
-<div class="roleList">
-<ul>
-    <li><a>1</a></li>
-    <li><a>2</a></li>
-    <li><a>3</a></li>
-    <li><a>4</a></li>
-    <li><a>5</a></li>
-    <li><a>6</a></li>
-    <li><a>7</a></li>
-    <li><a>8</a></li>
-    <li><a>9</a></li>
-</ul>
+
+<div class="roleList row">
+    <div class=" col-xs-offset-2 col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt="1"/>
+        </a>
+    </div>
+    <div class="col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt="2"/>
+        </a>
+    </div>
+    <div class="col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt="3"/>
+        </a>
+    </div>
+    <div class="col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt="4"/>
+        </a>
+    </div>
+</div>
+<div class="roleList row">
+    <div class="col-xs-offset-2 col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt="5" data-src="holder.js/100%x50"/>
+        </a>
+    </div>
+    <div class="col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt="6" data-src="holder.js/100%x50"/>
+        </a>
+    </div>
+    <div class="col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt="7" data-src="holder.js/100%x50"/>
+        </a>
+    </div>
+    <div class="col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt='8' data-src="holder.js/100%x50"/>
+        </a>
+    </div>
+</div>
+<div class="roleList row">
+    <div class="col-xs-offset-2 col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt="9" data-src="holder.js/100%x50"/>
+        </a>
+    </div>
+    <div class="col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt="10" data-src="holder.js/100%x50"/>
+        </a>
+    </div>
+    <div class="col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt="11" data-src="holder.js/100%x50"/>
+        </a>
+    </div>
+    <div class="col-xs-2">
+        <a class="thumbnail" href="#">
+            <img alt="12" data-src="holder.js/100%x50"/>
+        </a>
+    </div>
 </div>
 <div class="roleShow">
-    <h1>杀人犯</h1>
-    <p>请拍照记住自己的身份</p>
-    <button>擦掉身份，以免泄露</button>
+    <h1 class="text-center">杀人犯</h1>
+    <p class="text-center">请拍照记住自己的身份</p>
+    <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-    <button class="btn btn-default">终止游戏</button>
-    <button class="btn btn-default">开始游戏</button>
+    <div class="navbar-header">
+        <a class="btn btn-danger pull-left navbar-btn">结束游戏</a>
+    </div>
 </nav>
 </body>
 </html>

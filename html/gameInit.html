@@ -10,40 +10,64 @@
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
-    <button class="btn btn-default">杀人游戏</button>
-    <button class="btn btn-default">保存自定义</button>
-</nav>
-<div class="roleChooser">
-    <form ng-controller="test">
-        输入总人数
-        <input type="number" name="peopleNum" ng-model="value" min="0" max="12"/>
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">杀人游戏</a>
+        <button type="button" class="btn btn-default navbar-btn center-block">
+            保存自定义
+        </button>
+    </div>
 
-        <ul class="list-unstyled">
-            <li >
-                <span>法官</span><input placeholder="输入人数" type="text" />
-            </li>
-            <li>
-                <span>警察</span><input placeholder="输入人数" type="text" />
-            </li>
-            <li>
-                <span>杀人犯</span><input placeholder="输入人数" type="text" />
-            </li>
-            <li>
-                <span>好人</span><input placeholder="输入人数" type="text" />
-            </li>
-            <li>
-                <span>医生</span><input placeholder="输入人数" type="text" />
-            </li>
-            <li>
-                <span>秘密警察</span><input placeholder="输入人数" type="text" />
-            </li>
-        </ul>
-        <button class="btn btn-primary">+</button>
-    </form>
+</nav>
+
+<div class="roleChooser container">
+    <form class="form-horizontal" role="form">
+        <div class="form-group ">
+                <label for="maxPeople" class="col-xs-5 control-label">总人数</label>
+                <div class="col-xs-offset-3 col-xs-4">
+                    <input type="number" class="form-control" id="maxPeople" min="0" max="100" placeholder="人数">
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="judge" class="col-xs-5 control-label">法官</label>
+            <div class="col-xs-offset-3 col-xs-4">
+                <input type="number" class="form-control" id="judge" min="0" max="100" placeholder="人数">
+            </div>
+        </div>
+        <div class="form-group ">
+        <label for="policeman" class="col-xs-5 control-label">警察</label>
+            <div class="col-xs-offset-3 col-xs-4">
+                <input type="number" class="form-control" id="policeman" min="0" max="100" placeholder="人数">
+            </div>
+        </div>
+        <div class="form-group ">
+        <label for="killer" class="col-xs-5 control-label">杀人犯</label>
+            <div class="col-xs-offset-3 col-xs-4">
+                <input type="number" class="form-control" id="killer" min="0" max="100" placeholder="人数">
+            </div>
+        </div>
+        <div class="form-group ">
+        <label for="man" class="col-xs-5 control-label">好人</label>
+            <div class="col-xs-offset-3 col-xs-4">
+                <input type="number" class="form-control" id="man" min="0" max="100" placeholder="人数">
+            </div>
+        </div>
+        <div class="form-group ">
+        <label for="doctor" class="col-xs-5 control-label">医生</label>
+            <div class="col-xs-offset-3 col-xs-4">
+                <input type="number" class="form-control" id="doctor" min="0" max="100" placeholder="人数">
+            </div>
+        </div>
+        </form>
+    <div class="text-center">
+        <button class=" btn btn-primary">+</button>
+    </div>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-    <button class="btn btn-default">终止游戏</button>
-    <button class="btn btn-default">开始游戏</button>
+    <div class="navbar-header">
+        <a class="btn btn-danger pull-left navbar-btn">返回</a>
+        <a class="btn btn-primary pull-right navbar-btn">开始</a>
+    </div>
 </nav>
 </body>
 </html>
