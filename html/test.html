@@ -11,13 +11,14 @@
 <script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 
 <script  type="text/javascript">
-    var html5StorageSerice = {
+    var html5StorageService = {
         update:function (key, value) {
             window.localStorage[key] = JSON.stringify(value);
         },
         get:function (key) {
             var v = eval('(' + window.localStorage.getItem(key) + ')');
             return v;
+            //return window.localStorage.getItem(key);
         },
         delete:function (key) {
             window.localStorage.removeItem(key);
@@ -25,16 +26,14 @@
     }
 
     $("#get").on("click", function () {
-        alert(html5StorageSerice.get("xx"));
+        alert(html5StorageService.get("xx").xxx);
     })
     $("#add").on("click", function () {
-
         var s = {"xxx":"xxx"};
-        html5StorageSerice.update("xx", s);
+        html5StorageService.update("xx", s);
     })
     $("#delete").on("click", function () {
-
-        html5StorageSerice.delete("xx");
+        html5StorageService.delete("xx");
 
     })
 
