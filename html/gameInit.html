@@ -7,61 +7,38 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
     <script src="../js/framework/angular/angular.js"></script>
+
 </head>
-<body>
+<body ng-controller="gameInitCtrl">
 <nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">杀人游戏</a>
-        <button type="button" class="btn btn-default navbar-btn center-block">
+        <a class="navbar-brand" href="#">{{type}}-{{gameName}}</a>
+      <!--  <button type="button" class="btn btn-default navbar-btn center-block">
             保存自定义
-        </button>
+        </button>-->
     </div>
-
 </nav>
 
-<div class="roleChooser container">
-    <form class="form-horizontal" role="form">
+<div class="roleChooser container" >
+    <form class="form-horizontal" role="form" name="roleChooserForm">
         <div class="form-group ">
                 <label for="maxPeople" class="col-xs-5 control-label">总人数</label>
                 <div class="col-xs-offset-3 col-xs-4">
-                    <input type="number" class="form-control" id="maxPeople" min="0" max="100" placeholder="人数">
+                    <input type="text" class="form-control" id="maxPeople" min="0" max="100" placeholder="人数" value="{{playerNum}}">
                 </div>
         </div>
-        <div class="form-group">
-            <label for="judge" class="col-xs-5 control-label">法官</label>
+        <div class="form-group" ng-repeat="role in roles">
+            <label for="judge" class="col-xs-5 control-label">{{role.name}}</label>
             <div class="col-xs-offset-3 col-xs-4">
-                <input type="number" class="form-control" id="judge" min="0" max="100" placeholder="人数">
+                <input type="text" class="form-control" id="judge" min="0" max="100" placeholder="人数" value="{{role.num}}">
             </div>
         </div>
-        <div class="form-group ">
-        <label for="policeman" class="col-xs-5 control-label">警察</label>
-            <div class="col-xs-offset-3 col-xs-4">
-                <input type="number" class="form-control" id="policeman" min="0" max="100" placeholder="人数">
-            </div>
-        </div>
-        <div class="form-group ">
-        <label for="killer" class="col-xs-5 control-label">杀人犯</label>
-            <div class="col-xs-offset-3 col-xs-4">
-                <input type="number" class="form-control" id="killer" min="0" max="100" placeholder="人数">
-            </div>
-        </div>
-        <div class="form-group ">
-        <label for="man" class="col-xs-5 control-label">好人</label>
-            <div class="col-xs-offset-3 col-xs-4">
-                <input type="number" class="form-control" id="man" min="0" max="100" placeholder="人数">
-            </div>
-        </div>
-        <div class="form-group ">
-        <label for="doctor" class="col-xs-5 control-label">医生</label>
-            <div class="col-xs-offset-3 col-xs-4">
-                <input type="number" class="form-control" id="doctor" min="0" max="100" placeholder="人数">
-            </div>
-        </div>
-        </form>
-    <div class="text-center">
+    </form>
+   <!-- <div class="text-center">
         <button class=" btn btn-primary">+</button>
     </div>
+    -->
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
@@ -69,5 +46,9 @@
         <a class="btn btn-primary pull-right navbar-btn" href="gamePlay.html">开始</a>
     </div>
 </nav>
+<script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
+<script src="../js/util/common_util.js"></script>
+<script src="../js/game/game.js"></script>
+
 </body>
 </html>

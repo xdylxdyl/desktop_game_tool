@@ -985,8 +985,6 @@ function getUrlVars(url)
     return vars;
 }
 
-
-
 var html5StorageService={
     update:function(key,value){
         window.localStorage[key] = JSON.stringify(value);

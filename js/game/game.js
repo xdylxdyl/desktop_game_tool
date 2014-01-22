@@ -14,15 +14,15 @@ function gameModelList($scope) {
             "versions":[
                 {
                     "name":"简化版(1.0)",
-                    "ver":1
+                    "gameid":1
                 },
                 {
                     "name":"猜词版(2.0)",
-                    "ver":2
+                    "gameid":2
                 },
                 {
                     "name":"白痴版(魂版)(1.5)",
-                    "ver":3
+                    "gameid":3
                 }
 
             ]
@@ -33,19 +33,19 @@ function gameModelList($scope) {
             "versions":[
                 {
                     "name":"简化版",
-                    "ver":4
+                    "gameid":4
                 },
                 {
                     "name":"警版",
-                    "ver":5
+                    "gameid":5
                 },
                 {
                     "name":"不翻牌",
-                    "ver":6
+                    "gameid":6
                 },
                 {
                     "name":"3.0",
-                    "ver":7
+                    "gameid":7
                 }
 
             ]
@@ -56,7 +56,7 @@ function gameModelList($scope) {
             "versions":[
                 {
                     "name":"狼人杀",
-                    "ver":8
+                    "gameid":8
                 }
             ]
         },
@@ -66,7 +66,7 @@ function gameModelList($scope) {
             "versions":[
                 {
                     "name":"炸狼堡",
-                    "ver":9
+                    "gameid":9
                 }
             ]
         }
@@ -79,7 +79,7 @@ function gameModelList($scope) {
             "versions":[
                 {
                     "name":"简化变异小三方",
-                    "ver":1
+                    "gameid":1
                 }
 
 
@@ -91,23 +91,23 @@ function gameModelList($scope) {
             "versions":[
                 {
                     "name":"三十六人象棋杀",
-                    "ver":4
+                    "gameid":2
                 },
                 {
                     "name":"天使与魔鬼",
-                    "ver":4
+                    "gameid":3
                 },
                 {
                     "name":"捉鬼变异版",
-                    "ver":4
+                    "gameid":4
                 },
                 {
                     "name":"狼人杀新月扩展",
-                    "ver":4
+                    "gameid":5
                 },
                 {
                     "name":"炸狼堡全角色",
-                    "ver":4
+                    "gameid":6
                 }
 
             ]
@@ -115,4 +115,13 @@ function gameModelList($scope) {
 
 
     ]
+}
+function gameInitCtrl($scope,$routeParams,$http){
+    var gameid=getParameterFromUrl(location.href,"gameid");
+    $http.get('../json/officialGame/'+gameid+'.json').success(function(data){
+       $scope.gameName=data.name;
+       $scope.type=data.type;
+       $scope.playerNum=data.playerNum;
+       $scope.roles=data.roles;
+    });
 }
