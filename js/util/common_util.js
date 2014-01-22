@@ -48,8 +48,6 @@ String.prototype.template = function () {
         return result;
     });
 
-
-
     if(isnull){
         return null;
     }
@@ -989,7 +987,7 @@ function getUrlVars(url)
 
 
 
-var html5StorageSerice={
+var html5StorageService={
     update:function(key,value){
         window.localStorage[key] = JSON.stringify(value);
     },
