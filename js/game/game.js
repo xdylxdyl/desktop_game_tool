@@ -62,6 +62,7 @@ function gameModelList($scope) {
         },
         {
             "title":"炸狼堡",
+            "id":"zlb",
             "versions":[
                 {
                     "name":"炸狼堡",
