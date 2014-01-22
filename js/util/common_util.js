@@ -987,3 +987,17 @@ function getUrlVars(url)
     return vars;
 }
 
+
+
+var html5StorageSerice={
+    update:function(key,value){
+        window.localStorage[key] = JSON.stringify(value);
+    },
+    get:function(key){
+        var v = eval('(' +  window.localStorage.getItem(key) + ')');
+        return v;
+    },
+    delete :function(key){
+        window.localStorage.removeItem(key);
+    }
+}

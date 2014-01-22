@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<input type="button" value="add" id="add">
+<input type="button" value="get" id="get">
+<input type="button" value="delete" id="delete" >
+
+<script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
+
+<script  type="text/javascript">
+    var html5StorageSerice = {
+        update:function (key, value) {
+            window.localStorage[key] = JSON.stringify(value);
+        },
+        get:function (key) {
+            var v = eval('(' + window.localStorage.getItem(key) + ')');
+            return v;
+        },
+        delete:function (key) {
+            window.localStorage.removeItem(key);
+        }
+    }
+
+    $("#get").on("click", function () {
+        alert(html5StorageSerice.get("xx"));
+    })
+    $("#add").on("click", function () {
+
+        var s = {"xxx":"xxx"};
+        html5StorageSerice.update("xx", s);
+    })
+    $("#delete").on("click", function () {
+
+        html5StorageSerice.delete("xx");
+
+    })
+
+
+</script>
+</body>
+</html>
