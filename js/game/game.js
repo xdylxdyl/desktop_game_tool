@@ -123,5 +123,17 @@ function gameInitCtrl($scope,$routeParams,$http){
        $scope.type=data.type;
        $scope.playerNum=data.playerNum;
        $scope.roles=data.roles;
+       $scope.gameid=data.gameid;
+    });
+}
+function gamePlayCtrl($scope,$routeParams,$http){
+    var gameid=getParameterFromUrl(location.href,"gameid");
+    $http.get('../json/officialGame/'+gameid+'.json').success(function(data){
+        $scope.gameName=data.name;
+        $scope.type=data.type;
+        $scope.playerNum=data.playerNum;
+        $scope.roles=data.roles;
+        //$scope.roleAssign=eval("("+roleMaker(data)+")");
+        $scope.roleAssign=roleMaker(data);
     });
 }

@@ -7,7 +7,6 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
     <script src="../js/framework/angular/angular.js"></script>
-
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -20,74 +19,15 @@
     </div>
 </nav>
 
-<div class="roleList row">
-    <div class=" col-xs-offset-2 col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt="1"/>
-        </a>
-    </div>
-    <div class="col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt="2"/>
-        </a>
-    </div>
-    <div class="col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt="3"/>
-        </a>
-    </div>
-    <div class="col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt="4"/>
-        </a>
-    </div>
-</div>
-<div class="roleList row">
-    <div class="col-xs-offset-2 col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt="5" data-src="holder.js/100%x50"/>
-        </a>
-    </div>
-    <div class="col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt="6" data-src="holder.js/100%x50"/>
-        </a>
-    </div>
-    <div class="col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt="7" data-src="holder.js/100%x50"/>
-        </a>
-    </div>
-    <div class="col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt='8' data-src="holder.js/100%x50"/>
-        </a>
-    </div>
-</div>
-<div class="roleList row">
-    <div class="col-xs-offset-2 col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt="9" data-src="holder.js/100%x50"/>
-        </a>
-    </div>
-    <div class="col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt="10" data-src="holder.js/100%x50"/>
-        </a>
-    </div>
-    <div class="col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt="11" data-src="holder.js/100%x50"/>
-        </a>
-    </div>
-    <div class="col-xs-2">
-        <a class="thumbnail" href="#">
-            <img alt="12" data-src="holder.js/100%x50"/>
+<div class="roleList row" ng-controller="gamePlayCtrl">
+    <div class=" col-xs-4 " ng-repeat="role in roleAssign">
+        <a class="thumbnail roleBox"  role="{{role.role}}">
+            <img alt="{{role.id}}--{{role.role}}"/>
         </a>
     </div>
 </div>
 <div class="roleShow">
-    <h1 class="text-center">杀人犯</h1>
+    <h1 class="text-center roleToShow">杀人犯</h1>
     <p class="text-center">请拍照记住自己的身份</p>
     <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
 </div>
@@ -96,5 +36,8 @@
         <a class="btn btn-danger pull-left navbar-btn" href="index.html">结束游戏</a>
     </div>
 </nav>
+<script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
+<script src="../js/util/common_util.js"></script>
+<script src="../js/game/game.js"></script>
 </body>
 </html>

@@ -997,3 +997,29 @@ var html5StorageService={
         window.localStorage.removeItem(key);
     }
 }
+var roleMaker=function(json){
+    var playerNum=json.playerNum,
+        rolesArray=[],
+        rolesNumArray=[],
+        roleChooser= 0,
+        str="",
+        count= 1,
+        returnData,
+        flag= 1;
+    for(var i in json.roles){
+        rolesArray.push(json.roles[i].name);
+        rolesNumArray.push(json.roles[i].num);
+    }
+   while(flag){
+        roleChooser=Math.floor(Math.random()*4);
+        if(rolesNumArray[roleChooser]>0){
+            str=str+"{id:"+count+",role:'"+rolesArray[roleChooser]+"'},";
+            rolesNumArray[roleChooser]--;
+            count++;
+        }
+       if(count==playerNum+1) break;
+    }
+    returnData="["+str.substring(0,str.length-1)+"]";
+    return eval("("+returnData+")");
+
+}
