@@ -6,7 +6,48 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/swiper/idangerous.swiper.css">
     <script src="../js/framework/angular/angular.js"></script>
+    <style>
+
+        .swiper-container {
+            width: 350px;
+            height: 250px;
+            text-align: center;
+        }
+
+        .swiper-slide .title {
+            font-style: italic;
+            font-size: 42px;
+            margin-top: 80px;
+            margin-bottom: 0;
+            line-height: 45px;
+        }
+        .swiper-slide p {
+            font-style: italic;
+            font-size: 25px;
+        }
+        .pagination {
+            position: absolute;
+            left: 0;
+            text-align: center;
+            bottom:5px;
+            width: 100%;
+        }
+        .swiper-pagination-switch {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            background: #999;
+            box-shadow: 0px 1px 2px #555 inset;
+            margin: 0 3px;
+            cursor: pointer;
+        }
+        .swiper-active-switch {
+            background: #fff;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -27,9 +68,26 @@
     </div>
 </div>
 <div class="roleShow">
-    <h1 class="text-center roleToShow">杀人犯</h1>
-    <p class="text-center">请拍照记住自己的身份</p>
-    <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <h1 class="text-center roleToShow">杀人犯1</h1>
+                <p class="text-center">请拍照记住自己的身份</p>
+                <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
+            </div>
+            <div class="swiper-slide red-slide">
+                <h1 class="text-center roleToShow">杀人犯2</h1>
+                <p class="text-center">请拍照记住自己的身份</p>
+                <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
+            </div>
+            <div class="swiper-slide orange-slide">
+                <h1 class="text-center roleToShow">杀人犯3</h1>
+                <p class="text-center">请拍照记住自己的身份</p>
+                <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
+            </div>
+        </div>
+        <div class="pagination"></div>
+    </div>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
@@ -39,5 +97,14 @@
 <script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../js/util/common_util.js"></script>
 <script src="../js/game/game.js"></script>
+
+<script src="../js/framework/swiper/idangerous.swiper-2.1.min.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container',{
+        pagination: '.pagination',
+        paginationClickable: true
+
+    })
+</script>
 </body>
 </html>
