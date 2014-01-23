@@ -6,54 +6,38 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
-    <script src="../js/framework/angular/angular.js"></script>
 </head>
-<body>
+<body ng-controller="judgeScanCtrl">
 <nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <a class="navbar-brand">杀人游戏</a>
-        <button type="button" class="btn btn-default navbar-btn center-block" onclick="location='gamePlay.html'">
+        <a  class="btn btn-default navbar-btn pull-right" ng-href="gamePlay.html?gameid={{gameConfig.gameid}}">
             返回游戏
-        </button>
+        </a>
     </div>
 </nav>
-<div class="roleList">
-   <div class="row">
+<div class="roleList" >
+   <div class="row" ng-repeat="role in gameConfig.roleAssign">
        <div class="col-xs-offset-2 col-xs-3">
            <a href="#" class="thumbnail">
-               <img alt="1"/>
+               <img alt="{{role.id}}"/>
            </a>
        </div>
        <div class="col-xs-6">
-           <a href="#" class="btn btn-link">杀人犯</a>
+           <a href="#" class="btn btn-link">{{role.role}}</a>
        </div>
    </div>
-    <div class="row">
-        <div class="col-xs-offset-2 col-xs-3">
-            <a href="#" class="thumbnail">
-                <img alt="2"/>
-            </a>
-        </div>
-        <div class="col-xs-6">
-            <a href="#" class="btn btn-link">警察</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-offset-2 col-xs-3">
-            <a href="#" class="thumbnail">
-                <img alt="3"/>
-            </a>
-        </div>
-        <div class="col-xs-6">
-            <a href="#" class="btn btn-link">好人</a>
-        </div>
-    </div>
-</div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
-        <a class="btn btn-danger pull-left navbar-btn" href="../index.html">结束游戏</a>
+        <a class="btn btn-danger pull-left navbar-btn" href="../index.html" ng-click="gameExit()">结束游戏</a>
     </div>
 </nav>
+<script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
+<script src="../js/framework/angular/angular.js"></script>
+<script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
+<script src="../js/game/config.js"></script>
+<script src="../js/util/common_util.js"></script>
+<script src="../js/game/game.js"></script>
 </body>
 </html>

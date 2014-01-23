@@ -41,8 +41,8 @@
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
-        <a class="btn btn-danger pull-left navbar-btn" href="../index.html">结束游戏</a>
-        <a class="btn btn-primary pull-right navbar-btn" ng-href="gamePlay.html?gameid={{gameConfig.gameid}}">开始</a>
+        <a class="btn btn-danger pull-left navbar-btn" href="../index.html" ng-click="gameExit()">结束游戏</a>
+        <a class="btn btn-primary pull-right navbar-btn" ng-href="gamePlay.html?gameid={{gameConfig.gameid}}" ng-click="gameInit()">开始</a>
     </div>
 </nav>
 <script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>

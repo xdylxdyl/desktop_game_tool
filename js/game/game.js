@@ -35,7 +35,15 @@ var dataService = {
 
         return html5StorageService.get(type, constants.listModel[type]);
 
-
+    },
+    setGameDetail:function(data){
+        html5StorageService.update("gameDetail",data);
+    },
+    getGameDetail:function(){
+        return html5StorageService.get("gameDetail");
+    },
+    deleteGameDetail:function(){
+        html5StorageService.delete("gameDetail");
     }
 }
 
@@ -56,16 +64,35 @@ app.controller("gameModelList",function($scope) {
     $scope.userList = dataService.getGameList(constants.listType.user)
 })
 
-app.controller("gameInitCtrl",function($scope, $routeParams, $http) {
+app.controller("gameInitCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid");
+    $scope.gameid=gameid;
     $scope.gameConfig = dataService.getConfig(gameid);
-
+    $scope.gameInit = function(){
+        dataService.setGameDetail(roleMaker($scope.gameConfig));
+    }
+    $scope.gameExit = function(){
+        dataService.deleteGameDetail();
+    }
 })
 
-app.controller("gamePlayCtrl",function($scope, $routeParams, $http) {
+app.controller("gamePlayCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid");
     var gc=dataService.getConfig(gameid);
-    gc.roleAssign=roleMaker(gc);
+    gc.roleAssign=dataService.getGameDetail();
     $scope.gameConfig=gc;
+    $scope.gameExit = function(){
+        dataService.deleteGameDetail();
+    }
+});
 
-})
+app.controller("judgeScanCtrl",function($scope) {
+    var gameid = getParameterFromUrl(location.href, "gameid");
+    var gc=dataService.getConfig(gameid);
+    gc.roleAssign=dataService.getGameDetail();
+    gc.gameid=gameid;
+    $scope.gameConfig=gc;
+    $scope.gameExit = function(){
+        dataService.deleteGameDetail();
+    }
+});
