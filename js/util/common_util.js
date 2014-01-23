@@ -19,8 +19,8 @@
 String.prototype.template = function () {
     var msg = arguments[0];
 
-    var isnull=false;
-    var r = this.replace(/\{(native|array|name|hint|model)_([^_\}]*)_*([^\}]*)\}/g, function (m, pre, parameter,clz) {
+    var isnull = false;
+    var r = this.replace(/\{(native|array|name|hint|model)_([^_\}]*)_*([^\}]*)\}/g, function (m, pre, parameter, clz) {
         var result;
         switch (pre) {
             case "native":
@@ -34,120 +34,26 @@ String.prototype.template = function () {
                 break;
             case "hint":
                 result = versionFunction.templateConfig[msg.predict].hint[msg[parameter]];
-                if( versionFunction.templateConfig[msg.predict].hint[msg[parameter]]==undefined){
-                    isnull=true;
+                if (versionFunction.templateConfig[msg.predict].hint[msg[parameter]] == undefined) {
+                    isnull = true;
                 }
-                 break;
+                break;
         }
-        if(clz){
-            console.log(clz+" is clz");
-            result="<span class='"+clz+"'>"+result+"</span>";
-        }else{
+        if (clz) {
+            console.log(clz + " is clz");
+            result = "<span class='" + clz + "'>" + result + "</span>";
+        } else {
             console.log("no clz ");
         }
         return result;
     });
 
-    if(isnull){
+    if (isnull) {
         return null;
     }
     return r;
 }
 
-
-var app = angular.module('myApp', []);
-app.filter('nameConvert', function () {
-    return function (id) {
-        return playerService.getNamesByIds(id, ",");
-
-
-    }
-});
-app.filter('phaseConvert', function () {
-    return function (ph) {
-        console.log("phase is " + ph);
-        if (ph == null || ph == "" || ph == undefined) {
-            return;
-        }
-        if (versionFunction.templateConfig) {
-            var r = versionFunction.templateConfig.time.phase[ph];
-            console.log(ph + " is convert 2 " + r);
-            return r;
-        } else {
-            console.log(ph + " phase not get convert config ");
-            return ph;
-        }
-
-    }
-});
-
-app.filter('roleConvert', function () {
-    return function (ph) {
-        console.log("role is " + ph);
-        if (ph == null || ph == "" || ph == undefined) {
-            return;
-        }
-        if (versionFunction.roleName) {
-
-            var r = versionFunction.roleName[ph];
-            var names = playerService.getRoleGroupNames(ph);
-            if (names.length > 1) {
-                r = r + " : " + JSON.stringify(names);
-            }
-            console.log(ph + " is convert 2 " + r);
-            return r;
-        } else {
-            console.log(ph + " role not get convert config ");
-            return ph;
-        }
-
-    }
-});
-
-
-app.filter('rightConvert', function () {
-    return function (ph) {
-        console.log("right is " + ph);
-        ph = ph.trim();
-        if (ph == null || ph == "" || ph == undefined) {
-            return;
-        }
-        if (versionFunction.rightContent) {
-            var result = versionFunction.rightContent[ph];
-            console.log(ph + " right convert " + result);
-            return result;
-        } else {
-            console.log(ph + " right not get convert config ");
-            return ph;
-        }
-
-    }
-});
-
-
-app.controller("gameController", function ($scope) {
-    $scope.detail = {
-        creater:"",
-        phase:"",
-        role:""
-
-    };
-    $scope.rights = [];
-
-    $scope.processRight = function (right) {
-        right = right.trim();
-
-        var ms = versionFunction.templateConfig.right.updateAngularModel;
-        $.each(ms, function (i, val) {
-            var m = ms[i];
-            boxUtil.showBox(m.box[right]);
-
-        });
-
-
-    };
-
-});
 
 
 var angularUtil = {
@@ -875,57 +781,6 @@ function MusicCtrl($scope) {
 
 };
 
-$(function () {
-    // Setup the player to autoplay the next track
-    var a = audiojs.createAll({
-        trackEnded:function () {
-            var next = $('ol li.playing').next();
-            if (!next.length) next = $('ol li').first();
-            next.addClass('playing').siblings().removeClass('playing');
-            audio.load($('a', next).attr('data-src'));
-            audio.play();
-        }
-    });
-
-    // Load in the first track
-    var audio = a[0];
-    first = $('ol a').attr('data-src');
-    $('ol li').first().addClass('playing');
-
-
-    if (audio != undefined) {
-        audio.load(first);
-    } else {
-
-    }
-
-
-    // Load in a track on click
-    $('ol').on("click", "li", function (e) {
-        e.preventDefault();
-        $(this).addClass('playing').siblings().removeClass('playing');
-        audio.load($('a', this).attr('data-src'));
-        audio.play();
-    });
-});
-
-/*var bclass=["dog","christmas","outside"];
- var bindex=0;
- switch_background = function () {
- $.each(bclass, function (i, val) {
- var m = bclass[i];
- $(".christmas_background").removeClass(m)
- });
- bindex++;
- var index=bindex%bclass.length;
- console.log("index"+index+" class is "+bclass[index]);
-
- $(".christmas_background").addClass(bclass[index]);
-
- st = setTimeout(switch_background, 5000);
- }
- var st = setTimeout(switch_background, 5000);*/
-
 
 var myStringUtils = {
     filterAray:function (array, filter) {
@@ -955,29 +810,27 @@ var myStringUtils = {
  * @param param
  */
 function getParameterFromUrl(url, param) {
-    var params=getUrlVars(url);
-    if(params==null){
+    var params = getUrlVars(url);
+    if (params == null) {
         return null;
-    }else{
+    } else {
         return params[param];
     }
 
 }
 
-function getUrlVars(url)
-{
+function getUrlVars(url) {
     var vars = [], hash;
-    var index=url.indexOf('?');
-    if(index<=0){
+    var index = url.indexOf('?');
+    if (index <= 0) {
         return null;
-    }else{
+    } else {
 
     }
-    var params= url.slice(index+ 1);
-    var hashes =params.split('&');
+    var params = url.slice(index + 1);
+    var hashes = params.split('&');
 
-    for(var i = 0; i < hashes.length; i++)
-    {
+    for (var i = 0; i < hashes.length; i++) {
         hash = hashes[i].split('=');
         vars.push(hash[0]);
         vars[hash[0]] = hash[1];
@@ -985,41 +838,93 @@ function getUrlVars(url)
     return vars;
 }
 
-var html5StorageService={
-    update:function(key,value){
+var html5StorageService = {
+    checkVersion:function (key) {
+
+
+        if (constants.version.debug) {
+            return true;
+        } else {
+            var v = html5StorageService.get(constants.version.key);
+            if (v == null) {
+                html5StorageService.update(constants.version.key, constants.version.version);
+                return true;
+            }
+            if (v < constants.version.version) {
+                html5StorageService.update(constants.version.key, constants.version.version);
+                return true;
+            }
+        }
+        return false;
+
+    },
+
+
+    update:function (key, value) {
         window.localStorage[key] = JSON.stringify(value);
     },
-    get:function(key){
-        var v = eval('(' +  window.localStorage.getItem(key) + ')');
-        return v;
+
+
+    get:function (key, model, url) {
+        var result = eval('(' + window.localStorage.getItem(key) + ')');
+
+
+        var isUpdate = false;
+        if (result == null || html5StorageService.checkVersion()) {
+            isUpdate = true;
+
+        }
+        console.log("data is update "+isUpdate);
+        if (isUpdate) {
+            if (model != null) {
+                html5StorageService.update(key, model);
+
+            } else {
+
+                if (url != null) {
+                    var r = ajaxJson(url, "GET", {}, null, 5000, "json", false);
+                    html5StorageService.update(key, r);
+                } else {
+
+
+                }
+
+            }
+        }
+
+        result = eval('(' + window.localStorage.getItem(key) + ')');
+        return result;
     },
-    delete :function(key){
+    delete:function (key) {
         window.localStorage.removeItem(key);
     }
+
 }
-var roleMaker=function(json){
-    var playerNum=json.playerNum,
-        rolesArray=[],
-        rolesNumArray=[],
-        roleChooser= 0,
-        str="",
-        count= 1,
+
+
+var roleMaker = function (json) {
+    var playerNum = json.playerNum,
+        rolesArray = [],
+        rolesNumArray = [],
+        roleChooser = 0,
+        str = "",
+        count = 1,
         returnData,
-        flag= 1;
-    for(var i in json.roles){
+        flag = 1;
+    for (var i in json.roles) {
         rolesArray.push(json.roles[i].name);
         rolesNumArray.push(json.roles[i].num);
     }
-   while(flag){
-        roleChooser=Math.floor(Math.random()*4);
-        if(rolesNumArray[roleChooser]>0){
-            str=str+"{id:"+count+",role:'"+rolesArray[roleChooser]+"'},";
+    while (flag) {
+        roleChooser = Math.floor(Math.random() * 4);
+        if (rolesNumArray[roleChooser] > 0) {
+            str = str + "{id:" + count + ",role:'" + rolesArray[roleChooser] + "'},";
             rolesNumArray[roleChooser]--;
             count++;
         }
-       if(count==playerNum+1) break;
+        if (count == playerNum + 1) break;
     }
-    returnData="["+str.substring(0,str.length-1)+"]";
-    return eval("("+returnData+")");
+    returnData = "[" + str.substring(0, str.length - 1) + "]";
+    return eval("(" + returnData + ")");
 
 }

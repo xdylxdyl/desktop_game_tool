@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="gameTool">
 <head>
     <title>用户自定义</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
-    <script src="../js/framework/angular/angular.js"></script>
 
 </head>
 <body ng-controller="gameInitCtrl">
 <nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">{{type}}-{{gameName}}</a>
+        <a class="navbar-brand" href="#">{{gameConfig.name}}</a>
       <!--  <button type="button" class="btn btn-default navbar-btn center-block">
             保存自定义
         </button>-->
@@ -25,10 +24,10 @@
         <div class="form-group ">
                 <label for="maxPeople" class="col-xs-5 control-label">总人数</label>
                 <div class="col-xs-offset-3 col-xs-4">
-                    <input type="text" class="form-control" id="maxPeople" min="0" max="100" placeholder="人数" value="{{playerNum}}">
+                    <input type="text" class="form-control" id="maxPeople" min="0" max="100" placeholder="人数" value="{{gameConfig.playerNum}}">
                 </div>
         </div>
-        <div class="form-group" ng-repeat="role in roles">
+        <div class="form-group" ng-repeat="role in gameConfig.roles">
             <label for="judge" class="col-xs-5 control-label">{{role.name}}</label>
             <div class="col-xs-offset-3 col-xs-4">
                 <input type="text" class="form-control" id="judge" min="0" max="100" placeholder="人数" value="{{role.num}}">
@@ -42,11 +41,14 @@
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
-        <a class="btn btn-danger pull-left navbar-btn" href="index.html">结束游戏</a>
-        <a class="btn btn-primary pull-right navbar-btn" href="gamePlay.html?gameid={{gameid}}">开始</a>
+        <a class="btn btn-danger pull-left navbar-btn" href="../index.html">结束游戏</a>
+        <a class="btn btn-primary pull-right navbar-btn" ng-href="gamePlay.html?gameid={{gameConfig.gameid}}">开始</a>
     </div>
 </nav>
-<script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
+<script src="../js/framework/angular/angular.js"></script>
+<script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
+<script src="../js/game/config.js"></script>
 <script src="../js/util/common_util.js"></script>
 <script src="../js/game/game.js"></script>
 

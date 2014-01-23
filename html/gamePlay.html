@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="gameTool">
 <head>
     <title>用户自定义</title>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/swiper/idangerous.swiper.css">
-    <script src="../js/framework/angular/angular.js"></script>
+
     <style>
 
         .swiper-container {
@@ -49,7 +49,7 @@
         }
     </style>
 </head>
-<body>
+<body ng-controller="gamePlayCtrl">
 <nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -60,8 +60,8 @@
     </div>
 </nav>
 
-<div class="roleList row" ng-controller="gamePlayCtrl">
-    <div class=" col-xs-4 " ng-repeat="role in roleAssign">
+<div class="roleList row" >
+    <div class=" col-xs-4 " ng-repeat="role in gameConfig.roleAssign">
         <a class="thumbnail roleBox"  role="{{role.role}}">
             <img alt="{{role.id}}--{{role.role}}"/>
         </a>
@@ -91,14 +91,20 @@
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
-        <a class="btn btn-danger pull-left navbar-btn" href="index.html">结束游戏</a>
+        <a class="btn btn-danger pull-left navbar-btn" href="../index.html">结束游戏</a>
     </div>
 </nav>
+
+
 <script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
+<script src="../js/framework/angular/angular.js"></script>
+<script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
+<script src="../js/framework/swiper/idangerous.swiper-2.1.min.js"></script>
+<script src="../js/game/config.js"></script>
 <script src="../js/util/common_util.js"></script>
 <script src="../js/game/game.js"></script>
+>
 
-<script src="../js/framework/swiper/idangerous.swiper-2.1.min.js"></script>
 <script>
     var mySwiper = new Swiper('.swiper-container',{
         pagination: '.pagination',
