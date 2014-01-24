@@ -23,8 +23,8 @@
         <div class="panel-group" id="accordion" >
             <div class="panel panel-default" ng-repeat="model in officialList">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#{{model.id}}">
+                    <h4 id="h4-{{model.id}}" class="panel-title" onclick="linkClick(this)">
+                        <a id="link{{model.id}}" data-toggle="collapse" data-parent="#accordion" href="#{{model.id}}">
                             {{model.title}}
                         </a>
                     </h4>
@@ -43,8 +43,8 @@
         <div class="panel-group" id="accordion2">
             <div class="panel panel-default" ng-repeat="model2 in userList">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#{{model2.id}}">
+                    <h4 id="h4-{{model.id}}" class="panel-title" onclick="linkClick(this)">
+                        <a id="link{{model.id}}" data-toggle="collapse" data-parent="#accordion" href="#{{model2.id}}">
                             {{model2.title}}
                         </a>
                     </h4>
@@ -73,6 +73,15 @@
         e.preventDefault();
         $(this).tab('show');
     });
+
+    function linkClick(obj){
+        var id = null;//这个是要的id
+        if(obj){
+            id=obj.id;
+            id=id.replace("h4-","");
+            document.getElementById("link" + id).click();
+        }
+    }
     <!--tab change end-->
 </script>
 </body>
