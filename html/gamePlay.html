@@ -49,7 +49,7 @@
         }
     </style>
 </head>
-<body ng-controller="gamePlayCtrl">
+<body ng-controller="gamePlayCtrl" >
 <nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -61,33 +61,26 @@
 </nav>
 
 <div class="roleList row" >
-    <div class=" col-xs-4 " ng-repeat="role in gameConfig.roleAssign">
-        <a class="thumbnail roleBox"  role="{{role.role}}">
-            <img alt="{{role.id}}--{{role.role}}"/>
+    <div class=" col-xs-4 " ng-repeat="role in gameConfig.roleAssign" >
+        <a class="thumbnail roleBox"  roleid="{{role.id}}" ng-click="changeCurrentGamer($index)">
+            <img alt="{{role.id}}"/>
         </a>
     </div>
 </div>
 <div class="roleShow">
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
+    <!--<div class="swiper-container">
+        <div class="swiper-wrapper" >
             <div class="swiper-slide">
-                <h1 class="text-center roleToShow">杀人犯1</h1>
-                <p class="text-center">请拍照记住自己的身份</p>
-                <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
-            </div>
-            <div class="swiper-slide red-slide">
-                <h1 class="text-center roleToShow">杀人犯2</h1>
-                <p class="text-center">请拍照记住自己的身份</p>
-                <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
-            </div>
-            <div class="swiper-slide orange-slide">
-                <h1 class="text-center roleToShow">杀人犯3</h1>
-                <p class="text-center">请拍照记住自己的身份</p>
+                <h1 class="text-center roleToShow">{{currentGamer}}</h1>
+                <p class="text-center">擦掉身份以免泄露</p>
                 <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
             </div>
         </div>
         <div class="pagination"></div>
-    </div>
+    </div>-->
+    <h1 class="text-center roleToShow">{{currentGamer}}</h1>
+    <p class="text-center">请拍照记住自己的身份</p>
+    <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
@@ -103,14 +96,18 @@
 <script src="../js/game/config.js"></script>
 <script src="../js/util/common_util.js"></script>
 <script src="../js/game/game.js"></script>
->
 
 <script>
     var mySwiper = new Swiper('.swiper-container',{
         pagination: '.pagination',
         paginationClickable: true
+    });
+   $(".roleBox").click(function(){
+        var id=$(this).attr("roleid");
+       console.log(id);
+        mySwiper.swipeTo(id);
+   });
 
-    })
 </script>
 </body>
 </html>

@@ -81,9 +81,15 @@ app.controller("gamePlayCtrl",function($scope) {
     var gc=dataService.getConfig(gameid);
     gc.roleAssign=dataService.getGameDetail();
     $scope.gameConfig=gc;
+    $scope.gamePlay=gc;
     $scope.gameExit = function(){
         dataService.deleteGameDetail();
     }
+    $scope.currentGamer=gc.roleAssign[0].role;
+    $scope.changeCurrentGamer=function(id){
+        $scope.currentGamer=gc.roleAssign[id].role;
+    }
+
 });
 
 app.controller("judgeScanCtrl",function($scope) {
