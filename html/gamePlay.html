@@ -78,9 +78,10 @@
         </div>
         <div class="pagination"></div>
     </div>-->
+    <h5 class="text-center">{{currentId}}</h5>
     <h1 class="text-center roleToShow">{{currentGamer}}</h1>
     <p class="text-center">请拍照记住自己的身份</p>
-    <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
+    <button class="btn btn-default btn-info btn-lg center-block" ng-click="currentGamerEraser(currentId)">擦掉身份，以免泄露</button>
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">

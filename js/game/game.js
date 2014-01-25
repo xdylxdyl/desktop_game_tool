@@ -77,6 +77,7 @@ app.controller("gameInitCtrl",function($scope) {
 })
 
 app.controller("gamePlayCtrl",function($scope) {
+    $scope.currentId=1;
     var gameid = getParameterFromUrl(location.href, "gameid");
     var gc=dataService.getConfig(gameid);
     gc.roleAssign=dataService.getGameDetail();
@@ -88,8 +89,12 @@ app.controller("gamePlayCtrl",function($scope) {
     $scope.currentGamer=gc.roleAssign[0].role;
     $scope.changeCurrentGamer=function(id){
         $scope.currentGamer=gc.roleAssign[id].role;
+        $scope.currentId = id+1;
     }
-
+    $scope.currentGamerEraser=function(id){
+       gc.roleAssign[id-1].role="╮(╯_╰)╭";
+       $scope.currentGamer=gc.roleAssign[id-1].role;
+    }
 });
 
 app.controller("judgeScanCtrl",function($scope) {
