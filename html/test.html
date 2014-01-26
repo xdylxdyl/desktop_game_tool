@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
 </head>
 <body  ng-controller="gameModelList">
+<!--
 <input type="button" value="add" id="add">
 <input type="button" value="get" id="get">
 <input type="button" value="delete" id="delete">
@@ -87,14 +88,14 @@
 
         sssss
     </div>
-
 </div>
+-->
 
 
 <script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
 <script src="../js/framework/angular/angular.js"></script>
-
+<script src="../js/util/common_util.js"></script>
 <script type="text/javascript">
     var html5StorageSerice = {
         update:function (key, value) {
@@ -130,7 +131,11 @@ function gameModelList($scope) {
        $scope.href ="hello.html";
 
    }
-
+    var str1 = { "name": "cxh", "sex": "man" };
+    JsonUtil.push(str1,{"age":12,"student":"vin"});
+    console.log(str1);
+    JsonUtil.pop(str1,"name");
+    console.log(str1);
 
 
 </script>

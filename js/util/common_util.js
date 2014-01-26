@@ -509,6 +509,7 @@ function htmlDecode(value) {
 }
 
 function isJson(content) {
+    /*没有判断是对象的情况*/
     if (content.match("^\{(.+:.+,*){1,}\}$")) {
         return true;
     } else {
@@ -927,4 +928,25 @@ var roleMaker = function (json) {
     returnData = "[" + str.substring(0, str.length - 1) + "]";
     return eval("(" + returnData + ")");
 
+}
+var JsonUtil = {
+    push :function (jsonData, o) {
+        if (typeof(o) == "object") {
+            for (var k in o) jsonData[k] = o[k];
+                return jsonData.length;
+        }
+    },
+    pop : function (jsonData, key) {
+         //var tempStr=toString(jsonData);
+         delete  jsonData[key];
+        return jsonData.length;
+    },
+    toJSON : function (string) {
+        if (typeof string === "string")
+            return eval("(" + string + ")");
+    },
+    toString : function (json) {
+        if (typeof json == "object")
+            return json.parseJSON();
+    }
 }

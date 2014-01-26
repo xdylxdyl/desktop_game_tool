@@ -24,12 +24,9 @@ var constants = {
 }
 var dataService = {
     getConfig:function (id) {
-
-
         var config= html5StorageService.get(id.toString(),  versionConfig[id.toString()]);
         console.log(config);
         return config;
-
     },
     getGameList:function (type) {
 
@@ -44,6 +41,34 @@ var dataService = {
     },
     deleteGameDetail:function(){
         html5StorageService.delete("gameDetail");
+    },
+    setGamerProperties:function(dataArray){
+        /* dataArray传入格式
+        * [{"id":"1","card":"苹果"},{"id":"2","card":"水果"}]
+        * gameDetail:[{"id":1,"role":"幽灵"},
+        *             {"id":2,"role":"水民"},
+        *             {"id":3,"role":"水民"},
+        *             {"id":4,"role":"水民"},
+        *             {"id":5,"role":"水民"},
+        *             {"id":6,"role":"水民"},
+        *             {"id":7,"role":"水民"},
+        *             {"id":8,"role":"水民"}]
+        * */
+        var roles=this.getGameDetail();
+        console.log(dataArray[0].id);
+        if(dataArray.length<=0 ) return;
+        for(var i=0;i<roles.length;i++){
+            if(dataArray[i].id == roles[i].id)
+                JsonUtil.push(roles[i],dataArray[i]);
+        }
+        html5StorageService.update("gameDetail",roles);
+    },
+    deleteGamerProperties:function(id,key){
+        var roles=this.getGameDetail();
+        for(var role in roles)
+            if(role.id=id)
+                JsonUtil.pop(role,key);
+        html5StorageService.update("gameDetail",roles);
     }
 }
 
@@ -66,10 +91,14 @@ app.controller("gameModelList",function($scope) {
 
 app.controller("gameInitCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid");
+
     $scope.gameid=gameid;
     $scope.gameConfig = dataService.getConfig(gameid);
     $scope.gameInit = function(){
         dataService.setGameDetail(roleMaker($scope.gameConfig));
+        var dataArray=[{"id":"1","card":"苹果"},{"id":"2","card":"水果"},{"id":"3","card":"水果"},{"id":"4","card":"水果"},
+            {"id":"5","card":"水果"},{"id":"6","card":"水果"},{"id":"7","card":"水果"},{"id":"8","card":"水果"}];
+        dataService.setGamerProperties(dataArray);
     }
     $scope.gameExit = function(){
         dataService.deleteGameDetail();
