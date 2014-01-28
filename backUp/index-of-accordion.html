@@ -20,16 +20,16 @@
 <!-- Tab panes -->
 <div class="tab-content" >
     <div class="tab-pane active" id="home">
-        <div class="panel-group" >
+        <div class="panel-group" id="accordion" >
             <div class="panel panel-default" ng-repeat="model in officialList">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a href="#" data-toggle="collapse" data-parent="#accordion" >
+                    <h4 id="h4-{{model.id}}" class="panel-title" onclick="linkClick(this)">
+                        <a id="link{{model.id}}" data-toggle="collapse" data-parent="#accordion" href="#{{model.id}}">
                             {{model.title}}
                         </a>
                     </h4>
                 </div>
-                <div class="panel-collapse collapse in">
+                <div id="{{model.id}}" class="panel-collapse collapse">
                     <div class="panel-body">
                         <ul>
                             <li ng-repeat="version in model.versions"><a ng-href="html/gameInit.html?gameid={{version.gameid}}">{{version.name}}</a></li>
@@ -84,8 +84,6 @@
             document.getElementById("link" + id).click();
         }
     }
-    if(!window.localStorage.getItem("official"))
-        location.href="firstOpenUp.html";
     <!--tab change end-->
 </script>
 </body>

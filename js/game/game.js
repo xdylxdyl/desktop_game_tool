@@ -91,14 +91,12 @@ app.controller("gameModelList",function($scope) {
 
 app.controller("gameInitCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid");
-
     $scope.gameid=gameid;
     $scope.gameConfig = dataService.getConfig(gameid);
     $scope.gameInit = function(){
-        dataService.setGameDetail(roleMaker($scope.gameConfig));
         var dataArray=[{"id":"1","card":"苹果"},{"id":"2","card":"水果"},{"id":"3","card":"水果"},{"id":"4","card":"水果"},
             {"id":"5","card":"水果"},{"id":"6","card":"水果"},{"id":"7","card":"水果"},{"id":"8","card":"水果"}];
-        dataService.setGamerProperties(dataArray);
+        dataService.setGameDetail(roleMaker($scope.gameConfig),dataArray);
     }
     $scope.gameExit = function(){
         dataService.deleteGameDetail();

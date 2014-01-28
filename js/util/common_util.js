@@ -903,8 +903,8 @@ var html5StorageService = {
 }
 
 
-var roleMaker = function (json) {
-    var playerNum = json.playerNum,
+var roleMaker = function (config,dataArray) {
+    var playerNum = config.playerNum,
         rolesArray = [],
         rolesNumArray = [],
         roleChooser = 0,
@@ -912,9 +912,11 @@ var roleMaker = function (json) {
         count = 1,
         returnData,
         flag = 1;
-    for (var i in json.roles) {
-        rolesArray.push(json.roles[i].name);
-        rolesNumArray.push(json.roles[i].num);
+    var showList=config.showProperties;
+
+    for (var i in config.roles) {
+        rolesArray.push(config.roles[i].name);
+        rolesNumArray.push(config.roles[i].num);
     }
     while (flag) {
         roleChooser = Math.floor(Math.random() * 4);

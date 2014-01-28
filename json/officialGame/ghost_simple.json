@@ -1,0 +1,22 @@
+{
+    "name":"猜词",
+    "type":"捉鬼游戏",
+    "gameid":4,
+    "playerNum":8,
+    "showProperties":["card","role"],
+    "roles":
+        [
+            {   "name":"法官",
+                "num":1
+            },
+            {
+                "name":"鬼",
+                "num":2
+            },
+            {
+                "name":"水民",
+                "num":5
+            }
+
+        ]
+}

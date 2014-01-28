@@ -14,7 +14,8 @@ var gameList = [
                 "name":"简化版(1.0)",
                 "gameid":-1000,
                 "type":"remote",
-                "url":"ghost_simple.json"
+                "url":"officialGame/ghost_simple.json"
+
             },
             {
                 "name":"猜词版(2.0)",
