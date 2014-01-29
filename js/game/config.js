@@ -21,13 +21,13 @@ var gameList = [
                 "name":"猜词版(2.0)",
                 "gameid":-1100,
                 "type":"remote",
-                "url":"ghost_simple.json"
+                "url":"officialGame/ghost_simple.json"
             },
             {
                 "name":"白痴版(魂版)(1.5)",
                 "gameid":-1300,
                 "type":"remote",
-                "url":"ghost_simple.json"
+                "url":"officialGame/ghost_simple.json"
             }
 
         ]
@@ -46,19 +46,19 @@ var gameList = [
                 "name":"警版",
                 "gameid":-2100,
                 "type":"remote",
-                "url":"ghost_simple.json"
+                "url":"officialGame/ghost_simple.json"
             },
             {
                 "name":"不翻牌",
                 "gameid":-2200,
                 "type":"remote",
-                "url":"ghost_simple.json"
+                "url":"officialGame/ghost_simple.json"
             },
             {
                 "name":"3.0",
                 "gameid":-2300,
                 "type":"remote",
-                "url":"ghost_simple.json"
+                "url":"officialGame/ghost_simple.json"
             }
 
         ]
@@ -71,7 +71,7 @@ var gameList = [
                 "name":"狼人杀",
                 "gameid":-3000,
                 "type":"remote",
-                "url":"ghost_simple.json"
+                "url":"officialGame/ghost_simple.json"
             }
         ]
     },
@@ -83,7 +83,7 @@ var gameList = [
                 "name":"炸狼堡",
                 "gameid":-4000,
                 "type":"remote",
-                "url":"ghost_simple.json"
+                "url":"officialGame/ghost_simple.json"
             }
         ]
     }
@@ -153,6 +153,7 @@ var versionConfig = {
         "type":"remote",
         "gameid":-1000,
         "playerNum":8,
+        "showProperties":["role"],
         "roles":[
             {
                 "name":"幽灵",
@@ -169,13 +170,16 @@ var versionConfig = {
         "type":"remote",
         "gameid":-1100,
         "playerNum":8,
+        "showProperties":["role","card"],
         "roles":[
             {
                 "name":"幽灵",
+                "card":"ulin",
                 "num":1
             },
             {
                 "name":"水民",
+                "card":"shuim",
                 "num":7
             }
         ]
@@ -185,6 +189,7 @@ var versionConfig = {
         "type":"remote",
         "gameid":-1300,
         "playerNum":8,
+        "showProperties":["role"],
         "roles":[
             {
                 "name":"幽灵",
@@ -205,10 +210,12 @@ var versionConfig = {
         "type":"remote",
         "gameid":-2000,
         "playerNum":8,
+        "showProperties":["role"],
         "roles":[
 
             {
                 "name":"杀手",
+
                 "num":1
             },
             {
@@ -222,6 +229,7 @@ var versionConfig = {
         "type":"remote",
         "gameid":-2100,
         "playerNum":8,
+        "showProperties":["role"],
         "roles":[
 
             {
@@ -242,6 +250,7 @@ var versionConfig = {
         "name":"杀人游戏警版不翻牌",
         "type":"remote",
         "gameid":-2200,
+        "showProperties":["role"],
         "playerNum":8,
         "roles":[
 
@@ -263,6 +272,7 @@ var versionConfig = {
         "name":"杀人游戏3.0",
         "type":"remote",
         "gameid":-2300,
+        "showProperties":["role"],
         "playerNum":8,
         "roles":[
 
@@ -292,7 +302,8 @@ var versionConfig = {
          "name":"狼人杀",
          "type":"remote",
          "gameid":-3000,
-         "playerNum":8,
+        "showProperties":["role"],
+        "playerNum":8,
          "roles":[
 
              {
@@ -311,7 +322,8 @@ var versionConfig = {
          "type":"remote",
          "gameid":-3000,
          "playerNum":5,
-         "roles":[
+        "showProperties":["role"],
+        "roles":[
 
              {
                  "name":"狼人",

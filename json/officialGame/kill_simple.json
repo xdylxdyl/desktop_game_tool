@@ -3,6 +3,7 @@
     "type":"捉鬼游戏",
     "gameid":2,
     "playerNum":8,
+    "showProperties":["role"],
     "roles":
         [
             {   "name":"法官",

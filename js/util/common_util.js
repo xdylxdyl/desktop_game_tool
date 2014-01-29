@@ -902,35 +902,6 @@ var html5StorageService = {
 
 }
 
-
-var roleMaker = function (config,dataArray) {
-    var playerNum = config.playerNum,
-        rolesArray = [],
-        rolesNumArray = [],
-        roleChooser = 0,
-        str = "",
-        count = 1,
-        returnData,
-        flag = 1;
-    var showList=config.showProperties;
-
-    for (var i in config.roles) {
-        rolesArray.push(config.roles[i].name);
-        rolesNumArray.push(config.roles[i].num);
-    }
-    while (flag) {
-        roleChooser = Math.floor(Math.random() * 4);
-        if (rolesNumArray[roleChooser] > 0) {
-            str = str + "{id:" + count + ",role:'" + rolesArray[roleChooser] + "'},";
-            rolesNumArray[roleChooser]--;
-            count++;
-        }
-        if (count == playerNum + 1) break;
-    }
-    returnData = "[" + str.substring(0, str.length - 1) + "]";
-    return eval("(" + returnData + ")");
-
-}
 var JsonUtil = {
     push :function (jsonData, o) {
         if (typeof(o) == "object") {
@@ -950,5 +921,11 @@ var JsonUtil = {
     toString : function (json) {
         if (typeof json == "object")
             return json.parseJSON();
+    },
+    inArray : function (Data,key){
+        for(var i=0;i<Data.length;i++)
+            if(Data[i]===key)
+                return true;
+        return false;
     }
 }
