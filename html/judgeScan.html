@@ -24,8 +24,11 @@
                <img alt="{{role.id}}"/>
            </a>
        </div>
-       <div class="col-xs-6">
+       <div class="col-xs-4">
            <a href="#" class="btn btn-link">{{role.role}}</a>
+       </div>
+       <div ng-show="gameConfig.showProperties.length==2" class="col-xs-3">
+           <a href="#" class="btn btn-link">{{role.card}}</a>
        </div>
    </div>
    <div class="container">

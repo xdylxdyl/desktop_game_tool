@@ -120,7 +120,6 @@ app.controller("gameInitCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid");
     $scope.gameid=gameid;
     $scope.gameConfig = dataService.getConfig(gameid);
-
     $scope.gameInit = function(){
         $scope.cardJSON="{'水民':'"+roleChooserForm.shuim.value+"','幽灵':'"+roleChooserForm.ulin.value+"'}";
         dataService.setGameDetail(dataService.roleMaker($scope.gameConfig,JsonUtil.toJSON($scope.cardJSON)));

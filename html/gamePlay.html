@@ -54,15 +54,15 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <a class="navbar-brand" href="#">杀人游戏</a>
-        <a  class="btn btn-default navbar-btn pull-right" ng-href="judgeScan.html?gameid={{gameConfig.gameid}}">
+        <a  class="btn btn-default navbar-btn pull-right" ng-href="judgeScan.html?gameid={{gameConfig.gameid}}" onclick="buttonMedia()">
             法官查看
         </a>
     </div>
 </nav>
 
 <div class="roleList row" >
-    <div class=" col-xs-4 " ng-repeat="role in gameConfig.roleAssign" >
-        <a class="thumbnail roleBox"  roleid="{{role.id}}" ng-click="changeCurrentGamer($index)">
+    <div class=" col-xs-3 " ng-repeat="role in gameConfig.roleAssign" >
+        <a class="thumbnail roleBox"  roleid="{{role.id}}" ng-click="changeCurrentGamer($index)" onclick="buttonMedia()">
             <img alt="{{role.id}}"/>
         </a>
     </div>
@@ -80,17 +80,16 @@
     </div>-->
     <h5 class="text-center">{{currentId}}</h5>
     <h1 class="text-center roleToShow">{{currentGamer}}</h1>
-    <h5 class="text-center" ng-if="gameConfig.showProperties['card']">{{currentCard}}</h5>
+    <h5 class="text-center" ng-show="gameConfig.showProperties.length==2">{{currentCard}}</h5>
     <p class="text-center">请拍照记住自己的身份</p>
-    <button class="btn btn-default btn-info btn-lg center-block" ng-click="currentGamerEraser(currentId)">擦掉身份，以免泄露</button>
+    <button class="btn btn-default btn-info btn-lg center-block" onclick="buttonMedia()" ng-click="currentGamerEraser(currentId)">擦掉身份，以免泄露</button>
 </div>
+<audio id="buttonAudio" src="../media/click.WAV" controls="controls"  hidden="hidden"></audio>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
         <a class="btn btn-danger pull-left navbar-btn" href="../index.html" ng-click="gameExit()">结束游戏</a>
     </div>
 </nav>
-
-
 <script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../js/framework/angular/angular.js"></script>
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
@@ -98,13 +97,15 @@
 <script src="../js/game/config.js"></script>
 <script src="../js/util/common_util.js"></script>
 <script src="../js/game/game.js"></script>
-
 <script>
     var mySwiper = new Swiper('.swiper-container',{
         pagination: '.pagination',
         paginationClickable: true
     });
-
+    var buttonMedia = function(){
+        var media=document.getElementById("buttonAudio");
+        media.play();
+    }
 </script>
 </body>
 </html>
