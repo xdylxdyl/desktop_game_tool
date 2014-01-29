@@ -86,7 +86,6 @@ var dataService = {
                         str = str + "{id:" + count + ",role:'" + rolesArray[roleChooser] + "',card:'"+dataArray[rolesArray[roleChooser]]+"'},";
                     else if(JsonUtil.inArray(showList,"role"))
                         str = str + "{id:" + count + ",role:'" + rolesArray[roleChooser] + "'},";
-
                     rolesNumArray[roleChooser]--;
                     count++;
                 }
@@ -109,7 +108,6 @@ var app = angular.module('gameTool', [], function ($compileProvider) {
 
 
 
-
 app.controller("gameModelList",function($scope) {
 
     $scope.officialList = dataService.getGameList(constants.listType.official);
@@ -122,7 +120,8 @@ app.controller("gameInitCtrl",function($scope) {
     $scope.gameConfig = dataService.getConfig(gameid);
     $scope.gameInit = function(){
         $scope.cardJSON="{'水民':'"+roleChooserForm.shuim.value+"','幽灵':'"+roleChooserForm.ulin.value+"'}";
-        dataService.setGameDetail(dataService.roleMaker($scope.gameConfig,JsonUtil.toJSON($scope.cardJSON)));
+        var DataJSON=JsonUtil.toJSON($scope.cardJSON)||{};
+        dataService.setGameDetail(dataService.roleMaker($scope.gameConfig,DataJSON));
     }
     $scope.gameExit = function(){
         dataService.deleteGameDetail();
