@@ -36,7 +36,16 @@ var dataService = {
         return html5StorageService.get(type, constants.listModel[type]);
 
     },
-    setGameDetail:function (data){
+    setGameDetail:function (data,showProperties,propertiesData){
+        //propertiesData={
+        //                  "card":
+        //                          [{"role":"水民","card":"水果"},{"role":"鬼","card":"香蕉"}],
+        //                  "example":
+        //                          [{"role":"水民","example":"what"},{"role":"鬼"},"card":"why"]
+        //               };
+        for(var i= 0,max=showProperties.length;i<max;i++){
+            this.setGamerProperties(data,propertiesData[showProperties[i]]);
+        }
         html5StorageService.update("gameDetail",data);
     },
     getGameDetail:function(){
@@ -45,16 +54,13 @@ var dataService = {
     deleteGameDetail:function(){
         html5StorageService.delete("gameDetail");
     },
-    /*
-    setGamerProperties:function(dataArray){
-        var roles=this.getGameDetail();
-        console.log(dataArray[0].id);
+
+    setGamerProperties:function(config,dataArray){
         if(dataArray.length<=0 ) return;
-        for(var i=0;i<roles.length;i++){
-            if(dataArray[i].id == roles[i].id)
-                JsonUtil.push(roles[i],dataArray[i]);
+        for(var i=0;i<config.length;i++){
+            if(dataArray[i].role == config[i].role)
+                JsonUtil.push(config[i],dataArray[i]);
         }
-        html5StorageService.update("gameDetail",roles);
     },
     deleteGamerProperties:function(id,key){
         var roles=this.getGameDetail();
@@ -63,8 +69,7 @@ var dataService = {
                 JsonUtil.pop(role,key);
         html5StorageService.update("gameDetail",roles);
     },
-    */
-    roleMaker : function (config,dataArray) {
+    roleMaker : function (config) {
         var playerNum = config.playerNum,
             rolesArray = [],
             rolesNumArray = [],
@@ -73,28 +78,31 @@ var dataService = {
             count = 1,
             returnData,
             flag = 1;
-        var showList=config.showProperties;
         for (var i in config.roles) {
             rolesArray.push(config.roles[i].name);
             rolesNumArray.push(config.roles[i].num);
         }
-        //var dataArray={"幽灵":"水果","水民":"苹果"};
             while (flag) {
                 roleChooser = Math.floor(Math.random() * 4);
                 if (rolesNumArray[roleChooser] > 0) {
-                    if(JsonUtil.inArray(showList,"card")&&JsonUtil.inArray(showList,"role"))
-                        str = str + "{id:" + count + ",role:'" + rolesArray[roleChooser] + "',card:'"+dataArray[rolesArray[roleChooser]]+"'},";
-                    else if(JsonUtil.inArray(showList,"role"))
-                        str = str + "{id:" + count + ",role:'" + rolesArray[roleChooser] + "'},";
+                    str = str + "{id:" + count + ",role:'" + rolesArray[roleChooser] + "'},";
                     rolesNumArray[roleChooser]--;
                     count++;
                 }
                 if (count == playerNum + 1) break;
             }
-
         returnData = "[" + str.substring(0, str.length - 1) + "]";
         return eval("(" + returnData + ")");
-
+    },
+    propertiesMaker : function (properties,roles,values){
+        //roles=["水民",“鬼"];
+        //values=[role:card,role:card,role:card];
+        //{"properties":[{"role":"水民","card":"value"},{"role":"鬼","card":"value"}]}
+       var arr=[];
+        for(var i=0;i<roles.length;i++){
+           arr.push("{'role':'"+roles[i]+"','"+properties+"':'"+values[roles[i]]+"'}");
+       }
+       return JsonUtil.toJSON("{'"+properties+"':"+arr+"}");
     }
 }
 
@@ -119,9 +127,21 @@ app.controller("gameInitCtrl",function($scope) {
     $scope.gameid=gameid;
     $scope.gameConfig = dataService.getConfig(gameid);
     $scope.gameInit = function(){
-        $scope.cardJSON="{'水民':'"+roleChooserForm.shuim.value+"','幽灵':'"+roleChooserForm.ulin.value+"'}";
-        var DataJSON=JsonUtil.toJSON($scope.cardJSON)||{};
-        dataService.setGameDetail(dataService.roleMaker($scope.gameConfig,DataJSON));
+        //values=[role:card,role:card,role:card];
+        var temp={};
+        var rolesArray=[];
+        var values=new mapUtil();
+        var index=0;
+        var flag=1;
+        for(var i =0;i<$scope.gameConfig.roles.length;i++)//获取角色
+            rolesArray.push($scope.gameConfig.roles[i].name);
+
+        while(flag){//数据绑定
+            values.set();
+        }
+        for(var i=0;i<$scope.gameConfig.showProperties.length;i++)
+            JsonUtil.push(temp,dataService.propertiesMaker($scope.gameConfig.showProperties[i],rolesArray,values));
+        dataService.setGameDetail(dataService.roleMaker($scope.gameConfig),temp);
     }
     $scope.gameExit = function(){
         dataService.deleteGameDetail();

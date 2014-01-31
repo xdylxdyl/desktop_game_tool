@@ -28,16 +28,33 @@
                 </div>
         </div>
         <div class="form-group" ng-repeat="role in gameConfig.roles" >
-            <label for="judge" class="col-xs-4 control-label">{{role.name}}</label>
-            <div class="col-xs-offset-2 col-xs-5">
-                <input type="text" class="form-control" id="judge" min="0" max="100" placeholder="人数" value="{{role.num}}">
+            <div ng-repeat="properties in gameConfig.showProperties">
+                <div ng-if="properties=='role'">
+                    <label for="properties" class="col-xs-4 control-label">{{role.name}}</label>
+                    <div class="col-xs-offset-2 col-xs-5">
+                        <input type="text" class="form-control" id="properties" min="0" max="100">
+                    </div>
+                </div>
+                <div>
+                    <label  class="col-xs-4 control-label">{{properties}}</label>
+                    <div class="col-xs-offset-2 col-xs-5">
+                        <input type="text" class="form-control" >
+                    </div>
+                </div>
             </div>
-            <div ng-show="gameConfig.showProperties.length==2">
+                <!--<label for="judge" class="col-xs-4 control-label">{{role.name}}</label>
+                <div class="col-xs-offset-2 col-xs-5">
+                    <input type="text" class="form-control" id="judge" min="0" max="100" placeholder="人数" value="{{role.num}}">
+                </div>-->
+            </div>
+
+           <!-- <div ng-show="gameConfig.showProperties.length==2">
                 <label for="{{role.card}}" class="col-xs-offset-1 col-xs-3 control-label">卡牌</label>
                 <div class="col-xs-offset-2 col-xs-5" >
                     <input type="text" class="form-control" id="{{role.card}}" name="{{role.card}}" placeholder="卡牌">
                 </div>
             </div>
+           -->
 
         </div>
     </form>

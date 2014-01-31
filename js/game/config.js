@@ -189,7 +189,7 @@ var versionConfig = {
         "type":"remote",
         "gameid":-1300,
         "playerNum":8,
-        "showProperties":["role"],
+        "showProperties":["role","card","ghost"],
         "roles":[
             {
                 "name":"幽灵",
