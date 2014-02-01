@@ -11,10 +11,13 @@
 
 </head>
 <body>
+<script src="js/game/game.js"></script>
 <script>
 
-    if(!window.localStorage.getItem("official"))
+    if(window.localStorage.getItem("version")!=constants.version.version){
+        window.localStorage.setItem("version",constants.version.version);
         location.href="html/firstOpenUp.html";
+    }
     else
         location.href='html/list.html';
     <!--tab change end-->
