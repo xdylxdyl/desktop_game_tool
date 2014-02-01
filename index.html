@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="gameTool">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -10,84 +10,13 @@
     <!--    <link rel="stylesheet" type="text/css" href="../css/game/style.css">-->
 
 </head>
-<body ng-controller="gameModelList">
-<!-- Nav tabs -->
-<div class="wrapTab">
-    <ul class="nav nav-tabs" id="topTab">
-        <li class="active"><a href="#home" data-toggle="tab">系统游戏</a></li>
-        <li><a href="#userDefine" data-toggle="tab">自定义游戏</a></li>
-    </ul>
-</div>
-<!-- Tab panes -->
-<div class="tab-content" >
-    <div class="tab-pane active" id="home">
-        <div class="panel-group" >
-            <div class="panel panel-default" ng-repeat="model in officialList">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a href="#" data-toggle="collapse" data-parent="#accordion" >
-                            {{model.title}}
-                        </a>
-                    </h4>
-                </div>
-                <div class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <ul>
-                            <li ng-repeat="version in model.versions"><a ng-href="html/gameInit.html?gameid={{version.gameid}}">{{version.name}}</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="tab-pane" id="userDefine">
-        <div class="panel-group" id="accordion2">
-            <div class="panel panel-default" ng-repeat="model2 in userList">
-                <div class="panel-heading">
-                    <h4 id="h4-{{model.id}}" class="panel-title" onclick="linkClick(this)">
-                        <a id="link{{model.id}}" data-toggle="collapse" data-parent="#accordion" href="#{{model2.id}}">
-                            {{model2.title}}
-                        </a>
-                    </h4>
-                </div>
-                <div id="{{model2.id}}" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <ul>
-                            <li ng-repeat="version in model2.versions"><a ng-href="gameInit.html?gameid={version.gameid}}">{{version.name}}</a></li>
-                            <li><a href="html/gameInit.html?gameid=-2000">xxxxx</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript" src="js/framework/jquery/2.0.0/jquery.min.js"></script>
-<script src="js/framework/angular/angular.js"></script>
-<script src="js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
-<script src="js/game/config.js"></script>
-<script src="js/util/common_util.js"></script>
-<script src="js/game/game.js"></script>
+<body>
 <script>
-    <!--tab change start-->
-    $('#topTab a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
-
-    function linkClick(obj){
-        var id = null;//这个是要的id
-        if(obj){
-            id=obj.id;
-            id=id.replace("h4-","");
-            document.getElementById("link" + id).click();
-        }
-    }
 
     if(!window.localStorage.getItem("official"))
-        location.href="firstOpenUp.html";
+        location.href="html/firstOpenUp.html";
+    else
+        location.href='html/list.html';
     <!--tab change end-->
 </script>
 </body>
