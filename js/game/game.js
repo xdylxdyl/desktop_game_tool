@@ -178,26 +178,29 @@ app.controller("gamePlayCtrl",function($scope) {
     $scope.currentData=[];
     $scope.gameConfig=gc;
     $scope.gamePlay=gc;
-
-    $scope.currentData.push(0);
+    $scope.currentId=1;
+    $scope.currentData.push($scope.currentId);
     for(var i=0;i<gc.showProperties.length;i++){
        $scope.currentData.push(gc.roleAssign[0][gc.showProperties[i]]);
     }
 
     $scope.changeCurrentGamer=function(id){
         $scope.currentData=[];
-        id=id+1;
-        $scope.currentData.push(id);
+        $scope.currentId=id+1;
+        $scope.currentData.push($scope.currentId);
         for(var i=0;i<gc.showProperties.length;i++){
             $scope.currentData.push(gc.roleAssign[id][gc.showProperties[i]]);
         }
     }
     $scope.currentGamerEraser=function(id){
+        $scope.currentData=[];
+        $scope.currentId=id;
+        $scope.currentData.push($scope.currentId);
 
-        for(var item in gc.showProperties){
-            gc.roleAssign[id-1][item]="╮(╯_╰)╭";
-            $scope.currentData.push(gc.roleAssign[id-1][item]);
-        }
+       for(var i=0;i<gc.showProperties.length;i++){
+           gc.roleAssign[id-1][gc.showProperties[i]]="QAQ";
+           $scope.currentData.push(gc.roleAssign[id-1][gc.showProperties[i]]);
+       }
 
     }
     $scope.gameExit = function(){
