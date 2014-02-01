@@ -63,8 +63,8 @@
     <h5 class="text-center">总人数{{gameConfig.playerNum}}(<span ng-repeat="role in gameConfig.roles">【{{role.name}}:{{role.num}}】</span>)</h5>
 
 </div>
-<div class="roleList row" >
-    <div class=" col-xs-4 " ng-repeat="role in gameConfig.roleAssign" >
+<div class="roleList" >
+    <div  ng-repeat="role in gameConfig.roleAssign" >
         <a class="thumbnail roleBox"  roleid="{{role.id}}" ng-show="role.id == currentId-1 || role.id == currentId || role.id == currentId+1" ng-click="changeCurrentGamer($index)" onclick="buttonMedia()">
             <img alt="{{role.id}}"/>
         </a>
