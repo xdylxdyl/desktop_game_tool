@@ -218,3 +218,14 @@ app.controller("judgeScanCtrl",function($scope) {
         dataService.deleteGameDetail();
     }
 });
+
+app.controller("introduceGameCtrl",function($scope) {
+    var gameid = getParameterFromUrl(location.href, "gameid");
+    var gc=dataService.getConfig(gameid);
+    gc.roleAssign=dataService.getGameDetail();
+    gc.gameid=gameid;
+    $scope.gameConfig=gc;
+    $scope.gameExit = function(){
+        dataService.deleteGameDetail();
+    }
+});

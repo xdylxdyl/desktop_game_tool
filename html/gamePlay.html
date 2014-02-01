@@ -59,25 +59,18 @@
         </a>
     </div>
 </nav>
+<div>
+    <h5 class="text-center">总人数{{gameConfig.playerNum}}(<span ng-repeat="role in gameConfig.roles">【{{role.name}}:{{role.num}}】</span>)</h5>
 
+</div>
 <div class="roleList row" >
-    <div class=" col-xs-3 " ng-repeat="role in gameConfig.roleAssign" >
-        <a class="thumbnail roleBox"  roleid="{{role.id}}" ng-click="changeCurrentGamer($index)" onclick="buttonMedia()">
+    <div class=" col-xs-4 " ng-repeat="role in gameConfig.roleAssign" >
+        <a class="thumbnail roleBox"  roleid="{{role.id}}" ng-show="role.id == currentId-1 || role.id == currentId || role.id == currentId+1" ng-click="changeCurrentGamer($index)" onclick="buttonMedia()">
             <img alt="{{role.id}}"/>
         </a>
     </div>
 </div>
 <div class="roleShow">
-    <!--<div class="swiper-container">
-        <div class="swiper-wrapper" >
-            <div class="swiper-slide">
-                <h1 class="text-center roleToShow">{{currentGamer}}</h1>
-                <p class="text-center">擦掉身份以免泄露</p>
-                <button class="btn btn-default btn-info btn-lg center-block">擦掉身份，以免泄露</button>
-            </div>
-        </div>
-        <div class="pagination"></div>
-    </div>-->
     <h5 class='text-center' ng-repeat="current in currentData">{{current}}</h5>
     <p class="text-center">请拍照记住自己的身份</p>
     <button class="btn btn-default btn-info btn-lg center-block" onclick="buttonMedia()" ng-click="currentGamerEraser(currentId)">擦掉身份，以免泄露</button>
