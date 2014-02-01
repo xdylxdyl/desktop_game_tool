@@ -44,6 +44,7 @@ var dataService = {
         //                          [{"role":"水民","example":"what"},{"role":"鬼"},"card":"why"]
         //               };
         for(var i= 0,max=showProperties.length;i<max;i++){
+            if(showProperties[i]=='role') continue;
             this.setGamerProperties(data,propertiesData[showProperties[i]]);
         }
         html5StorageService.update("gameDetail",data);
@@ -57,10 +58,14 @@ var dataService = {
 
     setGamerProperties:function(config,dataArray){
         if(dataArray.length<=0 ) return;
-        for(var i=0;i<config.length;i++){
-            if(dataArray[i].role == config[i].role)
-                JsonUtil.push(config[i],dataArray[i]);
-        }
+        console.log(dataArray);
+        console.log(config);
+            for(var i=0;i<config.length;i++)
+                for(var j = 0 ; j <dataArray.length ; j++)
+                    if(dataArray[j]["role"] == config[i]["role"])
+                        JsonUtil.push(config[i],dataArray[j]);
+
+
     },
     deleteGamerProperties:function(id,key){
         var roles=this.getGameDetail();
@@ -93,16 +98,6 @@ var dataService = {
             }
         returnData = "[" + str.substring(0, str.length - 1) + "]";
         return eval("(" + returnData + ")");
-    },
-    propertiesMaker : function (properties,roles,values){
-        //roles=["水民",“鬼"];
-        //values=[role:card,role:card,role:card];
-        //{"properties":[{"role":"水民","card":"value"},{"role":"鬼","card":"value"}]}
-       var arr=[];
-        for(var i=0;i<roles.length;i++){
-           arr.push("{'role':'"+roles[i]+"','"+properties+"':'"+values[roles[i]]+"'}");
-       }
-       return JsonUtil.toJSON("{'"+properties+"':"+arr+"}");
     }
 }
 
@@ -126,22 +121,48 @@ app.controller("gameInitCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid");
     $scope.gameid=gameid;
     $scope.gameConfig = dataService.getConfig(gameid);
+
     $scope.gameInit = function(){
-        //values=[role:card,role:card,role:card];
+        //
+        // 获取整个表单的input
+        //  roleMaker
+        //     |
+        //  bindData
+        //     |
+        //  setGameDetail
+        //
+        alert("123");
         var temp={};
         var rolesArray=[];
-        var values=new mapUtil();
-        var index=0;
-        var flag=1;
-        for(var i =0;i<$scope.gameConfig.roles.length;i++)//获取角色
+        for(var i =0;i<$scope.gameConfig.roles.length;i++)//获取角色数组
             rolesArray.push($scope.gameConfig.roles[i].name);
 
-        while(flag){//数据绑定
-            values.set();
-        }
-        for(var i=0;i<$scope.gameConfig.showProperties.length;i++)
-            JsonUtil.push(temp,dataService.propertiesMaker($scope.gameConfig.showProperties[i],rolesArray,values));
-        dataService.setGameDetail(dataService.roleMaker($scope.gameConfig),temp);
+        var formData=document.getElementsByTagName('input');
+
+            //正则表达式来判断
+            //name字段 {{role}}<-->{{properties}}
+            //{"properties":[{"role":"水民","card":"value"},{"role":"鬼","card":"value"}]}
+
+                for(var j =0;j<$scope.gameConfig.showProperties.length;j++){
+                    if($scope.gameConfig.showProperties[j]=='role') continue;
+                    var tempArr=[];
+
+                    var reg=new RegExp(".*"+$scope.gameConfig.showProperties[j]+".*");
+                    var reg2=new RegExp(/.*<-->.*/);
+                    for(var index=0;index<formData.length;index++){
+
+                        if(reg.test(formData[index].name)&&reg2.test(formData[index].name)){
+                            var arr=formData[index].name.split('<-->');
+                            tempArr.push("{'role':'"+arr[0]+"','"+$scope.gameConfig.showProperties[j]+"':'"+formData[index].value+"'}");
+                            // tempArr correct
+                        }
+                    }
+                    var tmp = JsonUtil.toJSON("{'"+$scope.gameConfig.showProperties[j]+"':["+tempArr+"]}");
+                     JsonUtil.push(temp,tmp);
+
+                }
+       console.log(temp);
+        dataService.setGameDetail(dataService.roleMaker($scope.gameConfig),$scope.gameConfig.showProperties,temp);
     }
     $scope.gameExit = function(){
         dataService.deleteGameDetail();
@@ -153,29 +174,31 @@ app.controller("gamePlayCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid");
     var gc=dataService.getConfig(gameid);
     gc.roleAssign=dataService.getGameDetail();
+    //$scope.currentData=[role,card,other];
+    $scope.currentData=[];
     $scope.gameConfig=gc;
     $scope.gamePlay=gc;
-    $scope.currentId=1;
-    if(JsonUtil.inArray(gc.showProperties,"role"))
-        $scope.currentGamer=gc.roleAssign[0].role;
-    if(JsonUtil.inArray(gc.showProperties,"card"))
-        $scope.currentCard=gc.roleAssign[0].card;
+
+    $scope.currentData.push(0);
+    for(var i=0;i<gc.showProperties.length;i++){
+       $scope.currentData.push(gc.roleAssign[0][gc.showProperties[i]]);
+    }
+
     $scope.changeCurrentGamer=function(id){
-        if(JsonUtil.inArray(gc.showProperties,"role"))
-            $scope.currentGamer=gc.roleAssign[id].role;
-        $scope.currentId = id+1;
-        if(JsonUtil.inArray(gc.showProperties,"card"))
-            $scope.currentCard =gc.roleAssign[id].card;
+        $scope.currentData=[];
+        id=id+1;
+        $scope.currentData.push(id);
+        for(var i=0;i<gc.showProperties.length;i++){
+            $scope.currentData.push(gc.roleAssign[id][gc.showProperties[i]]);
+        }
     }
     $scope.currentGamerEraser=function(id){
-        if(JsonUtil.inArray(gc.showProperties,"role")){
-            gc.roleAssign[id-1].role="╮(╯_╰)╭";
-            $scope.currentGamer=gc.roleAssign[id-1].role;
+
+        for(var item in gc.showProperties){
+            gc.roleAssign[id-1][item]="╮(╯_╰)╭";
+            $scope.currentData.push(gc.roleAssign[id-1][item]);
         }
-        if(JsonUtil.inArray(gc.showProperties,"card")){
-            gc.roleAssign[id-1].card="_(:з」∠)_";
-            $scope.currentCard=gc.roleAssign[id-1].card;
-        }
+
     }
     $scope.gameExit = function(){
         dataService.deleteGameDetail();
