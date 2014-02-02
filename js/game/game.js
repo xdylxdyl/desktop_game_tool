@@ -131,7 +131,6 @@ app.controller("gameInitCtrl",function($scope) {
         //     |
         //  setGameDetail
         //
-        alert("123");
         var temp={};
         var rolesArray=[];
         for(var i =0;i<$scope.gameConfig.roles.length;i++)//获取角色数组
@@ -142,11 +141,9 @@ app.controller("gameInitCtrl",function($scope) {
             //正则表达式来判断
             //name字段 {{role}}<-->{{properties}}
             //{"properties":[{"role":"水民","card":"value"},{"role":"鬼","card":"value"}]}
-
                 for(var j =0;j<$scope.gameConfig.showProperties.length;j++){
                     if($scope.gameConfig.showProperties[j]=='role') continue;
                     var tempArr=[];
-
                     var reg=new RegExp(".*"+$scope.gameConfig.showProperties[j]+".*");
                     var reg2=new RegExp(/.*<-->.*/);
                     for(var index=0;index<formData.length;index++){
@@ -161,7 +158,7 @@ app.controller("gameInitCtrl",function($scope) {
                      JsonUtil.push(temp,tmp);
 
                 }
-       console.log(temp);
+        //$scope.gameConfig changed
         dataService.setGameDetail(dataService.roleMaker($scope.gameConfig),$scope.gameConfig.showProperties,temp);
     }
     $scope.gameExit = function(){

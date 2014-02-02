@@ -30,24 +30,32 @@
     <form class="form-horizontal" role="form" name="roleChooserForm">
         <div class="form-group ">
                 <label for="maxPeople" class="col-xs-4 control-label">总人数</label>
-                <div class="col-xs-offset-2 col-xs-5">
-                    <input type="text" class="form-control" id="maxPeople" min="0" max="100" placeholder="人数" value="{{gameConfig.playerNum}}">
+                <div class="col-xs-offset-2 col-xs-3">
+                    <input  type="number" required="required" class="form-control" name='maxPeople'  min="0" max="100" placeholder="人数" value="{{gameConfig.playerNum}}">
                 </div>
+                <span class="error" id="maxPeople" style="visibility: hidden">
+                    error
+                </span>
+
         </div>
         <div class="form-group" ng-repeat="role in gameConfig.roles" >
             <p>{{role.name}}</p>
             <div ng-repeat="properties in gameConfig.showProperties">
-                <div ng-show="properties == 'role' ">
-                    <label  class="col-xs-4 control-label">人数</label>
-                    <div class="col-xs-offset-2 col-xs-5">
-                        <input type="text" name="{{role.name}}<>{{properties}}" class="form-control" value="{{role.num}}" />
+
+                    <label ng-show="properties == 'role' " class="col-xs-4 control-label">人数</label>
+                    <div class="col-xs-offset-2 col-xs-3" ng-show="properties == 'role' ">
+                        <input type="number" name="{{role.name}}" ng-show="properties == 'role' " onblur="checkRoleNum(this)" class="form-control roleItem" min="0" max="100" value="{{role.num}}" />
                     </div>
-                </div>
+                     <span id="{{role.name}}" style="visibility: hidden" ng-show="properties == 'role' ">
+                        error
+                    </span>
+
                 <div ng-show="properties != 'role' ">
                     <label  class="col-xs-4 control-label">{{properties}}</label>
-                    <div class="col-xs-offset-2 col-xs-5">
+                    <div class="col-xs-offset-2 col-xs-3">
                         <input type="text" name="{{role.name}}<-->{{properties}}" class="form-control" />
                     </div>
+
                 </div>
 
             </div>
@@ -71,6 +79,31 @@
 <script src="../js/game/config.js"></script>
 <script src="../js/util/common_util.js"></script>
 <script src="../js/game/game.js"></script>
+<script>
+    function checkRoleNum(role){
+        var reg=new RegExp(/^\d{1,2}$/);
+        var obj=document.getElementById(role.name);
+        var num=parseInt(role.value);
+        if(role){
+            if(num > role.min && num < role.max && reg.test(role.value) ){
+                obj.style.visibility = 'hidden';
+                var items = document.getElementsByClassName("roleItem");
+                var max = document.getElementsByName("maxPeople");
+                var sum=0;
+                if(role.name!="maxPeople"){
 
+                    for(var i=0;i<items.length;i++){
+                        if(items[i].style.display=='none')continue;
+                        sum=sum+parseInt(items[i].value);
+                    }
+                   max[0].value=sum;
+                }
+
+            }else
+                obj.style.visibility ='visible';
+        }
+    }
+
+</script>
 </body>
 </html>
