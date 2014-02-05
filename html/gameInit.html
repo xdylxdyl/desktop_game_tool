@@ -35,6 +35,7 @@
                     <select  ng-model='peopleNum' ng-options="num for num in peopleNumList">
 
                     </select>
+                    <input id="hidPeopleNum" type="hidden" value="{{peopleNum}}">
                     <input  type="hidden" required="required" class="form-control" name='maxPeople' onchange="{{gameChange(peopleNum)}}"  min="0" max="100" placeholder="人数" ng-model="gameConfig.playerNumDefault">
                 </div>
                 <span class="error" id="maxPeople" style="visibility: hidden">
@@ -92,15 +93,20 @@
             if(num >= role.min && num <= role.max && reg.test(role.value) ){
                 obj.style.visibility = 'hidden';
                 var items = document.getElementsByClassName("roleItem");
-                var max = document.getElementsByName("maxPeople");
+                var max = document.getElementById("hidPeopleNum");
+                var maxError=document.getElementById("maxPeople");
                 var sum=0;
                 if(role.name!="maxPeople"){
                     for(var i=0;i<items.length;i++){
                         if(items[i].style.display=='none')continue;
                         sum=sum+parseInt(items[i].value);
                     }
-                   if(sum!=max[0].value){
-                       max.style.visibility='visible';
+                    console.log(sum);
+                    console.log(max.value);
+                   if(sum!=max.value){
+                       maxError.style.visibility='visible';
+                   }else{
+                       maxError.style.visibility='hidden';
                    }
                 }
 
