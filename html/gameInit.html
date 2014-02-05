@@ -13,7 +13,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <a class="navbar-brand" href="#">{{gameConfig.name}}</a>
-      <a  class="btn btn-default navbar-btn pull-right" href="introduceGame.html?gameid={{gameConfig.gameid}}">
+      <a  class="btn btn-default navbar-btn pull-right" ng-href="introduceGame.html?gameid={{gameConfig.gameid}}">
             版本介绍
         </a>
     </div>
@@ -31,7 +31,11 @@
         <div class="form-group ">
                 <label for="maxPeople" class="col-xs-4 control-label">总人数</label>
                 <div class="col-xs-offset-2 col-xs-3">
-                    <input  type="number" required="required" class="form-control" name='maxPeople'   min="0" max="100" placeholder="人数" value="{{gameConfig.playerNum}}">
+
+                    <select  ng-model='peopleNum' ng-options="num for num in peopleNumList">
+
+                    </select>
+                    <input  type="hidden" required="required" class="form-control" name='maxPeople' onchange="{{gameChange(peopleNum)}}"  min="0" max="100" placeholder="人数" ng-model="gameConfig.playerNumDefault">
                 </div>
                 <span class="error" id="maxPeople" style="visibility: hidden">
                     error

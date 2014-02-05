@@ -152,36 +152,64 @@ var versionConfig = {
         "name":"捉鬼游戏简化版",
         "type":"remote",
         "gameid":-1000,
-        "playerNum":8,
+        "playerNumDefault":8,
         "showProperties":["role"],
-        "roles":[
+        "rolesVersion":[
             {
-                "name":"幽灵",
-                "num":1
+                "playerNum":"5",
+                "roles":[{
+                    "name":"幽灵",
+                    "num":1
+                },
+                    {
+                        "name":"水民",
+                        "num":4
+                    }]
             },
             {
-                "name":"水民",
-                "num":7
+                "playerNum":"8",
+                "roles":[{
+                    "name":"幽灵",
+                    "num":1
+                },
+                    {
+                        "name":"水民",
+                        "num":7
+                    }]
             }
+
         ]
     },
     "-1100":{
         "name":"捉鬼游戏猜词版",
         "type":"remote",
         "gameid":-1100,
-        "playerNum":8,
+        "playerNumDefault":8,
         "showProperties":["role","card"],
-        "roles":[
+        "rolesVersion":[
             {
-                "name":"幽灵",
-                "card":"ulin",
-                "num":1
+                "playerNum":"5",
+                "roles":[{
+                    "name":"幽灵",
+                    "num":1
+                },
+                {
+                    "name":"水民",
+                    "num":4
+                }]
             },
             {
-                "name":"水民",
-                "card":"shuim",
-                "num":7
+                "playerNum":"8",
+                "roles":[{
+                    "name":"幽灵",
+                    "num":1
+                },
+                {
+                     "name":"水民",
+                     "num":7
+                }]
             }
+
         ]
     },
     "-1300":{
@@ -307,6 +335,7 @@ var versionConfig = {
          "roles":[
 
              {
+
                  "name":"杀手",
                  "num":1
              },

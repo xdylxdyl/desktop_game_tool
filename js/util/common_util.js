@@ -927,6 +927,12 @@ var JsonUtil = {
             if(Data[i]===key)
                 return true;
         return false;
+    },
+    returnItem : function ( arr , key ,value ){
+        for(var i=0;i<arr.length;i++){
+            if(arr[i][key]==value) return arr[i];
+        }
+        return false;
     }
 }
 

@@ -85,8 +85,7 @@ var dataService = {
             rolesArray.push(config.roles[i].name);
             rolesNumArray.push(config.roles[i].num);
         }
-        console.log(rolesArray);
-        console.log(rolesNumArray);
+
             while (flag) {
                 roleChooser = Math.floor(Math.random() * rolesArray.length);
                 if (rolesNumArray[roleChooser] > 0) {
@@ -98,7 +97,7 @@ var dataService = {
                 if (count == playerNum + 1) break;
             }
         returnData = "[" + str.substring(0, str.length - 1) + "]";
-        console.log(returnData);
+        console.log("roleMaker complete"+returnData);
         return eval("(" + returnData + ")");
     }
 }
@@ -122,8 +121,25 @@ app.controller("gameModelList",function($scope) {
 app.controller("gameInitCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid");
     $scope.gameid=gameid;
-    $scope.gameConfig = dataService.getConfig(gameid);
+    var gc = dataService.getConfig(gameid);
+    var gameConfig={};
+    gameConfig.gameid=gc.gameid;
+    gameConfig.playerNumDefault=gc.playerNumDefault;
+    console.log(JsonUtil.returnItem(gc.rolesVersion,"playerNum",gc.playerNumDefault));
+    gameConfig.roles = JsonUtil.returnItem(gc.rolesVersion,"playerNum",gc.playerNumDefault).roles;
+    gameConfig.showProperties =gc.showProperties;
+    $scope.peopleNumList=[2,3,4,5,6,7,8,9,10];
+    $scope.peopleNum=gameConfig.playerNumDefault;
+    $scope.gameConfig=gameConfig;
+    $scope.gameChange=function(num){
 
+        gameConfig.playerNumDefault=num;
+        gameConfig.roles = JsonUtil.returnItem(gc.rolesVersion,"playerNum",gameConfig.playerNumDefault).roles;
+        gameConfig.showProperties =gc.showProperties;
+        //console.log(gameConfig.playerNumDefault);
+        $scope.gameConfig=gameConfig;
+
+    }
     $scope.gameInit = function(){
         //
         // 获取整个表单的input
@@ -141,8 +157,9 @@ app.controller("gameInitCtrl",function($scope) {
         var temp={};
         var rolesArray=[];
         var formData=document.getElementsByTagName('input');
-        var playerNum=document.getElementsByName('maxPeople')[0].value;
-        console.log('1');
+        //var playerNum=document.getElementsByName('maxPeople')[0].value;
+        //console.log(playerNum);
+
             for(var i=0;i<formData.length;i++){
                 if(domUtil.hasClass(formData[i],"roleItem")&&formData[i].style.display!='none'){
                    var itemStr= "{'name':'"+formData[i].name+"','num':'"+formData[i].value+"'}";
@@ -150,8 +167,7 @@ app.controller("gameInitCtrl",function($scope) {
                     rolesArray.push(itemStr);
                 }
             }
-        console.log('2');
-         var roleMakeData=JsonUtil.toJSON("{'playerNum':"+playerNum+",'roles':["+rolesArray+"]}");
+         var roleMakeData=JsonUtil.toJSON("{'playerNum':"+gameConfig.playerNumDefault+",'roles':["+rolesArray+"]}");
             //正则表达式来判断
             //name字段 {{role}}<-->{{properties}}
             //{"properties":[{"role":"水民","card":"value"},{"role":"鬼","card":"value"}]}
@@ -173,13 +189,12 @@ app.controller("gameInitCtrl",function($scope) {
 
                 }
 
-        console.log("3");
+
         console.log(roleMakeData);
         console.log($scope.gameConfig.showProperties);
         console.log(temp);
         dataService.setGameDetail(dataService.roleMaker(roleMakeData),$scope.gameConfig.showProperties,temp);
-        //location.href="gamePlay.html?gameid="+gameid;
-        console.log('4');
+        console.log("set gameDetail complete");
     }
 
     $scope.gameExit = function(){
@@ -192,6 +207,8 @@ app.controller("gamePlayCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid");
     var gc=dataService.getConfig(gameid);
     gc.roleAssign=dataService.getGameDetail();
+    gc.playerNum = dataService.getGameDetail().length;
+    gc.roles=JsonUtil.returnItem(gc.rolesVersion,"playerNum",gc.playerNum).roles;
     //$scope.currentData=[role,card,other];
     $scope.currentData=[];
     $scope.gameConfig=gc;
