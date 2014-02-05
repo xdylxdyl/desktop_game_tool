@@ -157,7 +157,8 @@ app.controller("gameInitCtrl",function($scope) {
         var temp={};
         var rolesArray=[];
         var formData=document.getElementsByTagName('input');
-
+        //var playerNum=document.getElementsByName('maxPeople')[0].value;
+        //console.log(playerNum);
 
             for(var i=0;i<formData.length;i++){
                 if(domUtil.hasClass(formData[i],"roleItem")&&formData[i].style.display!='none'){
@@ -166,7 +167,6 @@ app.controller("gameInitCtrl",function($scope) {
                     rolesArray.push(itemStr);
                 }
             }
-
          var roleMakeData=JsonUtil.toJSON("{'playerNum':"+gameConfig.playerNumDefault+",'roles':["+rolesArray+"]}");
             //正则表达式来判断
             //name字段 {{role}}<-->{{properties}}
@@ -206,26 +206,10 @@ app.controller("gamePlayCtrl",function($scope) {
 
     var gameid = getParameterFromUrl(location.href, "gameid");
     var gc=dataService.getConfig(gameid);
-    var roleArr=[];
-    var arr=[];
     gc.roleAssign=dataService.getGameDetail();
     gc.playerNum = dataService.getGameDetail().length;
-
-    for(var i=0;i<gc.playerNum;i++){//get the role arr
-            if(!JsonUtil.inArray(roleArr,gc.roleAssign[i].role))
-                  roleArr.push(gc.roleAssign[i].role);
-    }
-
-    for(var i=0;i<roleArr.length;i++){
-        var count=0;
-        for(var j=0;j<gc.playerNum;j++)
-            if(roleArr[i]==gc.roleAssign[j].role)
-                count++;
-        arr.push(JsonUtil.toJSON("{'name':'"+roleArr[i]+"','num':"+count+"}"));
-    }
-
-    gc.roles=arr;
-
+    gc.roles=JsonUtil.returnItem(gc.rolesVersion,"playerNum",gc.playerNum).roles;
+    //$scope.currentData=[role,card,other];
     $scope.currentData=[];
     $scope.gameConfig=gc;
     $scope.gamePlay=gc;
