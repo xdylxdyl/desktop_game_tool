@@ -58,8 +58,6 @@ var dataService = {
 
     setGamerProperties:function(config,dataArray){
         if(dataArray.length<=0 ) return;
-        console.log(dataArray);
-        console.log(config);
             for(var i=0;i<config.length;i++)
                 for(var j = 0 ; j <dataArray.length ; j++)
                     if(dataArray[j]["role"] == config[i]["role"])
@@ -83,20 +81,24 @@ var dataService = {
             count = 1,
             returnData,
             flag = 1;
-        for (var i in config.roles) {
+        for (var i=0; i<config.roles.length;i++) {
             rolesArray.push(config.roles[i].name);
             rolesNumArray.push(config.roles[i].num);
         }
+        console.log(rolesArray);
+        console.log(rolesNumArray);
             while (flag) {
-                roleChooser = Math.floor(Math.random() * 4);
+                roleChooser = Math.floor(Math.random() * rolesArray.length);
                 if (rolesNumArray[roleChooser] > 0) {
                     str = str + "{id:" + count + ",role:'" + rolesArray[roleChooser] + "'},";
+                    console.log(str);
                     rolesNumArray[roleChooser]--;
                     count++;
                 }
                 if (count == playerNum + 1) break;
             }
         returnData = "[" + str.substring(0, str.length - 1) + "]";
+        console.log(returnData);
         return eval("(" + returnData + ")");
     }
 }
@@ -131,13 +133,25 @@ app.controller("gameInitCtrl",function($scope) {
         //     |
         //  setGameDetail
         //
+        var startBtn = document.getElementById("startButton");
+        if(domUtil.hasClass(startBtn,"disabled")){
+            return false;
+        }
+
         var temp={};
         var rolesArray=[];
-        for(var i =0;i<$scope.gameConfig.roles.length;i++)//获取角色数组
-            rolesArray.push($scope.gameConfig.roles[i].name);
-
         var formData=document.getElementsByTagName('input');
-
+        var playerNum=document.getElementsByName('maxPeople')[0].value;
+        console.log('1');
+            for(var i=0;i<formData.length;i++){
+                if(domUtil.hasClass(formData[i],"roleItem")&&formData[i].style.display!='none'){
+                   var itemStr= "{'name':'"+formData[i].name+"','num':'"+formData[i].value+"'}";
+                    if(!JsonUtil.inArray(rolesArray,itemStr))
+                    rolesArray.push(itemStr);
+                }
+            }
+        console.log('2');
+         var roleMakeData=JsonUtil.toJSON("{'playerNum':"+playerNum+",'roles':["+rolesArray+"]}");
             //正则表达式来判断
             //name字段 {{role}}<-->{{properties}}
             //{"properties":[{"role":"水民","card":"value"},{"role":"鬼","card":"value"}]}
@@ -158,9 +172,16 @@ app.controller("gameInitCtrl",function($scope) {
                      JsonUtil.push(temp,tmp);
 
                 }
-        //$scope.gameConfig changed
-        dataService.setGameDetail(dataService.roleMaker($scope.gameConfig),$scope.gameConfig.showProperties,temp);
+
+        console.log("3");
+        console.log(roleMakeData);
+        console.log($scope.gameConfig.showProperties);
+        console.log(temp);
+        dataService.setGameDetail(dataService.roleMaker(roleMakeData),$scope.gameConfig.showProperties,temp);
+        //location.href="gamePlay.html?gameid="+gameid;
+        console.log('4');
     }
+
     $scope.gameExit = function(){
         dataService.deleteGameDetail();
     }
@@ -224,5 +245,11 @@ app.controller("introduceGameCtrl",function($scope) {
     $scope.gameConfig=gc;
     $scope.gameExit = function(){
         dataService.deleteGameDetail();
+    }
+});
+app.controller("gameTestCtrl",function($scope){
+    $scope.gameTest=function(){
+        alert("ngclick");
+        console.log("ngclick");
     }
 });

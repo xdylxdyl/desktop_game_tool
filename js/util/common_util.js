@@ -953,7 +953,21 @@ function mapUtil(){
             if(i===k) return true;
         return false;
     }
-    this.size=function(){
+    this.size = function () {
         return this.keys.length;
+    };
+}
+var  domUtil={
+    hasClass:function(obj,klass){
+        return obj.className.match(new RegExp('(\\s|^)' + klass + '(\\s|$)'));
+    },
+    addClass:function(obj,klass){
+        if (!this.hasClass(obj, klass)) obj.className += " " + klass;
+    },
+    removeClass:function(obj,klass){
+        if(this.hasClass(obj,klass)){
+            var reg = new RegExp('(\\s|^)' + klass + '(\\s|$)');
+            obj.className = obj.className.replace(reg, ' ');
+        }
     }
 }
