@@ -32,7 +32,7 @@
                 <label for="maxPeople" class="col-xs-4 control-label">总人数</label>
                 <div class="col-xs-offset-2 col-xs-3">
 
-                    <select  ng-model='peopleNum' ng-options="num for num in peopleNumList">
+                    <select  ng-model='peopleNum' ng-options="num for num in gameConfig.peopleNumList">
 
                     </select>
                     <input id="hidPeopleNum" type="hidden" value="{{peopleNum}}">
@@ -44,21 +44,21 @@
 
         </div>
         <div class="form-group roleDiv"  ng-repeat="role in gameConfig.roles">
-            <p class="roleName">{{role.name}}</p>
+            <p class="roleName">{{role.CN}}</p>
             <div ng-repeat="properties in gameConfig.showProperties">
 
-                    <label ng-show="properties == 'role' " class="col-xs-4 control-label">人数</label>
-                    <div class="col-xs-offset-2 col-xs-3" ng-show="properties == 'role' ">
-                        <input type="number" name="{{role.name}}" ng-show="properties == 'role' " onkeyup="checkRoleNum(this)"  class="form-control roleItem roleNum" min="0" max="100" value="{{role.num}}" />
+                    <label ng-show="properties.name == 'role' " class="col-xs-4 control-label">人数</label>
+                    <div class="col-xs-offset-2 col-xs-3" ng-show="properties.name == 'role' ">
+                        <input type="number" name="{{role.name}}" ng-show="properties.name == 'role' " class="form-control roleItem roleNum" min="0" max="100" value="{{role.num}}" />
                     </div>
-                     <span id="{{role.name}}" class="error" style="visibility: hidden" ng-show="properties == 'role' ">
+                     <span id="{{role.name}}" class="error" style="visibility: hidden" ng-show="properties.name == 'role' ">
                         error
                     </span>
 
-                <div ng-show="properties != 'role' ">
-                    <label  class="col-xs-4 control-label">{{properties}}</label>
+                <div ng-show="properties.name != 'role' ">
+                    <label  class="col-xs-4 control-label">{{properties.CN}}</label>
                     <div class="col-xs-offset-2 col-xs-3">
-                        <input type="text" name="{{role.name}}<-->{{properties}}" class="form-control" />
+                        <input type="text" name="{{role.name}}<-->{{properties.name}}" class="form-control" />
                     </div>
 
                 </div>
@@ -74,8 +74,8 @@
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
         <a class="btn btn-danger pull-left navbar-btn" href="../index.html" ng-click="gameExit()">结束游戏</a>
-        <a id='startButton' class="btn btn-primary pull-right navbar-btn"  ng-href="gamePlay.html?gameid={{gameid}}" ng-click="gameInit()">开始</a>
-        <!---->
+        <a id='startButton' class="btn btn-primary pull-right navbar-btn" onclick="checkForm()"ng-href="gamePlay.html?gameid={{gameid}}" ng-click="gameInit()">开始</a>
+        <!--ng-href="gamePlay.html?gameid={{gameid}}" -->
     </div>
 </nav>
 <script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
@@ -85,7 +85,7 @@
 <script src="../js/util/common_util.js"></script>
 <script src="../js/game/game.js"></script>
 <script>
-    function checkRoleNum(role){
+    /*function checkRoleNum(role){
         var reg=new RegExp(/^\d{1,2}$/);
         var obj=document.getElementById(role.name);
         var num=parseInt(role.value);
@@ -128,8 +128,22 @@
                 domUtil.removeClass(startBtn,"disabled");
             }
         }
+    */
+    function checkForm(){
+       var items = document.getElementsByClassName("roleItem"),
+           sum   = 0,
+           max   = document.getElementById("hidPeopleNum");
 
-
+        for(var i= 0,ii=items.length;i<ii;i++){
+           if(items[i].style.display=='none')continue;
+           sum=sum+parseInt(items[i].value);
+       }
+        if(sum!=max.value){
+            //maxError.style.visibility='visible';
+        }else{
+            //maxError.style.visibility='hidden';
+        }
+    }
 
 </script>
 </body>

@@ -154,31 +154,23 @@ var versionConfig = {
         "gameid":-1000,
         "playerNumDefault":8,
         "showProperties":["role"],
-        "rolesVersion":[
-            {
-                "playerNum":"5",
-                "roles":[{
-                    "name":"幽灵",
-                    "num":1
-                },
-                    {
-                        "name":"水民",
-                        "num":4
-                    }]
-            },
-            {
-                "playerNum":"8",
-                "roles":[{
-                    "name":"幽灵",
-                    "num":1
-                },
-                    {
-                        "name":"水民",
-                        "num":7
-                    }]
-            }
-
-        ]
+        "peopleNumList":[2,9],
+        "rolesConfig":{
+            "roleSort":"ghost,water",
+            "default":"1,1",
+            "4":"1,3",
+            "5":"1,4",
+            "6":"1,5",
+            "7":"2,5",
+            "8":"2,6",
+            "9":"2,7"
+        },
+        "CN":{
+            "ghost":"幽灵",
+            "water":"水民",
+            "role" :"角色",
+            "card" :"卡牌"
+        }
     },
     "-1100":{
         "name":"捉鬼游戏猜词版",
@@ -186,31 +178,23 @@ var versionConfig = {
         "gameid":-1100,
         "playerNumDefault":8,
         "showProperties":["role","card"],
-        "rolesVersion":[
-            {
-                "playerNum":"5",
-                "roles":[{
-                    "name":"幽灵",
-                    "num":1
-                },
-                {
-                    "name":"水民",
-                    "num":4
-                }]
-            },
-            {
-                "playerNum":"8",
-                "roles":[{
-                    "name":"幽灵",
-                    "num":1
-                },
-                {
-                     "name":"水民",
-                     "num":7
-                }]
-            }
-
-        ]
+        "peopleNumList":[2,9],
+        "rolesConfig":{
+            "roleSort":"ghost,water",
+            "default":"1,1",
+            "4":"1,3",
+            "5":"1,4",
+            "6":"1,5",
+            "7":"2,5",
+            "8":"2,6",
+            "9":"2,7"
+        },
+        "CN":{
+            "ghost":"幽灵",
+            "water":"水民",
+            "role" :"角色",
+            "card" :"卡牌"
+        }
     },
     "-1300":{
         "name":"捉鬼游戏魂版",
