@@ -156,6 +156,7 @@ var versionConfig = {
         "showProperties":["role"],
         "peopleNumList":[2,9],
         "rolesConfig":{
+            "saved":"",
             "roleSort":"ghost,water",
             "default":"1,1",
             "4":"1,3",
@@ -170,7 +171,8 @@ var versionConfig = {
             "water":"水民",
             "role" :"角色",
             "card" :"卡牌"
-        }
+        },
+        properties:""
     },
     "-1100":{
         "name":"捉鬼游戏猜词版",
@@ -182,6 +184,7 @@ var versionConfig = {
         "rolesConfig":{
             "roleSort":"ghost,water",
             "default":"1,1",
+            "saved":"",
             "4":"1,3",
             "5":"1,4",
             "6":"1,5",
@@ -194,7 +197,8 @@ var versionConfig = {
             "water":"水民",
             "role" :"角色",
             "card" :"卡牌"
-        }
+        },
+        properties:""
     },
     "-1300":{
         "name":"捉鬼游戏魂版",

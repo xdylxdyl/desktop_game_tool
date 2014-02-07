@@ -12,25 +12,29 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <a class="navbar-brand">杀人游戏</a>
-        <a  class="btn btn-default navbar-btn pull-right" ng-href="gamePlay.html?gameid={{gameConfig.gameid}}">
+        <!--<a  class="btn btn-default navbar-btn pull-right" ng-href="gamePlay.html?gameid={{gameConfig.gameid}}">
             返回游戏
-        </a>
+        </a>-->
     </div>
 </nav>
 <div class="roleList" >
-   <div class="row" ng-repeat="role in gameConfig.roleAssign">
-       <div class="col-xs-offset-2 col-xs-3">
-           <a href="#" class="thumbnail">
-               <img alt="{{role.id}}"/>
-           </a>
-       </div>
-       <div class="col-xs-4">
-           <a href="#" class="btn btn-link">{{role.role}}</a>
-       </div>
-       <div ng-show="gameConfig.showProperties.length==2" class="col-xs-3">
-           <a href="#" class="btn btn-link">{{role.card}}</a>
-       </div>
-   </div>
+    <table class="table text-center table-bordered">
+        <tr class="success">
+            <td>编号</td>
+            <td ng-repeat="item in gameConfig.showProperties">{{getCN(item)}}</td>
+        </tr>
+        <tr ng-repeat="items in gameConfig.gameDetail">
+            <td >
+                {{$index+1}}
+            </td>
+            <td ng-repeat="item in gameConfig.showProperties">
+                <span ng-show="getCN(items[item])">{{getCN(items[item])}}</span>
+                <span ng-hide="getCN(items[item])">{{items[item]}}</span>
+            </td>
+        </tr>
+    </table>
+    </table>
+
    <div class="container">
        <form role="form">
            <textarea class="form-control" rows="5">
@@ -42,7 +46,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
-        <a class="btn btn-danger pull-left navbar-btn" href="../index.html" ng-click="gameExit()">结束游戏</a>
+        <a class="btn btn-danger pull-left navbar-btn" ng-href="gameInit.html?gameid={{gameConfig.gameid}}" ng-click="gameExit()">结束游戏</a>
         <a class="btn btn-primary pull-right navbar-btn" onclick="playMedia()">播放</a>
 
     </div>
