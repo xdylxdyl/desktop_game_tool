@@ -51,6 +51,7 @@ var dataService = {
             this.setGamerProperties(data,propertiesData[showProperties[i]]);
         }
         html5StorageService.update("gameDetail",data);
+        console.log("gameDetail complete");
     },
     getGameDetail:function(){
         return html5StorageService.get("gameDetail");
@@ -77,44 +78,50 @@ var dataService = {
     },
     roleMaker : function (config) {
         console.log("roleMaker start");
-        var playerNum = config.playerNum,
-            rolesArray = [],
+        var rolesArray = [],
             rolesNumArray = [],
             roleChooser = 0,
             str = "",
             count = 1,
             returnData,
-            flag = 1;
+            flag = 1,
+            playerNum=0;
+
         for (var i=0; i<config.roles.length;i++) {
             rolesArray.push(config.roles[i].name);
             rolesNumArray.push(config.roles[i].num);
+            playerNum=playerNum+parseInt(config.roles[i].num);
         }
+            console.log("rolesArr:"+rolesArray+",rolesNumArray:"+rolesNumArray);
 
-            while (flag) {
-                roleChooser = Math.floor(Math.random() * rolesArray.length);
+        while (flag) {
+                roleChooser = Math.floor(Math.random() * rolesArray.length); //0,1
                 if (rolesNumArray[roleChooser] > 0) {
                     str = str + "{id:" + count + ",role:'" + rolesArray[roleChooser] + "'},";
+                    console.log(str);
                     rolesNumArray[roleChooser]--;
                     count++;
                 }
-                if (count == playerNum + 1) break;
+            console.log(count == playerNum );
+            if (count == playerNum + 1) break;
             }
+
         returnData = "[" + str.substring(0, str.length - 1) + "]";
         console.log(returnData+"\nroleMaker complete");
         return eval("(" + returnData + ")");
     },
     buildGameConfigRoles : function(gameConfig,players){
+        console.log("start build game config roles");
         var rolesNumArr=[];
         var playerNum=0;
         var rolesArr=gameConfig.rolesConfig.roleSort.split(',');
         if(gameConfig.rolesConfig.saved!=""&&!players){
             var x = gameConfig.rolesConfig.saved.split(',');
             playerNum=x[0];
-            for(var i=1;i<gameConfig.rolesConfig.saved.length;i++){
+            for(var i=1;i<x.length;i++){
                 rolesNumArr.push(x[i]);
             }
         }else{
-            alert('test');
             playerNum=gameConfig.playerNumDefault;
             if(players) playerNum=players;
             if(playerNum > gameConfig.peopleNumList[0] && playerNum < gameConfig.peopleNumList[1])
@@ -126,8 +133,11 @@ var dataService = {
         var rolesNum=rolesArr.length;
         var returnData=[];
         for(var i=0;i<rolesNum;i++){
+            console.log(rolesNumArr);
             returnData.push(JsonUtil.toJSON("{'name':'"+rolesArr[i]+"','CN':'"+rolesCN[rolesArr[i]]+"','num':'"+rolesNumArr[i]+"'}"));
         }
+        console.log(returnData);
+        console.log("complete build game config roles:");
         return returnData;
     },
     buildGameConfigPeopleNumList : function(data){
@@ -208,18 +218,17 @@ app.controller("gameInitCtrl",function($scope) {
     var a="";
     var b="";
     console.log(gc.properties);
-    for(var i= 0,ii=gc.showProperties.length;i<ii;i++){
-        if(gc.showProperties[i]=='role') continue;
-        for(var j=0;j<gc.properties[gc.showProperties[i]].length;j++){
-            a=a+"'"+gc.properties[gc.showProperties[i]][j].role+"':'"+gc.properties[gc.showProperties[i]][j][gc.showProperties[i]]+"',";
-            console.log(a);
+    if(gc.properties!=""){
+        for(var i= 0,ii=gc.showProperties.length;i<ii;i++){
+            if(gc.showProperties[i]=='role') continue;
+            for(var j=0;j<gc.properties[gc.showProperties[i]].length;j++){
+                a=a+"'"+gc.properties[gc.showProperties[i]][j].role+"':'"+gc.properties[gc.showProperties[i]][j][gc.showProperties[i]]+"',";
+            }
+            b=b+"'"+gc.showProperties[i]+"':{"+ a.substring(0, a.length-1)+"},";
         }
-        console.log(b);
-        b=b+"'"+gc.showProperties[i]+"':{"+ a.substring(0, a.length-1)+"},";
+        console.log(b.substring(0, b.length-1));
+        gameConfig.properties= JsonUtil.toJSON("{"+b.substring(0,b.length-1)+"}");
     }
-    console.log(b.substring(0, b.length-1));
-    gameConfig.properties= JsonUtil.toJSON("{"+b.substring(0,b.length-1)+"}");
-
     /**************************************************************/
 
     /************  scope properties bind  ******************/
@@ -235,6 +244,7 @@ app.controller("gameInitCtrl",function($scope) {
     /*****************/
 
     $scope.gameChange=function(num){
+        console.log("gameChange");
         gameConfig.roles = dataService.buildGameConfigRoles(gc,num);
         $scope.gameConfig=gameConfig;
     }
@@ -257,6 +267,7 @@ app.controller("gameInitCtrl",function($scope) {
 
                     tempa.push(formData[i].value);
         }
+
         /*********************/
 
         if(domUtil.hasClass(startBtn,"disabled"))return false;
@@ -306,7 +317,6 @@ app.controller("gamePlayCtrl",function($scope) {
         eraserArr=[],
         currentTempArr=[];
     /***************************/
-    console.log(dataService.gameEraser);
     console.log(dataService.getGameDetail());
     gc.roleAssign=dataService.getGameDetail();
     console.log(gc.roleAssign);

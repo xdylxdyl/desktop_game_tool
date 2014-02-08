@@ -36,7 +36,7 @@
 
                     </select>
                     <input id="hidPeopleNum" type="hidden" value="{{peopleNum}}">
-                    <input  type="hidden" required="required" class="form-control" name='maxPeople' onchange="{{gameChange(peopleNum)}}"  min="0" max="100" placeholder="人数" ng-model="gameConfig.playerNumDefault">
+                    <input  type="hidden" required="required" class="form-control" name='maxPeople' onselect="{{gameChange(peopleNum)}}"  min="0" max="100" placeholder="人数" value="{{gameConfig.playerNumDefault}}">
                 </div>
                 <span class="error" id="maxPeople" style="visibility: hidden">
                     error
@@ -65,16 +65,13 @@
             </div>
         </div>
     </form>
-   <!-- <div class="text-center">
-        <button class=" btn btn-primary">+</button>
-    </div>
-    -->
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
         <a class="btn btn-danger pull-left navbar-btn" href="list.html" ng-click="gameExit()">结束游戏</a>
-        <a id='startButton' class="btn btn-primary pull-right navbar-btn" onclick="checkForm()" ng-click="gameInit()">开始</a>
-        <!--ng-href="gamePlay.html?gameid={{gameid}}"  -->
+        <a style='display: none' id='startButton'   ng-href="gamePlay.html?gameid={{gameid}}" ng-click="gameInit()">开始</a>
+        <a id="fakeButton" class="btn btn-primary pull-right navbar-btn" onclick="checkForm()">开始</a>
+        <!-- "-->
     </div>
 </nav>
 <script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
@@ -133,7 +130,8 @@
        var items = document.getElementsByClassName("roleItem"),
            sum   = 0,
            max   = document.getElementById("hidPeopleNum"),
-           gameid = getParameterFromUrl(location.href, "gameid");
+           gameid = getParameterFromUrl(location.href, "gameid"),
+           hidBtn = document.getElementById("startButton");
 
 
         // btn   = document.getElementById('startButton');
@@ -149,12 +147,9 @@
                 console.log(result);
             });
 
-            //event.defaultPrevented;
         }else{
-            //maxError.style.visibility='hidden';
-            //$('#startButton').attr("ng-click","gameInit()");
-            //$('#startButton').attr("ng-href","gamePlay.html?gameid="+gameid);
-            //$('#startButton').click();
+
+            hidBtn.click();
         }
     }
 
