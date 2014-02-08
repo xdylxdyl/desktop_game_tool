@@ -133,7 +133,6 @@ var dataService = {
         var rolesNum=rolesArr.length;
         var returnData=[];
         for(var i=0;i<rolesNum;i++){
-            console.log(rolesNumArr);
             returnData.push(JsonUtil.toJSON("{'name':'"+rolesArr[i]+"','CN':'"+rolesCN[rolesArr[i]]+"','num':'"+rolesNumArr[i]+"'}"));
         }
         console.log(returnData);
@@ -247,6 +246,7 @@ app.controller("gameInitCtrl",function($scope) {
         console.log("gameChange");
         gameConfig.roles = dataService.buildGameConfigRoles(gc,num);
         $scope.gameConfig=gameConfig;
+        console.log("gameChange end")
     }
     $scope.gameInit = function(){
         /*****  initVar => buildPropertiesList => roleMaker => setGameDetail ***/

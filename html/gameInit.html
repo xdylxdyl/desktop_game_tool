@@ -68,8 +68,8 @@
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
-        <a class="btn btn-danger pull-left navbar-btn" href="list.html" ng-click="gameExit()">结束游戏</a>
-        <a style='display: none' id='startButton'   ng-href="gamePlay.html?gameid={{gameid}}" ng-click="gameInit()">开始</a>
+        <a class="btn btn-danger pull-left navbar-btn" href="list.html" ng-click="gameExit()">返回列表</a>
+        <a style='display: none' id='startButton'   ng-href="gamePlay.html?gameid={{gameConfig.gameid}}" ng-click="gameInit()">开始</a>
         <a id="fakeButton" class="btn btn-primary pull-right navbar-btn" onclick="checkForm()">开始</a>
         <!-- "-->
     </div>
@@ -141,16 +141,23 @@
            sum=sum+parseInt(items[i].value);
        }
 
-        if(sum!=max.value){
-
-            bootbox.confirm("请检查输入的数据！",function(result){
-                console.log(result);
-            });
+        if(sum!=max.value||!isReq()){
+           console.log(isReq());
+            bootbox.alert("请检查输入的数据或者游戏数据不完整！");
 
         }else{
-
             hidBtn.click();
         }
+    }
+    function isReq(){
+        var items = document.getElementsByTagName("input");
+        for(var i=0;i<items.length;i++){
+            if(items[i].style.display!="none"&&items[i].style.visibility!="hidden"&&items[i].type!='hidden'){
+                console.log(items[i]);
+                if(!items[i].value) return false;
+            }
+        }
+        return true;
     }
 
 </script>
