@@ -31,9 +31,7 @@
         <div class="form-group ">
                 <label for="maxPeople" class="col-xs-4 control-label">总人数</label>
                 <div class="col-xs-offset-2 col-xs-3">
-
                     <select  ng-model='peopleNum' ng-options="num for num in gameConfig.peopleNumList">
-
                     </select>
                     <input id="hidPeopleNum" type="hidden" value="{{peopleNum}}">
                     <input  type="hidden" required="required" class="form-control" name='maxPeople' onselect="{{gameChange(peopleNum)}}"  min="0" max="100" placeholder="人数" value="{{gameConfig.playerNumDefault}}">
@@ -43,8 +41,8 @@
                 </span>
 
         </div>
-        <div class="form-group roleDiv"  ng-repeat="role in gameConfig.roles">
-            <p class="roleName">{{role.CN}}</p>
+        <div class="form-group roleDiv"  ng-repeat="role in roles">
+            <p class="roleName">{{role.name|convent}}</p>
             <div ng-repeat="properties in gameConfig.showProperties">
 
                     <label ng-show="properties.name == 'role' " class="col-xs-4 control-label">人数</label>
@@ -56,7 +54,7 @@
                     </span>
 
                 <div ng-show="properties.name != 'role' ">
-                    <label  class="col-xs-4 control-label">{{properties.CN}}</label>
+                    <label  class="col-xs-4 control-label">{{properties.name|convent}}</label>
                     <div class="col-xs-offset-2 col-xs-3">
                         <input type="text" name="{{role.name}}<-->{{properties.name}}" class="form-control" value="{{gameConfig.properties[properties.name][role.name]}}"/>
                     </div>
@@ -81,85 +79,6 @@
 <script src="../js/game/config.js"></script>
 <script src="../js/util/common_util.js"></script>
 <script src="../js/game/game.js"></script>
-<script>
-    /*function checkRoleNum(role){
-        var reg=new RegExp(/^\d{1,2}$/);
-        var obj=document.getElementById(role.name);
-        var num=parseInt(role.value);
-        if(role){
-            if(num >= role.min && num <= role.max && reg.test(role.value) ){
-                obj.style.visibility = 'hidden';
-                var items = document.getElementsByClassName("roleItem");
-                var max = document.getElementById("hidPeopleNum");
-                var maxError=document.getElementById("maxPeople");
-                var sum=0;
-                if(role.name!="maxPeople"){
-                    for(var i=0;i<items.length;i++){
-                        if(items[i].style.display=='none')continue;
-                        sum=sum+parseInt(items[i].value);
-                    }
-                    console.log(sum);
-                    console.log(max.value);
-                   if(sum!=max.value){
-                       maxError.style.visibility='visible';
-                   }else{
-                       maxError.style.visibility='hidden';
-                   }
-                }
-
-            }else{
-                obj.style.visibility ='visible';
-            }
-            checkStartBtn();
-        }
-    }
-
-        function checkStartBtn(){
-            var errorObj=document.getElementsByClassName("error");
-            var startBtn = document.getElementById("startButton");
-            for(var i=0;i<errorObj.length;i++){
-                if(errorObj[i].style.visibility != "hidden" ){
-                    domUtil.addClass(startBtn,"disabled");
-                    break;
-                }
-                domUtil.removeClass(startBtn,"disabled");
-            }
-        }
-    */
-    function checkForm(){
-       var items = document.getElementsByClassName("roleItem"),
-           sum   = 0,
-           max   = document.getElementById("hidPeopleNum"),
-           gameid = getParameterFromUrl(location.href, "gameid"),
-           hidBtn = document.getElementById("startButton");
-
-
-        // btn   = document.getElementById('startButton');
-
-        for(var i= 0,ii=items.length;i<ii;i++){
-           if(items[i].style.display=='none')continue;
-           sum=sum+parseInt(items[i].value);
-       }
-
-        if(sum!=max.value){
-           console.log(isReq());
-            bootbox.alert("请检查输入的数据或者游戏数据不完整！");
-
-        }else{
-            hidBtn.click();
-        }
-    }
-    function isReq(){
-        var items = document.getElementsByTagName("input");
-        for(var i=0;i<items.length;i++){
-            if(items[i].style.display!="none"&&items[i].style.visibility!="hidden"&&items[i].type!='hidden'){
-                console.log(items[i]);
-                if(!items[i].value) return false;
-            }
-        }
-        return true;
-    }
-
-</script>
+<script src="../js/game/domCtrl.js"></script>
 </body>
 </html>

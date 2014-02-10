@@ -165,17 +165,14 @@ var dataService = {
 
         return JsonUtil.toJSON("{'playerNum':"+playerNum+",'roles':["+rolesArray+"]}");
     },
-    getCN : function(gc,EN){
+    getCN : function(EN){
+        var gc=this.getConfig(-1100);
         return gc.CN[EN];
-    },
-    saveFormData : function(formData){
-        html5StorageService.update("formData",formData);
-    },
-    getFormData : function(){
-        html5StorageService.get("formData");
     }
 }
+var gameUtil={
 
+}
 
 var app = angular.module('gameTool', [], function ($compileProvider) {
 
@@ -184,7 +181,11 @@ var app = angular.module('gameTool', [], function ($compileProvider) {
 });
 
 
-
+app.filter('convent',function(){
+   return function(en){
+       return dataService.getCN(en);
+   }
+});
 app.controller("gameModelList",function($scope) {
 
     $scope.officialList = dataService.getGameList(constants.listType.official);
@@ -198,13 +199,11 @@ app.controller("gameInitCtrl",function($scope) {
         gameConfig={},
         roleArr=[];
     var gc={};
-    try{
-        var saved=JsonUtil.toJSON(localStorage.getItem(gameid)).rolesConfig.saved;
+
+    if(JsonUtil.toJSON(localStorage.getItem(gameid)).rolesConfig.saved)
         gc=JsonUtil.toJSON(localStorage.getItem(gameid));
-    }
-    catch(e){
+    else
         gc=dataService.getConfig(gameid);
-    }
     /******************/
 
     /****************  gameConfig init start  **********************/
@@ -213,7 +212,7 @@ app.controller("gameInitCtrl",function($scope) {
     if(!gc.rolesConfig.saved){
         gameConfig.playerNumDefault=gc.playerNumDefault;
     }
-    gameConfig.roles =dataService.buildGameConfigRoles(gc);
+    $scope.roles = dataService.buildGameConfigRoles(gc);
     gameConfig.showProperties =dataService.buildGameConfigProperties(gc);
     gameConfig.peopleNumList=dataService.buildGameConfigPeopleNumList(gc.peopleNumList);
     var a="";
@@ -246,9 +245,9 @@ app.controller("gameInitCtrl",function($scope) {
 
     $scope.gameChange=function(num){
         console.log("gameChange");
-        gameConfig.roles = dataService.buildGameConfigRoles(gc,num);
-        $scope.gameConfig=gameConfig;
-        console.log("gameChange end")
+        $scope.roles= dataService.buildGameConfigRoles(gc,num);
+        //$scope.roles=roles;
+        console.log("gameChange end");
     }
     $scope.gameInit = function(){
         /*****  initVar => buildPropertiesList => roleMaker => setGameDetail ***/
