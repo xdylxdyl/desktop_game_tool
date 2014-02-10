@@ -198,11 +198,13 @@ app.controller("gameInitCtrl",function($scope) {
         gameConfig={},
         roleArr=[];
     var gc={};
-    if(JsonUtil.toJSON(localStorage.getItem(gameid)).rolesConfig.saved)
-            gc=JsonUtil.toJSON(localStorage.getItem(gameid));
-    else
-            gc=dataService.getConfig(gameid);
-
+    try{
+        var saved=JsonUtil.toJSON(localStorage.getItem(gameid)).rolesConfig.saved;
+        gc=JsonUtil.toJSON(localStorage.getItem(gameid));
+    }
+    catch(e){
+        gc=dataService.getConfig(gameid);
+    }
     /******************/
 
     /****************  gameConfig init start  **********************/
