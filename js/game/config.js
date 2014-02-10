@@ -172,7 +172,7 @@ var versionConfig = {
             "role" :"角色",
             "card" :"卡牌"
         },
-        properties:""
+        "properties":""
     },
     "-1100":{
         "name":"捉鬼游戏猜词版",
@@ -198,7 +198,7 @@ var versionConfig = {
             "role" :"角色",
             "card" :"卡牌"
         },
-        properties:""
+        "properties":""
     },
     "-1300":{
         "name":"捉鬼游戏魂版",
