@@ -107,7 +107,7 @@ var dataService = {
         var rolesNum=rolesArr.length;
         var returnData=[];
         for(var i=0;i<rolesNum;i++){
-            returnData.push(JsonUtil.toJSON("{'name':'"+rolesArr[i]+"','CN':'"+rolesCN[rolesArr[i]]+"','num':'"+rolesNumArr[i]+"'}"));
+            returnData.push(JsonUtil.toJSON("{'name':'"+rolesArr[i]+"','num':'"+rolesNumArr[i]+"'}"));
         }
       //  console.log(returnData);
       //  console.log("complete build game config roles:");
@@ -123,7 +123,7 @@ var dataService = {
     buildGameConfigProperties : function(gc){
         var returnData=[];
         for(var i=0;i<gc.showProperties.length;i++){
-            returnData.push(JsonUtil.toJSON("{'name':'"+gc.showProperties[i]+"','CN':'"+gc.CN[gc.showProperties[i]]+"'}"));
+            returnData.push(JsonUtil.toJSON("{'name':'"+gc.showProperties[i]+"'}"));
         }
         console.log("build Game config properties result:");
         console.log(returnData);
@@ -143,6 +143,10 @@ var dataService = {
     },
     getCN : function(gc,EN){
         return gc.CN[EN];
+    },
+    getConfigCN:function(){
+        html5StorageService.update("CN",versionConfig.CN);
+            return html5StorageService.get("CN");
     },
     saveFormData : function(formData){
         html5StorageService.update("formData",formData);
@@ -197,5 +201,21 @@ var dataService = {
         console.log("all properties list:");
         console.log("build properties list complete");
         return temp;
+    },
+    buildGamePlayRoles:function(gc){
+        var roleArr=[];
+        var arr=[];
+        for(var i=0;i<gc.playerNum;i++){
+            if(!JsonUtil.inArray(roleArr,gc.roleAssign[i].role))
+                   roleArr.push(gc.roleAssign[i].role);
+        }
+        for(var i=0;i<roleArr.length;i++){
+            var count=0;
+            for(var j=0;j<gc.playerNum;j++)
+                if(roleArr[i]==gc.roleAssign[j].role)
+                    count++;
+            arr.push(JsonUtil.toJSON("{'name':'"+roleArr[i]+"','num':"+count+"}"));
+        }
+        return arr;
     }
 }

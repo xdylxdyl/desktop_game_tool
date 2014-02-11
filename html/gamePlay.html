@@ -38,7 +38,7 @@
     </div>
 </nav>
 <div>
-    <h5 class="text-center">总人数{{gameConfig.playerNum}}(<span ng-repeat="role in gameConfig.roles">【{{role.name}}:{{role.num}}】</span>)</h5>
+    <h5 class="text-center">总人数{{gameConfig.playerNum}}(<span ng-repeat="role in gameConfig.roles">【{{role.name|convent}}:{{role.num}}】</span>)</h5>
 
 </div>
 <div class="roleList">
@@ -61,7 +61,8 @@
     -->
 </div>
 <div class="roleShow">
-    <h5 class='text-center' ng-repeat="current in currentData">{{current}}</h5>
+    <h4 class="text-center">{{currentId}}</h4>
+    <h5 class='text-center' ng-repeat="current in currentData">{{current.name|convent}}:{{current.value|convent}}</h5>
     <p class="text-center">请拍照记住自己的身份</p>
     <button class="btn btn-danger center-block" ng-click="showCurrentGamer()">展示身份</button>
     <br>

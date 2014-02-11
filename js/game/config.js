@@ -166,13 +166,6 @@ var versionConfig = {
             "8":"2,6",
             "9":"2,7"
         },
-        "CN":{
-            "ghost":"幽灵",
-            "water":"水民",
-            "role" :"角色",
-            "card" :"卡牌"
-        },
-        "aaa":"",
         "properties":""
     },
     "-1100":{
@@ -192,12 +185,6 @@ var versionConfig = {
             "7":"2,5",
             "8":"2,6",
             "9":"2,7"
-        },
-        "CN":{
-            "ghost":"幽灵",
-            "water":"水民",
-            "role" :"角色",
-            "card" :"卡牌"
         },
         "properties":""
     },
@@ -353,6 +340,12 @@ var versionConfig = {
              }
 
          ]
+    },
+    "CN":{
+        "ghost":"幽灵",
+        "water":"水民",
+        "role" :"角色",
+        "card" :"卡牌"
     }
 }
 

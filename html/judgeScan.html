@@ -21,15 +21,14 @@
     <table class="table text-center table-bordered">
         <tr class="success">
             <td>编号</td>
-            <td ng-repeat="item in gameConfig.showProperties">{{getCN(item)}}</td>
+            <td ng-repeat="item in gameConfig.showProperties">{{item|convent}}</td>
         </tr>
         <tr ng-repeat="items in gameConfig.gameDetail">
             <td >
                 {{$index+1}}
             </td>
             <td ng-repeat="item in gameConfig.showProperties">
-                <span ng-show="getCN(items[item])">{{getCN(items[item])}}</span>
-                <span ng-hide="getCN(items[item])">{{items[item]}}</span>
+                {{items[item]|convent}}
             </td>
         </tr>
     </table>
@@ -47,7 +46,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
         <a class="btn btn-danger pull-left navbar-btn" ng-href="gameInit.html?gameid={{gameConfig.gameid}}" ng-click="gameExit()">结束游戏</a>
-        <a class="btn btn-primary pull-right navbar-btn" onclick="playMedia()">播放</a>
+        <a class="btn btn-primary pull-right navbar-btn">播放</a>
 
     </div>
 </nav>
