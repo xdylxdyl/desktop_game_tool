@@ -69,23 +69,12 @@
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
 <script src="../js/game/config.js"></script>
 <script src="../js/util/common_util.js"></script>
+<script src="../js/game/dataService.js"></script>
 <script src="../js/game/game.js"></script>
-<script>
-    <!--tab change start-->
-    $('#topTab a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
+<script src="../js/game/domCtrl.js"></script>
 
-    function linkClick(obj){
-        var id = null;//这个是要的id
-        if(obj){
-            id=obj.id;
-            id=id.replace("h4-","");
-            document.getElementById("link" + id).click();
-        }
-    }
-    <!--tab change end-->
+<script>
+
 </script>
 </body>
 </html>

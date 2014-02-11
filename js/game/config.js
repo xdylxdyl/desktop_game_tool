@@ -154,7 +154,7 @@ var versionConfig = {
         "gameid":-1000,
         "playerNumDefault":8,
         "showProperties":["role"],
-        "peopleNumList":[2,9],
+        "peopleNum":[2,9],
         "rolesConfig":{
             "saved":"",
             "roleSort":"ghost,water",
@@ -166,6 +166,13 @@ var versionConfig = {
             "8":"2,6",
             "9":"2,7"
         },
+        "CN":{
+            "ghost":"幽灵",
+            "water":"水民",
+            "role" :"角色",
+            "card" :"卡牌"
+        },
+        "aaa":"",
         "properties":""
     },
     "-1100":{
@@ -174,7 +181,7 @@ var versionConfig = {
         "gameid":-1100,
         "playerNumDefault":8,
         "showProperties":["role","card"],
-        "peopleNumList":[2,9],
+        "peopleNum":[2,9],
         "rolesConfig":{
             "roleSort":"ghost,water",
             "default":"1,1",
@@ -346,12 +353,6 @@ var versionConfig = {
              }
 
          ]
-     },
-    "CN":{
-        "ghost":"幽灵",
-        "water":"水民",
-        "role" :"角色",
-        "card" :"卡牌"
     }
 }
 

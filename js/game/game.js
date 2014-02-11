@@ -25,154 +25,6 @@ var constants = {
     }
 
 }
-var dataService = {
-    getConfig:function (id) {
-        var config= html5StorageService.get(id.toString(),  versionConfig[id.toString()]);
-        console.log(config);
-        return config;
-    },
-    updateConfig : function(id,data){
-        html5StorageService.update(id.toString(),data);
-    },
-    getGameList:function (type) {
-
-        return html5StorageService.get(type, constants.listModel[type]);
-
-    },
-    setGameDetail:function (data,showProperties,propertiesData){
-        //propertiesData={
-        //                  "card":
-        //                          [{"role":"水民","card":"水果"},{"role":"鬼","card":"香蕉"}],
-        //                  "example":
-        //                          [{"role":"水民","example":"what"},{"role":"鬼"},"card":"why"]
-        //               };
-        for(var i= 0,max=showProperties.length;i<max;i++){
-            if(showProperties[i]=='role') continue;
-            this.setGamerProperties(data,propertiesData[showProperties[i]]);
-        }
-        html5StorageService.update("gameDetail",data);
-        console.log("gameDetail complete");
-    },
-    getGameDetail:function(){
-        return html5StorageService.get("gameDetail");
-    },
-    deleteGameDetail:function(){
-        html5StorageService.delete("gameDetail");
-    },
-
-    setGamerProperties:function(config,dataArray){
-        if(dataArray.length<=0 ) return;
-            for(var i=0;i<config.length;i++)
-                for(var j = 0 ; j <dataArray.length ; j++)
-                    if(dataArray[j]["role"] == config[i]["role"])
-                        JsonUtil.push(config[i],dataArray[j]);
-
-
-    },
-    deleteGamerProperties:function(id,key){
-        var roles=this.getGameDetail();
-        for(var role in roles)
-            if(role.id=id)
-                JsonUtil.pop(role,key);
-        html5StorageService.update("gameDetail",roles);
-    },
-    roleMaker : function (config) {
-        console.log("roleMaker start");
-        var rolesArray = [],
-            rolesNumArray = [],
-            roleChooser = 0,
-            str = "",
-            count = 1,
-            returnData,
-            flag = 1,
-            playerNum=0;
-
-        for (var i=0; i<config.roles.length;i++) {
-            rolesArray.push(config.roles[i].name);
-            rolesNumArray.push(config.roles[i].num);
-            playerNum=playerNum+parseInt(config.roles[i].num);
-        }
-            console.log("rolesArr:"+rolesArray+",rolesNumArray:"+rolesNumArray);
-
-        while (flag) {
-                roleChooser = Math.floor(Math.random() * rolesArray.length); //0,1
-                if (rolesNumArray[roleChooser] > 0) {
-                    str = str + "{id:" + count + ",role:'" + rolesArray[roleChooser] + "'},";
-                    console.log(str);
-                    rolesNumArray[roleChooser]--;
-                    count++;
-                }
-            console.log(count == playerNum );
-            if (count == playerNum + 1) break;
-            }
-
-        returnData = "[" + str.substring(0, str.length - 1) + "]";
-        console.log(returnData+"\nroleMaker complete");
-        return eval("(" + returnData + ")");
-    },
-    buildGameConfigRoles : function(gameConfig,players){
-        console.log("start build game config roles");
-        var rolesNumArr=[];
-        var playerNum=0;
-        var rolesArr=gameConfig.rolesConfig.roleSort.split(',');
-        if(gameConfig.rolesConfig.saved!=""&&!players){
-            var x = gameConfig.rolesConfig.saved.split(',');
-            playerNum=x[0];
-            for(var i=1;i<x.length;i++){
-                rolesNumArr.push(x[i]);
-            }
-        }else{
-            playerNum=gameConfig.playerNumDefault;
-            if(players) playerNum=players;
-            if(playerNum > gameConfig.peopleNumList[0] && playerNum < gameConfig.peopleNumList[1])
-                rolesNumArr=gameConfig.rolesConfig[playerNum].split(",");
-            else
-                rolesNumArr=gameConfig.rolesConfig["default"].split(",");
-        }
-        var rolesCN = gameConfig.CN;
-        var rolesNum=rolesArr.length;
-        var returnData=[];
-        for(var i=0;i<rolesNum;i++){
-            returnData.push(JsonUtil.toJSON("{'name':'"+rolesArr[i]+"','CN':'"+rolesCN[rolesArr[i]]+"','num':'"+rolesNumArr[i]+"'}"));
-        }
-        console.log(returnData);
-        console.log("complete build game config roles:");
-        return returnData;
-    },
-    buildGameConfigPeopleNumList : function(data){
-        var returnData=[];
-        for(var i=data[0];i<data[1];i++){
-            returnData.push(i);
-        }
-        return returnData;
-    },
-    buildGameConfigProperties : function(gc){
-        var returnData=[];
-        for(var i=0;i<gc.showProperties.length;i++){
-            returnData.push(JsonUtil.toJSON("{'name':'"+gc.showProperties[i]+"','CN':'"+gc.CN[gc.showProperties[i]]+"'}"));
-        }
-        return returnData;
-    },
-    buildRoleMakeData :function(formData,playerNum){
-        var rolesArray=[];
-        for(var i=0;i<formData.length;i++){
-            if(domUtil.hasClass(formData[i],"roleItem")&&formData[i].style.display!='none'){
-                var itemStr= "{'name':'"+formData[i].name+"','num':'"+formData[i].value+"'}";
-                if(!JsonUtil.inArray(rolesArray,itemStr))
-                    rolesArray.push(itemStr);
-            }
-        }
-
-        return JsonUtil.toJSON("{'playerNum':"+playerNum+",'roles':["+rolesArray+"]}");
-    },
-    getCN : function(EN){
-        var gc=this.getConfig(-1100);
-        return gc.CN[EN];
-    }
-}
-var gameUtil={
-
-}
 
 var app = angular.module('gameTool', [], function ($compileProvider) {
 
@@ -180,17 +32,12 @@ var app = angular.module('gameTool', [], function ($compileProvider) {
 
 });
 
-
-app.filter('convent',function(){
-   return function(en){
-       return dataService.getCN(en);
-   }
-});
 app.controller("gameModelList",function($scope) {
 
     $scope.officialList = dataService.getGameList(constants.listType.official);
     $scope.userList = dataService.getGameList(constants.listType.user);
-})
+
+});
 
 app.controller("gameInitCtrl",function($scope) {
 
@@ -198,42 +45,11 @@ app.controller("gameInitCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid"),
         gameConfig={},
         roleArr=[];
-    var gc={};
-
-    if(JsonUtil.toJSON(localStorage.getItem(gameid)).rolesConfig.saved)
-        gc=JsonUtil.toJSON(localStorage.getItem(gameid));
-    else
-        gc=dataService.getConfig(gameid);
+    var gc=dataService.getConfig(gameid);
     /******************/
-
-    /****************  gameConfig init start  **********************/
-    gameConfig.gameid=gc.gameid;
-    console.log(gc.rolesConfig.saved);
-    if(!gc.rolesConfig.saved){
-        gameConfig.playerNumDefault=gc.playerNumDefault;
-    }
-    $scope.roles = dataService.buildGameConfigRoles(gc);
-    gameConfig.showProperties =dataService.buildGameConfigProperties(gc);
-    gameConfig.peopleNumList=dataService.buildGameConfigPeopleNumList(gc.peopleNumList);
-    var a="";
-    var b="";
-    console.log(gc.properties);
-    if(gc.properties!=""){
-        for(var i= 0,ii=gc.showProperties.length;i<ii;i++){
-            if(gc.showProperties[i]=='role') continue;
-            for(var j=0;j<gc.properties[gc.showProperties[i]].length;j++){
-                a=a+"'"+gc.properties[gc.showProperties[i]][j].role+"':'"+gc.properties[gc.showProperties[i]][j][gc.showProperties[i]]+"',";
-            }
-            b=b+"'"+gc.showProperties[i]+"':{"+ a.substring(0, a.length-1)+"},";
-        }
-        console.log(b.substring(0, b.length-1));
-        gameConfig.properties= JsonUtil.toJSON("{"+b.substring(0,b.length-1)+"}");
-    }
-    /**************************************************************/
-
     /************  scope properties bind  ******************/
     $scope.gameid=gameid;
-    $scope.gameConfig=gameConfig;
+    $scope.gameConfig=dataService.gameConfigMaker(gc);
     $scope.peopleNum =gc.playerNumDefault;//init select
     /*******************************************/
     //{properties:{"role1":"properties1","role2":"properties2"}}
@@ -244,10 +60,7 @@ app.controller("gameInitCtrl",function($scope) {
     /*****************/
 
     $scope.gameChange=function(num){
-        console.log("gameChange");
-        $scope.roles= dataService.buildGameConfigRoles(gc,num);
-        //$scope.roles=roles;
-        console.log("gameChange end");
+        $scope.gameConfig.roles = dataService.buildGameConfigRoles(gc,num);
     }
     $scope.gameInit = function(){
         /*****  initVar => buildPropertiesList => roleMaker => setGameDetail ***/
@@ -261,14 +74,9 @@ app.controller("gameInitCtrl",function($scope) {
         console.log('in');
         roleArr=gc.rolesConfig.roleSort.split(",");
         for(var i=1;i<formData.length;i++){
-            console.log(formData[i].name);
-            console.log(formData[i].value);
-            console.log(formData[i].style.display);
                 if(JsonUtil.inArray(roleArr,formData[i].name)&&formData[i].value!=""&&formData[i].style.display!="none")
-
                     tempa.push(formData[i].value);
         }
-
         /*********************/
 
         if(domUtil.hasClass(startBtn,"disabled"))return false;
@@ -276,10 +84,11 @@ app.controller("gameInitCtrl",function($scope) {
         /********************************** build properties list ***************************************/
             //{"properties":[{"role":"水民","card":"value"},{"role":"鬼","card":"value"}]}
                 console.log("build properties list start");
+                console.log(gc.showProperties);
                 for(var j =0;j<gc.showProperties.length;j++){
                     if(gc.showProperties[j]=='role')
                         continue;
-                    var tempArr=[],
+                       var tempArr=[],
                         reg=new RegExp(".*"+gc.showProperties[j]+".*"),
                         reg2=new RegExp(/.*<-->.*/),
                         index= 0,
@@ -292,10 +101,12 @@ app.controller("gameInitCtrl",function($scope) {
                         }
                     }
                      tmp = JsonUtil.toJSON("{'"+gc.showProperties[j]+"':["+tempArr+"]}");
-                    console.log("one properties list:"+tmp);
+                    console.log("one properties list:");
+                    console.log(tmp);
                      JsonUtil.push(temp,tmp);
                 }
-                console.log("all properties list:"+temp);
+                console.log("all properties list:");
+                console.log(temp);
                 console.log("build properties list complete");
         gc.rolesConfig.saved=tempa.toString();
         gc.properties=temp;
