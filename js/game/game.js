@@ -44,80 +44,25 @@ app.controller("gameInitCtrl",function($scope) {
    /***** init  ******/
     var gameid = getParameterFromUrl(location.href, "gameid"),
         gameConfig={},
-        roleArr=[];
-    var gc=dataService.getConfig(gameid);
-    /******************/
-    /************  scope properties bind  ******************/
-    $scope.gameid=gameid;
-    $scope.gameConfig=dataService.gameConfigMaker(gc);
-    $scope.peopleNum =gc.playerNumDefault;//init select
-    /*******************************************/
-    //{properties:{"role1":"properties1","role2":"properties2"}}
-    /**   method   ***/
-    //  gameChange()
-    //  gameInit()
-    //  gameExit()
-    /*****************/
+        gc=dataService.getConfig(gameid);
 
-    $scope.gameChange=function(num){
-        $scope.gameConfig.roles = dataService.buildGameConfigRoles(gc,num);
-    }
-    $scope.gameInit = function(){
-        /*****  initVar => buildPropertiesList => roleMaker => setGameDetail ***/
+        $scope.gameid=gameid;
+        $scope.gameConfig=dataService.gameConfigMaker(gc);
+        $scope.peopleNum =gc.playerNumDefault;//init select
 
-        /******* init **********/
-        var startBtn = document.getElementById("startButton"),
-            temp={},
-            formData=document.getElementsByTagName('input'),
-            tempa=[];
-        tempa.push(formData[0].value);
-        console.log('in');
-        roleArr=gc.rolesConfig.roleSort.split(",");
-        for(var i=1;i<formData.length;i++){
-                if(JsonUtil.inArray(roleArr,formData[i].name)&&formData[i].value!=""&&formData[i].style.display!="none")
-                    tempa.push(formData[i].value);
+        $scope.gameChange=function(num){
+            $scope.gameConfig.roles = dataService.buildGameConfigRoles(gc,num);
         }
-        /*********************/
-
-        if(domUtil.hasClass(startBtn,"disabled"))return false;
-        var roleMakeData=dataService.buildRoleMakeData(formData,gameConfig.playerNumDefault);
-        /********************************** build properties list ***************************************/
-            //{"properties":[{"role":"水民","card":"value"},{"role":"鬼","card":"value"}]}
-                console.log("build properties list start");
-                console.log(gc.showProperties);
-                for(var j =0;j<gc.showProperties.length;j++){
-                    if(gc.showProperties[j]=='role')
-                        continue;
-                       var tempArr=[],
-                        reg=new RegExp(".*"+gc.showProperties[j]+".*"),
-                        reg2=new RegExp(/.*<-->.*/),
-                        index= 0,
-                        max=formData.length,
-                        tmp;
-                    for(;index<max;index++){
-                        if(reg.test(formData[index].name)&&reg2.test(formData[index].name)){
-                            var arr=formData[index].name.split('<-->');
-                            tempArr.push("{'role':'"+arr[0]+"','"+gc.showProperties[j]+"':'"+formData[index].value+"'}");
-                        }
-                    }
-                     tmp = JsonUtil.toJSON("{'"+gc.showProperties[j]+"':["+tempArr+"]}");
-                    console.log("one properties list:");
-                    console.log(tmp);
-                     JsonUtil.push(temp,tmp);
-                }
-                console.log("all properties list:");
-                console.log(temp);
-                console.log("build properties list complete");
-        gc.rolesConfig.saved=tempa.toString();
-        gc.properties=temp;
-        dataService.updateConfig(gameid,gc);
-        /************************************************************************************************/
-        dataService.setGameDetail(dataService.roleMaker(roleMakeData),gc.showProperties,temp);
-    }
-
-    $scope.gameExit = function(){
-        dataService.deleteGameDetail();
-    }
+        $scope.gameInit = function(){
+            /*****  initVar => buildPropertiesList => roleMaker => setGameDetail ***/
+            var startBtn = document.getElementById("startButton"),
+                formData=document.getElementsByTagName('input');
+            if(domUtil.hasClass(startBtn,"disabled"))return false;
+            dataService.setGameDetail(dataService.roleMaker(dataService.buildRoleMakeData(formData,gameConfig.playerNumDefault)),gc.showProperties,dataService.buildProperties(gc.showProperties,formData));
+        }
+        $scope.gameExit = function(){
+            dataService.deleteGameDetail();
+        }
 })
 
 app.controller("gamePlayCtrl",function($scope) {
@@ -165,12 +110,7 @@ app.controller("gamePlayCtrl",function($scope) {
     }
     /********************************************/
 
-   /***** method *******/
-   /**   changeCurrentGamer()    **/
-   /**   currentGamerEraser()    **/
-   /**   gameExit()
-    *    showCurrentGamer()      **/
-   /********************/
+
     $scope.changeCurrentGamer=function(id){
         $scope.currentData=[];
         if(id > $scope.gameConfig.playerNum) return;
@@ -193,7 +133,7 @@ app.controller("gamePlayCtrl",function($scope) {
         $scope.changeCurrentGamer($scope.currentId);
         eraserArr.push(id);
         if(id > $scope.gameConfig.playerNum) return;
-       for(var i=0;i<gc.showProperties.length;i++){
+        for(var i=0;i<gc.showProperties.length;i++){
            gc.roleAssign[id-1][gc.showProperties[i]]="QAQ"
            $scope.gameConfig.roleAssign=gc.roleAssign;
        }
@@ -209,12 +149,13 @@ app.controller("judgeScanCtrl",function($scope) {
     var gc=dataService.getConfig(gameid);
     var gameConfig={};
     var gameDetail=dataService.getGameDetail();
+
     gameConfig.gameid=gameid;
     gameConfig.gameDetail=gameDetail;
     gameConfig.showProperties=gc.showProperties;
+
     $scope.gameConfig = gameConfig;
-    console.log(gameConfig);
-    $scope.getCN =function(i){
+    $scope.getCN = function(i){
         return gc.CN[i];
     }
     $scope.gameExit = function(){

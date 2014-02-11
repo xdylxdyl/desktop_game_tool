@@ -95,5 +95,5 @@ var buttonMedia = function(){
     media.play();
 }
 
-//$(".btn").on('click',buttonMedia);
+$(".btn").on('click',buttonMedia);
 $("#fakeButton").on('click',checkForm);

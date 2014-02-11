@@ -85,7 +85,7 @@ var dataService = {
         return eval("(" + returnData + ")");
     },
     buildGameConfigRoles : function(gameConfig,players){
-        console.log("start build game config roles");
+       // console.log("start build game config roles");
         var rolesNumArr=[];
         var playerNum=0;
         var rolesArr=gameConfig.rolesConfig.roleSort.split(',');
@@ -109,8 +109,8 @@ var dataService = {
         for(var i=0;i<rolesNum;i++){
             returnData.push(JsonUtil.toJSON("{'name':'"+rolesArr[i]+"','CN':'"+rolesCN[rolesArr[i]]+"','num':'"+rolesNumArr[i]+"'}"));
         }
-        console.log(returnData);
-        console.log("complete build game config roles:");
+      //  console.log(returnData);
+      //  console.log("complete build game config roles:");
         return returnData;
     },
     buildGameConfigPeopleNumList : function(data){
@@ -170,5 +170,32 @@ var dataService = {
         console.log(gameConfig);
         console.log("game config maker end");
         return gameConfig;
+    },
+    buildProperties:function(showProperties,formData){
+        var temp=[];
+        console.log("build properties list start");
+        for(var j =0;j<showProperties.length;j++){
+            if(showProperties[j]=='role')
+                continue;
+            var tempArr=[],
+                reg=new RegExp(".*"+showProperties[j]+".*"),
+                reg2=new RegExp(/.*<-->.*/),
+                index= 0,
+                max=formData.length,
+                tmp={};
+            for(;index<max;index++){
+                if(reg.test(formData[index].name)&&reg2.test(formData[index].name)){
+                    var arr=formData[index].name.split('<-->');
+                    tempArr.push("{'role':'"+arr[0]+"','"+showProperties[j]+"':'"+formData[index].value+"'}");
+                }
+            }
+            tmp = JsonUtil.toJSON("{'"+showProperties[j]+"':["+tempArr+"]}");
+            console.log("one properties list:");
+            console.log(tmp);
+            JsonUtil.push(temp,tmp);
+        }
+        console.log("all properties list:");
+        console.log("build properties list complete");
+        return temp;
     }
 }
