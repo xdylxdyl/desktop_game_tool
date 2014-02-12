@@ -54,11 +54,9 @@ app.controller("gameInitCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid"),
         gameConfig={},
         gc=dataService.getConfig(gameid);
-
         $scope.gameid=gameid;
         $scope.gameConfig=dataService.gameConfigMaker(gc);
         $scope.peopleNum =gc.playerNumDefault;//init select
-
         $scope.gameChange=function(num){
             $scope.gameConfig.roles = dataService.buildGameConfigRoles(gc,num);
         }
@@ -67,7 +65,10 @@ app.controller("gameInitCtrl",function($scope) {
             var startBtn = document.getElementById("startButton"),
                 formData=document.getElementsByTagName('input');
             if(domUtil.hasClass(startBtn,"disabled"))return false;
-            dataService.setGameDetail(dataService.roleMaker(dataService.buildRoleMakeData(formData,gameConfig.playerNumDefault)),gc.showProperties,dataService.buildProperties(gc.showProperties,formData));
+           var roleData=dataService.buildRoleMakeData(formData,gameConfig.playerNum);
+           var propertiesData=dataService.buildProperties(gc.showProperties,formData);
+            dataService.saveData(roleData,propertiesData);
+            dataService.setGameDetail(dataService.roleMaker(roleData),gc.showProperties,propertiesData);
         }
         $scope.gameExit = function(){
             dataService.deleteGameDetail();
@@ -127,18 +128,15 @@ app.controller("gamePlayCtrl",function($scope) {
 
 app.controller("judgeScanCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid");
-    var gc=dataService.getConfig(gameid);
-    var gameConfig={};
+    var gameConfig=dataService.getConfig(gameid);
     var gameDetail=dataService.getGameDetail();
-
     gameConfig.gameid=gameid;
-    gameConfig.gameDetail=gameDetail;
-    gameConfig.showProperties=gc.showProperties;
-
+    gameConfig.playerNum = gameDetail.length;
+    gameConfig.roleAssign=gameDetail;
+    gameConfig.roles=dataService.buildGamePlayRoles(gameConfig);
+    gameConfig.propertiesList=dataService.getFormData();
+    console.log(gameConfig.propertiesList);
     $scope.gameConfig = gameConfig;
-    $scope.getCN = function(i){
-        return gc.CN[i];
-    }
     $scope.gameExit = function(){
         dataService.deleteGameDetail();
     }

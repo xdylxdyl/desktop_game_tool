@@ -20,8 +20,9 @@ var dataService = {
         //                  "card":
         //                          [{"role":"水民","card":"水果"},{"role":"鬼","card":"香蕉"}],
         //                  "example":
-        //                          [{"role":"水民","example":"what"},{"role":"鬼"},"card":"why"]
+        //                          [{"role":"水民","example":"what"},{"role":"鬼"},"example":"why"]
         //               };
+
         for(var i= 0,max=showProperties.length;i<max;i++){
             if(showProperties[i]=='role') continue;
             this.setGamerProperties(data,propertiesData[showProperties[i]]);
@@ -123,7 +124,7 @@ var dataService = {
     buildGameConfigProperties : function(gc){
         var returnData=[];
         for(var i=0;i<gc.showProperties.length;i++){
-            returnData.push(JsonUtil.toJSON("{'name':'"+gc.showProperties[i]+"'}"));
+                returnData.push(JsonUtil.toJSON("{'name':'"+gc.showProperties[i]+"'}"));
         }
         console.log("build Game config properties result:");
         console.log(returnData);
@@ -152,7 +153,7 @@ var dataService = {
         html5StorageService.update("formData",formData);
     },
     getFormData : function(){
-        html5StorageService.get("formData");
+       return html5StorageService.get("formData");
     },
     gameConfigMaker : function(config){
         console.log("game config maker start");
@@ -217,5 +218,9 @@ var dataService = {
             arr.push(JsonUtil.toJSON("{'name':'"+roleArr[i]+"','num':"+count+"}"));
         }
         return arr;
+    },
+    saveData:function(roleData,propertiesData){
+        JsonUtil.push(roleData,propertiesData);
+        this.saveFormData(roleData);
     }
 }

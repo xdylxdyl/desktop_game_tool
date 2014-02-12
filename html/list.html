@@ -22,7 +22,7 @@
 <div class="tab-content" >
     <div class="tab-pane active" id="home">
         <div class="panel-group" >
-            <div class="panel panel-default" ng-repeat="model in officialList">
+            <div class="panel panel-primary" ng-repeat="model in officialList">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a href="#" data-toggle="collapse" data-parent="#accordion" >
@@ -32,8 +32,9 @@
                 </div>
                 <div class="panel-collapse collapse in">
                     <div class="panel-body">
-                        <ul>
-                            <li ng-repeat="version in model.versions"><a ng-href="gameInit.html?gameid={{version.gameid}}">{{version.name}}</a></li>
+
+                       <ul  class="list-group">
+                            <li class='list-group-item' ng-repeat="version in model.versions"><a ng-href="gameInit.html?gameid={{version.gameid}}">{{version.name}}</a></li>
                         </ul>
                     </div>
                 </div>

@@ -8,48 +8,108 @@
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
 </head>
 <body ng-controller="judgeScanCtrl">
-<nav class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <h2>
+                {{gameConfig.name}}
+                <a class="btn btn-danger pull-right" ng-href="gameInit.html?gameid={{gameConfig.gameid}}" ng-click="gameExit()">重新开始</a>
+            </h2>
+            <p>总人数{{gameConfig.playerNum}}(<span ng-repeat="role in gameConfig.roles">【{{role.name|convent}}:{{role.num}}】</span>)</p>
+            <div class="wrapTab">
+                <ul class="nav nav-tabs" id="topTab">
+                    <li class="active"><a href="#home" data-toggle="tab">游戏设置</a></li>
+                    <li><a href="#userDefine" data-toggle="tab">玩家身份</a></li>
+                    <li><a href="#judge" data-toggle="tab">法官日记</a></li>
+                </ul>
+            </div>
+
+            <div class="tab-content" >
+                <div class="tab-pane active" id="home">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                总人数
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-6"><label>人数</label></div>
+                                <div class="col-xs-6"><label>{{gameConfig.playerNum}}</label></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="panel panel-default" ng-repeat="role in gameConfig.propertiesList['roles']">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                {{role.name|convent}}
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-6"><label>人数</label></div>
+                                <div class="col-xs-6"><label>{{role.num}}</label></div>
+                            </div>
+                            <div ng-repeat="x in gameConfig.showProperties">
+                                <div class="row" ng-repeat="properties in gameConfig.propertiesList[x]">
+                                    <div class="col-xs-6" ng-show="properties.role == role.name && !properties.num"><label>{{x|convent}}</label></div>
+                                    <div class="col-xs-6" ng-show="properties.role == role.name && !properties.num"><label>{{properties[x]|convent}}</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane" id="userDefine">
+                    <table class="table text-center table-bordered">
+                        <tr class="success">
+                            <td>编号</td>
+                            <td ng-repeat="item in gameConfig.showProperties">{{item|convent}}</td>
+                        </tr>
+                        <tr ng-repeat="items in gameConfig.roleAssign">
+                            <td >
+                                {{$index+1}}
+                            </td>
+                            <td ng-repeat="item in gameConfig.showProperties">
+                                {{items[item]|convent}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tab-pane" id="judge">
+                    <textarea class="form-control" rows="5">
+                        第一天晚上:1号玩家死
+                        第二天晚上:2号玩家死
+                    </textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<nav class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
         <a class="navbar-brand">杀人游戏</a>
         <!--<a  class="btn btn-default navbar-btn pull-right" ng-href="gamePlay.html?gameid={{gameConfig.gameid}}">
             返回游戏
-        </a>-->
+        </a>
     </div>
-</nav>
+</nav>-->
 <div class="roleList" >
-    <table class="table text-center table-bordered">
-        <tr class="success">
-            <td>编号</td>
-            <td ng-repeat="item in gameConfig.showProperties">{{item|convent}}</td>
-        </tr>
-        <tr ng-repeat="items in gameConfig.gameDetail">
-            <td >
-                {{$index+1}}
-            </td>
-            <td ng-repeat="item in gameConfig.showProperties">
-                {{items[item]|convent}}
-            </td>
-        </tr>
-    </table>
-    </table>
-
-   <div class="container">
-       <form role="form">
-           <textarea class="form-control" rows="5">
-           </textarea>
-       </form>
-   </div>
     <audio id="buttonAudio" src="../media/click.WAV" controls="controls"  hidden="hidden"></audio>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+<!--<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="navbar-header">
         <a class="btn btn-danger pull-left navbar-btn" ng-href="gameInit.html?gameid={{gameConfig.gameid}}" ng-click="gameExit()">结束游戏</a>
         <a class="btn btn-primary pull-right navbar-btn">播放</a>
 
     </div>
-</nav>
+</nav>-->
 <script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../js/framework/angular/angular.js"></script>
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>

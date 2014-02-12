@@ -17,63 +17,57 @@
         .nextRole{
             background-color: red;
         }
-        .nextRole,.currentRole,.prevRole{
-            margin: 0 auto;
-            width: 80%;
-            height: 50px;
-        }
+
         .currentRole,.nextRole{
             color: #ffffff;
         }
     </style>
 </head>
 <body ng-controller="gamePlayCtrl" >
-<nav class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">杀人游戏</a>
-        <a  class="btn btn-default navbar-btn pull-right" ng-href="judgeScan.html?gameid={{gameConfig.gameid}}" onclick="buttonMedia()">
-            法官查看
-        </a>
+<div class="container">
+    <div class="role clearfix">
+        <div class="col-md-12 column">
+            <h2>{{gameConfig.name}}
+                <a  class="btn btn-default" ng-href="judgeScan.html?gameid={{gameConfig.gameid}}" onclick="buttonMedia()">
+                法官查看
+                </a>
+                <a class="btn btn-danger pull-right  "  ng-href="gameInit.html?gameid={{gameConfig.gameid}}" ng-click="gameExit()">结束游戏</a>
+            </h2>
+        </div>
     </div>
-</nav>
-<div>
-    <h5 class="text-center">总人数{{gameConfig.playerNum}}(<span ng-repeat="role in gameConfig.roles">【{{role.name|convent}}:{{role.num}}】</span>)</h5>
+    <p>总人数{{gameConfig.playerNum}}(<span ng-repeat="role in gameConfig.roles">【{{role.name|convent}}:{{role.num}}】</span>)</p>
+    <hr>
+        <div class="row container">
+            <div class="prevRole col-xs-4" ng-hide="currentId <= 1 ">
+                <h4 class="text-center">{{currentId-1}}</h4>
+            </div>
+            <div class="currentRole col-xs-4" ng-hide="currentId >= gameConfig.playerNum+1">
+                <h4 class="text-center">{{currentId}}</h4>
+            </div>
+            <div class="nextRole col-xs-4" ng-hide="currentId >= gameConfig.playerNum ">
+                <h4 class="text-center">{{currentId+1}}</h4>
+            </div>
+        </div>
+    <hr>
+    <button class="btn btn-warning btn-block" ng-click="showCurrentGamer()">查看身份</button>
+    <hr>
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">{{currentId}}号玩家的身份信息</h3></div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <tr ng-repeat="current in currentData"><td class="success">{{current.name|convent}}</td><td>{{current.value|convent}}</td></tr>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <h3 class="panel-title">* 请用自己的手机拍照,以记住身份信息
+            </h3>
+        </div>
+    </div>
 
-</div>
-<div class="roleList">
-    <div class="prevRole" ng-hide="currentId <= 1 ">
-        <h4 class="text-center">{{currentId-1}}</h4>
-    </div>
-    <div class="currentRole" ng-hide="currentId >= gameConfig.playerNum+1">
-        <h4 class="text-center">{{currentId}}</h4>
-    </div>
-    <div class="nextRole" ng-hide="currentId >= gameConfig.playerNum ">
-        <h4 class="text-center">{{currentId+1}}</h4>
-    </div>
+    <button class="btn btn-success  btn-block" onclick="buttonMedia()" ng-click="currentGamerEraser(currentId)">擦掉身份，以免泄露</button>
 
-    <!--
-    <div  ng-repeat="role in gameConfig.roleAssign" >
-        <a class="thumbnail roleBox"  roleid="{{role.id}}" ng-show="role.id == currentId-1 || role.id == currentId || role.id == currentId+1" ng-click="changeCurrentGamer($index)" onclick="buttonMedia()">
-            <img alt="{{role.id}}"/>
-        </a>
-    </div>
-    -->
-</div>
-<div class="roleShow">
-    <h4 class="text-center">{{currentId}}</h4>
-    <h5 class='text-center' ng-repeat="current in currentData">{{current.name|convent}}:{{current.value|convent}}</h5>
-    <p class="text-center">请拍照记住自己的身份</p>
-    <button class="btn btn-danger center-block" ng-click="showCurrentGamer()">展示身份</button>
-    <br>
-    <button class="btn btn-info btn-lg center-block" onclick="buttonMedia()" ng-click="currentGamerEraser(currentId)">擦掉身份，以免泄露</button>
-</div>
 <audio id="buttonAudio" src="../media/click.WAV" controls="controls"  hidden="hidden"></audio>
-<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-    <div class="navbar-header">
-        <a class="btn btn-danger pull-left navbar-btn"  ng-href="gameInit.html?gameid={{gameConfig.gameid}}" ng-click="gameExit()">结束游戏</a>
-    </div>
-</nav>
+</div>
 <script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../js/framework/angular/angular.js"></script>
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
