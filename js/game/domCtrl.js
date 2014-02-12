@@ -16,51 +16,7 @@ function linkClick(obj){
         document.getElementById("link" + id).click();
     }
 }
-/**************************************************/
-/*function checkRoleNum(role){
-    var reg=new RegExp(/^\d{1,2}$/);
-var obj=document.getElementById(role.name);
-var num=parseInt(role.value);
-if(role){
-    if(num >= role.min && num <= role.max && reg.test(role.value) ){
-    obj.style.visibility = 'hidden';
-    var items = document.getElementsByClassName("roleItem");
-    var max = document.getElementById("hidPeopleNum");
-    var maxError=document.getElementById("maxPeople");
-    var sum=0;
-    if(role.name!="maxPeople"){
-    for(var i=0;i<items.length;i++){
-    if(items[i].style.display=='none')continue;
-    sum=sum+parseInt(items[i].value);
-    }
-console.log(sum);
-console.log(max.value);
-if(sum!=max.value){
-    maxError.style.visibility='visible';
-    }else{
-    maxError.style.visibility='hidden';
-    }
-}
 
-}else{
-    obj.style.visibility ='visible';
-    }
-checkStartBtn();
-}
-}
-
-function checkStartBtn(){
-    var errorObj=document.getElementsByClassName("error");
-    var startBtn = document.getElementById("startButton");
-    for(var i=0;i<errorObj.length;i++){
-    if(errorObj[i].style.visibility != "hidden" ){
-    domUtil.addClass(startBtn,"disabled");
-    break;
-    }
-domUtil.removeClass(startBtn,"disabled");
-}
-}
-*/
 function checkForm(){
     var items = document.getElementsByClassName("roleItem"),
     sum   = 0,
@@ -97,3 +53,13 @@ var buttonMedia = function(){
 
 $(".btn").on('click',buttonMedia);
 $("#fakeButton").on('click',checkForm);
+
+$('#showRoleButton').click(function(){
+   var btn=$("#eraserButton");
+    if(btn.hasClass('disabled')){
+        btn.removeClass('disabled');
+    }
+});
+$('#eraserButton').click(function(){
+   $(this).addClass('disabled');
+});

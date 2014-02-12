@@ -12,10 +12,10 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <h2>
-                {{gameConfig.name}}
+                <span ng-bind="gameConfig.name"></span>
                 <a class="btn btn-danger pull-right" ng-href="gameInit.html?gameid={{gameConfig.gameid}}" ng-click="gameExit()">重新开始</a>
             </h2>
-            <p>总人数{{gameConfig.playerNum}}(<span ng-repeat="role in gameConfig.roles">【{{role.name|convent}}:{{role.num}}】</span>)</p>
+            <p>总人数<span ng-bind="gameConfig.playerNum"></span>(<span ng-repeat="role in gameConfig.roles">【<span ng-bind="role.name|convent"></span>:<span ng-bind="role.num"></span>】</span>)</p>
             <div class="wrapTab">
                 <ul class="nav nav-tabs" id="topTab">
                     <li class="active"><a href="#home" data-toggle="tab">游戏设置</a></li>
@@ -36,7 +36,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-6"><label>人数</label></div>
-                                <div class="col-xs-6"><label>{{gameConfig.playerNum}}</label></div>
+                                <div class="col-xs-6"><label ng-bind="gameConfig.playerNum"></label></div>
                             </div>
 
                         </div>
@@ -45,19 +45,19 @@
 
                     <div class="panel panel-default" ng-repeat="role in gameConfig.propertiesList['roles']">
                         <div class="panel-heading">
-                            <h3 class="panel-title">
-                                {{role.name|convent}}
+                            <h3 class="panel-title" ng-bind="role.name|convent">
+
                             </h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-6"><label>人数</label></div>
-                                <div class="col-xs-6"><label>{{role.num}}</label></div>
+                                <div class="col-xs-6"><label ng-bind="role.num"></label></div>
                             </div>
                             <div ng-repeat="x in gameConfig.showProperties">
                                 <div class="row" ng-repeat="properties in gameConfig.propertiesList[x]">
-                                    <div class="col-xs-6" ng-show="properties.role == role.name && !properties.num"><label>{{x|convent}}</label></div>
-                                    <div class="col-xs-6" ng-show="properties.role == role.name && !properties.num"><label>{{properties[x]|convent}}</label></div>
+                                    <div class="col-xs-6" ng-show="properties.role == role.name && !properties.num"><label ng-bind="x|convent"></label></div>
+                                    <div class="col-xs-6" ng-show="properties.role == role.name && !properties.num"><label ng-bind="properties[x]|convent"></label></div>
                                 </div>
                             </div>
                         </div>
@@ -68,14 +68,12 @@
                     <table class="table text-center table-bordered">
                         <tr class="success">
                             <td>编号</td>
-                            <td ng-repeat="item in gameConfig.showProperties">{{item|convent}}</td>
+                            <td ng-repeat="item in gameConfig.showProperties" ng-bind="item|convent"></td>
                         </tr>
                         <tr ng-repeat="items in gameConfig.roleAssign">
-                            <td >
-                                {{$index+1}}
+                            <td ng-bind="$index+1">
                             </td>
-                            <td ng-repeat="item in gameConfig.showProperties">
-                                {{items[item]|convent}}
+                            <td ng-repeat="item in gameConfig.showProperties" ng-bind="items[item]|convent">
                             </td>
                         </tr>
                     </table>

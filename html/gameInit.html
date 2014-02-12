@@ -12,23 +12,13 @@
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <h2>{{gameConfig.name}}
+            <h2 ng-bind="gameConfig.name">
             <a class="btn pull-right" ng-href="introduceGame.html?gameid={{gameConfig.gameid}}">介绍</a>
             </h2>
             <p>some text</p>
         </div>
     </div>
 </div>
-<!--<nav class="navbar navbar-default" role="navigation">
-<!--    <div class="navbar-header">
-        <a class="navbar-brand" href="#">{{gameConfig.name}}</a>
-      <a  class="btn btn-default navbar-btn pull-right" ng-href="introduceGame.html?gameid={{gameConfig.gameid}}">
-            版本介绍
-        </a>
-    </div>
-
-</nav>-->
-
 <!--
  item1
     role [    ]
@@ -55,7 +45,7 @@
 
         </div>
         <div class="panel panel-default"  ng-repeat="role in gameConfig.roles">
-            <div class="panel-heading">{{role.name|convent}}</div>
+            <div class="panel-heading" ng-bind="role.name|convent"></div>
             <div class='panel-body' ng-repeat="properties in gameConfig.showPropertiesObj">
                 <div class="form-group" ng-show="properties.name == 'role' ">
                     <label ng-show="properties.name == 'role' " class="col-xs-3 control-label">人数</label>
@@ -65,7 +55,7 @@
                 </div>
 
                 <div class="form-group" ng-show="properties.name != 'role' ">
-                    <label  class="col-xs-3 control-label">{{properties.name|convent}}</label>
+                    <label  class="col-xs-3 control-label" ng-bind="properties.name|convent"></label>
                     <div class="col-xs-9">
                         <input type="text" name="{{role.name}}<-->{{properties.name}}" class="form-control" value="{{gameConfig.properties[properties.name][role.name]}}"/>
                     </div>
@@ -80,15 +70,6 @@
         <a id="fakeButton" class="btn btn-success pull-right " >开始</a>
     </div>
 </div>
-<!--
-<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-    <div class="navbar-header">
-        <a class="btn btn-danger pull-left navbar-btn" href="list.html" ng-click="gameExit()">返回列表</a>
-        <a style='display: none' id='startButton'   ng-href="gamePlay.html?gameid={{gameConfig.gameid}}" ng-click="gameInit()">开始</a>
-        <a id="fakeButton" class="btn btn-primary pull-right navbar-btn" >开始</a>
-
-    </div>
-</nav>-->
 <script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../js/framework/angular/angular.js"></script>
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>

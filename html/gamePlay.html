@@ -12,10 +12,10 @@
             background-color: #e3e3e3;
         }
         .currentRole{
-            background-color: green;
+            background-color: #5cb85c;
         }
         .nextRole{
-            background-color: red;
+            background-color: #d43f3a;
         }
 
         .currentRole,.nextRole{
@@ -27,35 +27,33 @@
 <div class="container">
     <div class="role clearfix">
         <div class="col-md-12 column">
-            <h2>{{gameConfig.name}}
-                <a  class="btn btn-default" ng-href="judgeScan.html?gameid={{gameConfig.gameid}}" onclick="buttonMedia()">
-                法官查看
-                </a>
+            <h2 ng-bind="gameConfig.name">
                 <a class="btn btn-danger pull-right  "  ng-href="gameInit.html?gameid={{gameConfig.gameid}}" ng-click="gameExit()">结束游戏</a>
             </h2>
         </div>
     </div>
-    <p>总人数{{gameConfig.playerNum}}(<span ng-repeat="role in gameConfig.roles">【{{role.name|convent}}:{{role.num}}】</span>)</p>
+    <p>总人数<span ng-bind="gameConfig.playerNum"></span>(<span ng-repeat="role in gameConfig.roles">【<span ng-bind="role.name|convent"></span>:<span ng-bind="role.num"></span>】</span>)</p>
     <hr>
         <div class="row container">
-            <div class="prevRole col-xs-4" ng-hide="currentId <= 1 ">
-                <h4 class="text-center">{{currentId-1}}</h4>
+            <div class="prevRole col-xs-offset-1 col-xs-2" ng-hide="currentId <= 1 ">
+                <h4 class="text-center" ng-bind="currentId-1"></h4>
             </div>
-            <div class="currentRole col-xs-4" ng-hide="currentId >= gameConfig.playerNum+1">
-                <h4 class="text-center">{{currentId}}</h4>
+            <div class="currentRole col-xs-offset-2 col-xs-2" ng-hide="currentId >= gameConfig.playerNum+1">
+                <h4 class="text-center" ng-bind="currentId"></h4>
             </div>
-            <div class="nextRole col-xs-4" ng-hide="currentId >= gameConfig.playerNum ">
-                <h4 class="text-center">{{currentId+1}}</h4>
+            <div class="nextRole col-xs-offset-2 col-xs-2" ng-hide="currentId >= gameConfig.playerNum ">
+                <h4 class="text-center" ng-bind="currentId+1"></h4>
             </div>
         </div>
     <hr>
-    <button class="btn btn-warning btn-block" ng-click="showCurrentGamer()">查看身份</button>
+    <div ng-show="currentId <= gameConfig.playerNum">
+    <button id='showRoleButton'class="btn btn-warning btn-block" ng-click="showCurrentGamer()">查看身份</button>
     <hr>
     <div class="panel panel-primary">
-        <div class="panel-heading"><h3 class="panel-title">{{currentId}}号玩家的身份信息</h3></div>
+        <div class="panel-heading"><h3 class="panel-title"><span ng-bind="currentId"></span>号玩家的身份信息</h3></div>
         <div class="panel-body">
             <table class="table table-bordered">
-                <tr ng-repeat="current in currentData"><td class="success">{{current.name|convent}}</td><td>{{current.value|convent}}</td></tr>
+                <tr ng-repeat="current in currentData"><td class="success" ng-bind="current.name|convent"></td><td ng-bind="current.value|convent"></td></tr>
             </table>
         </div>
         <div class="panel-footer">
@@ -63,9 +61,11 @@
             </h3>
         </div>
     </div>
-
-    <button class="btn btn-success  btn-block" onclick="buttonMedia()" ng-click="currentGamerEraser(currentId)">擦掉身份，以免泄露</button>
-
+    <button id="eraserButton" class="btn btn-success  btn-block disabled" ng-click="currentGamerEraser(currentId)">擦掉身份，以免泄露</button>
+    </div>
+    <a  ng-hide="currentId <= gameConfig.playerNum" class="btn btn-default btn-block" ng-href="judgeScan.html?gameid={{gameConfig.gameid}}" onclick="buttonMedia()">
+        法官查看
+    </a>
 <audio id="buttonAudio" src="../media/click.WAV" controls="controls"  hidden="hidden"></audio>
 </div>
 <script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
