@@ -28,7 +28,7 @@ var constants = {
 
 var app = angular.module('gameTool', [], function ($compileProvider) {
 
-  $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file):/);
+
 
 });
 app.filter('convent',function(){
@@ -71,6 +71,8 @@ app.controller("gameInitCtrl",function($scope) {
         $scope.gameChange=function(num){
             $scope.gameConfig.roles = dataService.buildGameConfigRoles(gc,num);
         }
+
+
         $scope.gameInit = function(){
             /*****  initVar => buildPropertiesList => roleMaker => setGameDetail ***/
             var startBtn = document.getElementById("startButton"),
@@ -150,15 +152,24 @@ app.controller("judgeScanCtrl",function($scope) {
     }
 });
 
-app.controller("introduceGameCtrl",function($scope) {
 
-    $scope.gameConfig=gameService.getGameConfig();
-
-
-});
 app.controller("gameTestCtrl",function($scope){
     $scope.gameTest=function(){
         alert("ngclick");
         console.log("ngclick");
     }
+});
+
+
+var introduceApp= angular.module('introduce', ["ngSanitize"], function ($compileProvider) {
+
+
+
+});
+
+introduceApp.controller("introduceGameCtrl",function($scope) {
+
+    $scope.gameConfig=gameService.getGameConfig();
+
+
 });

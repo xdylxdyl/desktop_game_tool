@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="gameTool">
+<html ng-app="introduce">
 <head>
     <title>游戏介绍</title>
     <meta charset="utf-8">
@@ -20,7 +20,7 @@
 
             <hr>
             <p>
-            <div><pre ng-bind="gameConfig.rule.text"></pre></div>
+            <div><pre ng-bind-html="gameConfig.rule.text"></pre></div>
 
 
 
@@ -37,7 +37,8 @@
 
 
 <script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
-<script src="../js/framework/angular/angular.js"></script>
+<script src="../js/framework/angular/1.2.9/angular.js"></script>
+<script src="../js/framework/angular/1.2.9/angular-sanitize.js"></script>
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
 <script src="../js/game/config.js"></script>
 <script src="../js/util/common_util.js"></script>
