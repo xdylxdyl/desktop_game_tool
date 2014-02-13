@@ -12,9 +12,11 @@
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <h2 ng-bind="gameConfig.name">
-            <a class="btn pull-right" ng-href="introduceGame.html?gameid={{gameConfig.gameid}}">介绍</a>
+            <h2>
+                <span ng-bind="gameConfig.name"></span>
+                <a class="btn  btn-danger pull-right" ng-href="introduceGame.html?gameid={{gameConfig.gameid}}">介绍</a>
             </h2>
+
             <p>some text</p>
         </div>
     </div>
@@ -27,47 +29,56 @@
     role [    ]
     card [    ]
 -->
-<div class="roleChooser container" >
+<div class="roleChooser container">
     <form class="form-horizontal" role="form" name="roleChooserForm">
         <div class="panel panel-primary">
-                <div  class="panel-heading"><h3 class="panel-title">总人数</h3></div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label for="hidPeopleNum" class="col-xs-3 control-label">人数</label>
-                        <div class="col-xs-9">
-                            <select class="form-control"  ng-model='peopleNum' ng-options="num for num in gameConfig.peopleNumList">
-                            </select>
-                            <input id="hidPeopleNum" type="hidden" value="{{peopleNum}}">
-                            <input  type="hidden" required="required" class="form-control" name='maxPeople' onchange="{{gameChange(peopleNum)}}"  min="0" max="100" placeholder="人数" value="{{gameConfig.playerNumDefault}}">
-                        </div>
+            <div class="panel-heading"><h3 class="panel-title">总人数</h3></div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="hidPeopleNum" class="col-xs-3 control-label">人数</label>
+
+                    <div class="col-xs-9">
+                        <select class="form-control" ng-model='peopleNum'
+                                ng-options="num for num in gameConfig.peopleNumList">
+                        </select>
+                        <input id="hidPeopleNum" type="hidden" value="{{peopleNum}}">
+                        <input type="hidden" required="required" class="form-control" name='maxPeople'
+                               onchange="{{gameChange(peopleNum)}}" min="0" max="100" placeholder="人数"
+                               value="{{gameConfig.playerNumDefault}}">
                     </div>
                 </div>
+            </div>
 
         </div>
-        <div class="panel panel-default"  ng-repeat="role in gameConfig.roles">
+        <div class="panel panel-default" ng-repeat="role in gameConfig.roles">
             <div class="panel-heading" ng-bind="role.name|convent"></div>
             <div class='panel-body' ng-repeat="properties in gameConfig.showPropertiesObj">
                 <div class="form-group" ng-show="properties.name == 'role' ">
                     <label ng-show="properties.name == 'role' " class="col-xs-3 control-label">人数</label>
+
                     <div class="col-xs-9" ng-show="properties.name == 'role' ">
-                        <input type="number" name="{{role.name}}" ng-show="properties.name == 'role' " class="form-control roleItem roleNum" min="0" max="100" value="{{role.num}}" />
+                        <input type="number" name="{{role.name}}" ng-show="properties.name == 'role' "
+                               class="form-control roleItem roleNum" min="0" max="100" value="{{role.num}}"/>
                     </div>
                 </div>
 
                 <div class="form-group" ng-show="properties.name != 'role' ">
-                    <label  class="col-xs-3 control-label" ng-bind="properties.name|convent"></label>
+                    <label class="col-xs-3 control-label" ng-bind="properties.name|convent"></label>
+
                     <div class="col-xs-9">
-                        <input type="text" name="{{role.name}}<-->{{properties.name}}" class="form-control" value="{{gameConfig.properties[properties.name][role.name]}}"/>
+                        <input type="text" name="{{role.name}}<-->{{properties.name}}" class="form-control"
+                               value="{{gameConfig.properties[properties.name][role.name]}}"/>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-    <audio id="buttonAudio" src="../media/click.WAV" controls="controls"  hidden="hidden"></audio>
+    <audio id="buttonAudio" src="../media/click.WAV" controls="controls" hidden="hidden"></audio>
     <div>
         <a class="btn btn-danger" href="list.html">返回列表</a>
-        <a style='display: none' id='startButton'   ng-href="gamePlay.html?gameid={{gameConfig.gameid}}" ng-click="gameInit()">开始</a>
-        <a id="fakeButton" class="btn btn-success pull-right " >开始</a>
+        <a style='display: none' id='startButton' ng-href="gamePlay.html?gameid={{gameConfig.gameid}}"
+           ng-click="gameInit()">开始</a>
+        <a id="fakeButton" class="btn btn-success pull-right ">开始游戏</a>
     </div>
 </div>
 <script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>

@@ -143,9 +143,9 @@ app.controller("judgeScanCtrl",function($scope) {
 });
 
 app.controller("introduceGameCtrl",function($scope) {
-    var gameid = getParameterFromUrl(location.href, "gameid");
-    var gc=dataService.getConfig(gameid);
-    $scope.gameid=gameid;
+
+    $scope.gameConfig=gameService.getGameConfig();
+
 
 });
 app.controller("gameTestCtrl",function($scope){

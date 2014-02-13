@@ -153,7 +153,7 @@ var versionConfig = {
         "type":"remote",
         "gameid":-1000,
         "playerNumDefault":8,
-        "showProperties":["role"],
+        "showProperties":["role","card"],
         "peopleNum":[2,9],
         "rolesConfig":{
             "saved":"",
