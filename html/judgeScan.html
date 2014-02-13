@@ -23,10 +23,8 @@
                     <li><a href="#judge" data-toggle="tab">法官日记</a></li>
                 </ul>
             </div>
-
             <div class="tab-content" >
                 <div class="tab-pane active" id="home">
-
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">
@@ -38,11 +36,8 @@
                                 <div class="col-xs-6"><label>人数</label></div>
                                 <div class="col-xs-6"><label ng-bind="gameConfig.playerNum"></label></div>
                             </div>
-
                         </div>
-
                     </div>
-
                     <div class="panel panel-default" ng-repeat="role in gameConfig.propertiesList['roles']">
                         <div class="panel-heading">
                             <h3 class="panel-title" ng-bind="role.name|convent">
@@ -61,7 +56,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="tab-pane" id="userDefine">
@@ -88,26 +82,9 @@
         </div>
     </div>
 </div>
-
-<!--<nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-        <a class="navbar-brand">杀人游戏</a>
-        <!--<a  class="btn btn-default navbar-btn pull-right" ng-href="gamePlay.html?gameid={{gameConfig.gameid}}">
-            返回游戏
-        </a>
-    </div>
-</nav>-->
 <div class="roleList" >
     <audio id="buttonAudio" src="../media/click.WAV" controls="controls"  hidden="hidden"></audio>
 </div>
-
-<!--<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-    <div class="navbar-header">
-        <a class="btn btn-danger pull-left navbar-btn" ng-href="gameInit.html?gameid={{gameConfig.gameid}}" ng-click="gameExit()">结束游戏</a>
-        <a class="btn btn-primary pull-right navbar-btn">播放</a>
-
-    </div>
-</nav>-->
 <script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../js/framework/angular/1.2.9/angular.js"></script>
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>

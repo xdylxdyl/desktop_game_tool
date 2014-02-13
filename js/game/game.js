@@ -28,28 +28,27 @@ var constants = {
 
 var app = angular.module('gameTool', [], function ($compileProvider) {
 
-
-
 });
 
 app.filter('convent',function(){
+   var  CN=dataService.getConfigCN();//获取汉字列表
     return function(input){
-        var obj=dataService.getConfigCN();
-        if(input in obj)
-            return obj[input];
+        if(input in CN)
+            return CN[input];
         else
             return input;
     }
 });
 
 app.filter('hint',function(){
+   var ROLES=dataService.getGameDetail();//获取细节
+   var HINTCONFIG=gameService.getHintConfig();
     return function(id){
-        var role=dataService.getGameDetail()[id];
+        var role=ROLES[id];
         if(role==undefined){
             return "";
         }
-        var config=gameService.getHintConfig();
-        return config[role.role];
+        return HINTCONFIG[role.role];
     }
 });
 

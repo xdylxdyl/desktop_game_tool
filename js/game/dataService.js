@@ -4,11 +4,11 @@
 var dataService = {
     getConfig:function (id) {
         var config = html5StorageService.get(id.toString(), versionConfig[id.toString()]);
+        html5StorageService.update("CN", versionConfig[id.toString()].CN);
         console.log(config);
         return config;
     },
     getGameList:function (type) {
-
         return html5StorageService.get(type, constants.listModel[type]);
 
     },
@@ -36,7 +36,6 @@ var dataService = {
     },
 
     getConfigCN:function () {
-        html5StorageService.update("CN", versionConfig.CN);
         return html5StorageService.get("CN");
     },
     saveFormData:function (formData) {
@@ -150,7 +149,7 @@ var gameService = {
     buildRoleMakeData:function (formData, playerNum) {
         var rolesArray = [];
         for (var i = 0; i < formData.length; i++) {
-            if (domUtil.hasClass(formData[i], "roleItem") && formData[i].style.display != 'none') {
+            if (domUtil.hasClass(formData[i], "roleItem") && !domUtil.hasClass(formData[i],"ng-hide") && formData[i].style.display != 'none') {
                 var itemStr = "{'name':'" + formData[i].name + "','num':'" + formData[i].value + "'}";
                 if (!JsonUtil.inArray(rolesArray, itemStr))
                     rolesArray.push(itemStr);

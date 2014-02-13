@@ -170,10 +170,18 @@ var versionConfig = {
                 "ghost":"你是人还是鬼呢？小心一点没有坏处哦！"
             }
         },
+        "CN":{
+            "ghost":"幽灵",
+            "water":"水民",
+            "role":"角色",
+            "card":"卡牌"
+        },
         "properties":"",
-        "rule":{"foreword":"老虎老鼠,傻傻分不清楚",
+        "rule":{
+            "foreword":"老虎老鼠,傻傻分不清楚",
             "text":"",
-            "more":"http://bbs.ptteng.com"}
+            "more":"http://bbs.ptteng.com"
+        }
     },
     "-1100":{
         "name":"捉鬼游戏猜词版",
@@ -199,9 +207,17 @@ var versionConfig = {
             }
         },
         "properties":"",
-        "rule":{"foreword":"最欢乐的游戏",
+        "rule":{
+            "foreword":"最欢乐的游戏",
             "text":"",
-            "more":"http://bbs.ptteng.com"}
+            "more":"http://bbs.ptteng.com"
+        },
+        "CN":{
+            "ghost":"幽灵",
+            "water":"水民",
+            "role":"角色",
+            "card":"卡牌"
+        }
     },
     "-1300":{
         "name":"捉鬼游戏魂版",
@@ -226,9 +242,18 @@ var versionConfig = {
             }
         },
         "properties":"",
-        "rule":{"foreword":"自己究竟是什么角色呢",
+        "rule":{
+            "foreword":"自己究竟是什么角色呢",
             "text":"",
-            "more":"http://bbs.ptteng.com"}
+            "more":"http://bbs.ptteng.com"
+        },
+        "CN":{
+            "ghost":"幽灵",
+            "water":"水民",
+            "role":"角色",
+            "card":"卡牌",
+            "soul":"魂"
+        }
     },
     "-2000":{
         "name":"杀人游戏简化版",
@@ -249,11 +274,11 @@ var versionConfig = {
             "tips":{
                 "killer":"要注意隐藏自己的身份！",
                 "water":"通过逻辑分析抓出隐藏的杀手"
-
             }
         },
         "properties":"",
-        "rule":{"foreword":"将一切繁琐化为虚无,再重新演绎出无穷尽的变化",
+        "rule":{
+            "foreword":"将一切繁琐化为虚无,再重新演绎出无穷尽的变化",
             "text":"<p> 关于简化,我有很多话要说.</p> <p> 有关于游戏本身的, 也有和游戏无关的, 但这就是简化吧, 简化从来就不会是一个单纯的游戏.</p>" +
                 "<p> 简化是杀人游戏的一种,一般认为这是最简单的版本,人称1.0版. </p>" +
                 "   <p>而实际上.简化是杀人游戏中最经典的版本,是最容易将水民的魅力和杀手的博弈发挥到极致的版本. </p>" +
@@ -261,7 +286,14 @@ var versionConfig = {
                 " <p> 通常认为线杀的经典设置是8411.即8人,白天4分钟,晚上1分钟,遗言1分钟. </p>" +
                 "<p> 游戏往往是从白天开始,第一天是序幕,在一群认真游戏的玩家中,第一天是轻松也是暗流涌动的一天,如果你是水,你需要尽快的找出可以让你信任的玩家,找出你认为有可能是杀手的玩家,以便为第二天的正式交锋做准备." +
                 "<p> 尘埃落定,游戏结束.简化却在继续,我们也在继续.可惜生活中没有三人局.我和你都无法分辨谁才是真正的杀手,又或者,都不是杀手却可以互相伤害对方. 这就是简化</p>",
-            "more":"http://bbs.ptteng.com"}
+            "more":"http://bbs.ptteng.com"
+        },
+        "CN":{
+            "killer":"杀手",
+            "water":"水民",
+            "role":"角色"
+        }
+
     },
     "-2100":{
         "name":"杀人游戏警版",
@@ -284,13 +316,21 @@ var versionConfig = {
                 "police":"你是好人方的领路人，仔细分析，谨慎查证，用你的智慧带领平民走向胜利！",
                 "water":"通过逻辑分析抓出隐藏的杀手，同时也要通过巧妙的发言来保护警察！"
 
-
             }
         },
         "properties":"",
-        "rule":{"foreword":"只有黑白的世界.没有对错的分别",
+        "rule":{
+            "foreword":"只有黑白的世界.没有对错的分别",
             "text":"",
-            "more":"http://bbs.ptteng.com"}
+            "more":"http://bbs.ptteng.com"
+        },
+        "CN":{
+
+            "killer":"杀手",
+            "water":"水民",
+            "role":"角色",
+            "police":"警察"
+            }
     },
     "-2200":{
         "name":"杀人游戏警版不翻牌",
@@ -325,7 +365,15 @@ var versionConfig = {
                  " <p> 通常认为线杀的经典设置是8411.即8人,白天4分钟,晚上1分钟,遗言1分钟. </p>" +
                  "<p> 游戏往往是从白天开始,第一天是序幕,在一群认真游戏的玩家中,第一天是轻松也是暗流涌动的一天,如果你是水,你需要尽快的找出可以让你信任的玩家,找出你认为有可能是杀手的玩家,以便为第二天的正式交锋做准备." +
                  "<p> 尘埃落定,游戏结束.简化却在继续,我们也在继续.可惜生活中没有三人局.我和你都无法分辨谁才是真正的杀手,又或者,都不是杀手却可以互相伤害对方. 这就是简化</p>",
-            "more":"http://bbs.ptteng.com"}
+            "more":"http://bbs.ptteng.com"
+        },
+        "CN":{
+
+            "killer":"杀手",
+            "water":"水民",
+            "role":"角色",
+            "police":"警察"
+        }
     },
     "-2300":{
         "name":"杀人游戏3.0",
@@ -337,7 +385,6 @@ var versionConfig = {
             "saved":"",
             "roleSort":"killer,police,awp,doctor,water",
             "default":"1,1,1,1,5",
-
             "5":"1,1,1,1,1",
             "6":"1,1,1,1,2",
             "7":"1,1,1,1,3",
@@ -352,9 +399,22 @@ var versionConfig = {
             }
         },
         "properties":"",
-        "rule":{"foreword":"",
+        "rule":
+        {
+            "foreword":"",
             "text":"",
-            "more":"http://bbs.ptteng.com"}
+            "more":"http://bbs.ptteng.com"
+        },
+        "CN":{
+            "killer":"杀手",
+            "water":"水民",
+            "role":"角色",
+            "police":"警察",
+            "doctor":"医生",
+            "awp":"狙击",
+            prophet:"先知"
+        }
+
     },
     "-3000":{
         "name":"狼人杀",
@@ -387,9 +447,25 @@ var versionConfig = {
             }
         },
         "properties":"",
-        "rule":{"foreword":"",
+        "rule":{
+            "foreword":"",
             "text":"",
-            "more":"http://bbs.ptteng.com"}
+            "more":"http://bbs.ptteng.com"
+        },
+        "CN":{
+            "water":"水民",
+            "role":"角色",
+            "wolf":"狼人",
+            prophet:"先知",
+            witch:"女巫",
+            lover:"爱人",
+            guard:"守卫",
+            hunter:"猎人",
+            leader:"村长",
+            idiot:"白痴",
+            mix:"混血儿"
+
+        }
     },
     "-4000":{
         "name":"炸狼堡",
@@ -414,30 +490,17 @@ var versionConfig = {
             }
         },
         "properties":"",
-        "rule":{"foreword":"",
+        "rule":{
+            "foreword":"",
             "text":"",
-            "more":"http://bbs.ptteng.com"}
-    },
-    "CN":{
-        "ghost":"幽灵",
-        "killer":"杀手",
-        "water":"水民",
-        "role":"角色",
-        "card":"卡牌",
-        "soul":"魂",
-        "police":"警察",
-        "doctor":"医生",
-        "wolf":"狼人",
-        "awp":"狙击",
-        prophet:"先知",
-        witch:"女巫",
-        lover:"爱人",
-        guard:"守卫",
-        hunter:"猎人",
-        leader:"村长",
-        idiot:"白痴",
-        mix:"混血儿"
-
+            "more":"http://bbs.ptteng.com"
+            },
+        "CN":{
+            "water":"水民",
+            "role":"角色",
+            "wolf":"狼人"
+        }
     }
+
 }
 
