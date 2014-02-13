@@ -9,63 +9,16 @@
 
 </head>
 <body ng-controller="gameTestCtrl">
+    <a href="#" class="btn" onclick="window.open('{{gameConfig}}','_system')">wa</a>
 
 
-<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-    <div class="navbar-header">
-        <a class="btn btn-danger pull-left navbar-btn" href="../index.html" ng-click="gameExit()">结束游戏</a>
-        <a id='startButton' class="btn btn-primary pull-right navbar-btn" ng-click="gameTest()" ng-href="list.html" onclick="alertFun()">开始</a>
-
-    </div>
-</nav>
 <script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../js/framework/angular/old/angular.js"></script>
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
 <script src="../js/game/config.js"></script>
 <script src="../js/util/common_util.js"></script>
+<script src="../js/game/dataService.js"></script>
 <script src="../js/game/game.js"></script>
-<script>
-    function checkRoleNum(role){
-        var reg=new RegExp(/^\d{1,2}$/);
-        var obj=document.getElementById(role.name);
-        var num=parseInt(role.value);
-        if(role){
-            if(num >= role.min && num <= role.max && reg.test(role.value) ){
-                obj.style.visibility = 'hidden';
-                var items = document.getElementsByClassName("roleItem");
-                var max = document.getElementsByName("maxPeople");
-                var sum=0;
-                if(role.name!="maxPeople"){
-                    for(var i=0;i<items.length;i++){
-                        if(items[i].style.display=='none')continue;
-                        sum=sum+parseInt(items[i].value);
-                    }
-                    max[0].value=sum;
-                }
 
-            }else{
-                obj.style.visibility ='visible';
-            }
-            checkStartBtn();
-        }
-    }
-
-    function checkStartBtn(){
-        var errorObj=document.getElementsByClassName("error");
-        var startBtn = document.getElementById("startButton");
-        for(var i=0;i<errorObj.length;i++){
-            if(errorObj[i].style.visibility != "hidden" ){
-                domUtil.addClass(startBtn,"disabled");
-                break;
-            }
-            domUtil.removeClass(startBtn,"disabled");
-        }
-    }
-    function alertFun(){
-        alert("onclick");
-        //location.href="list.html";
-        console.log("onclick");
-    }
-</script>
 </body>
 </html>

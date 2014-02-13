@@ -7,9 +7,6 @@ var dataService = {
         console.log(config);
         return config;
     },
-    updateConfig:function (id, data) {
-        html5StorageService.update(id.toString(), data);
-    },
     getGameList:function (type) {
 
         return html5StorageService.get(type, constants.listModel[type]);
@@ -25,7 +22,7 @@ var dataService = {
 
         for (var i = 0, max = showProperties.length; i < max; i++) {
             if (showProperties[i] == 'role') continue;
-            this.setGamerProperties(data, propertiesData[showProperties[i]]);
+            gameService.setGamerProperties(data, propertiesData[showProperties[i]]);
         }
         html5StorageService.update("gameDetail", data);
         console.log("gameDetail complete");
@@ -34,9 +31,31 @@ var dataService = {
         return html5StorageService.get("gameDetail");
     },
     deleteGameDetail:function () {
+        html5StorageService.delete("formData");
         html5StorageService.delete("gameDetail");
     },
 
+    getConfigCN:function () {
+        html5StorageService.update("CN", versionConfig.CN);
+        return html5StorageService.get("CN");
+    },
+    saveFormData:function (formData) {
+        html5StorageService.update("formData", formData);
+    },
+    getFormData:function () {
+        return html5StorageService.get("formData");
+    }
+}
+
+
+var gameService = {
+    getGameConfig:function () {
+        var gid = getParameterFromUrl(location.href, "gameid");
+        return dataService.getConfig(gid);
+    },
+    getHintConfig:function(){
+        return gameService.getGameConfig().rolesConfig.tips;
+    },
     setGamerProperties:function (config, dataArray) {
         if (dataArray.length <= 0) return;
         for (var i = 0; i < config.length; i++)
@@ -104,14 +123,12 @@ var dataService = {
             else
                 rolesNumArr = gameConfig.rolesConfig["default"].split(",");
         }
-        var rolesCN = gameConfig.CN;
+
         var rolesNum = rolesArr.length;
         var returnData = [];
         for (var i = 0; i < rolesNum; i++) {
             returnData.push(JsonUtil.toJSON("{'name':'" + rolesArr[i] + "','num':'" + rolesNumArr[i] + "'}"));
         }
-        //  console.log(returnData);
-        //  console.log("complete build game config roles:");
         return returnData;
     },
     buildGameConfigPeopleNumList:function (data) {
@@ -139,22 +156,9 @@ var dataService = {
                     rolesArray.push(itemStr);
             }
         }
-
         return JsonUtil.toJSON("{'playerNum':" + playerNum + ",'roles':[" + rolesArray + "]}");
     },
-    getCN:function (gc, EN) {
-        return gc.CN[EN];
-    },
-    getConfigCN:function () {
-        html5StorageService.update("CN", versionConfig.CN);
-        return html5StorageService.get("CN");
-    },
-    saveFormData:function (formData) {
-        html5StorageService.update("formData", formData);
-    },
-    getFormData:function () {
-        return html5StorageService.get("formData");
-    },
+
     gameConfigMaker:function (config) {
         console.log("game config maker start");
         var gameConfig = config, a = "", b = "";
@@ -221,17 +225,6 @@ var dataService = {
     },
     saveData:function (roleData, propertiesData) {
         JsonUtil.push(roleData, propertiesData);
-        this.saveFormData(roleData);
-    }
-}
-
-
-var gameService = {
-    getGameConfig:function () {
-        var gid = getParameterFromUrl(location.href, "gameid")
-        return dataService.getConfig(gid);
-    },
-    getHintConfig:function(){
-        return gameService.getGameConfig().rolesConfig.tips;
+        dataService.saveFormData(roleData);
     }
 }

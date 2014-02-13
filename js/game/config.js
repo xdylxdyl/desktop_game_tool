@@ -166,7 +166,6 @@ var versionConfig = {
             "8":"2,6",
             "9":"2,7",
             "tips":{
-
                 "water":"你是人还是鬼呢？小心一点没有坏处哦！",
                 "ghost":"你是人还是鬼呢？小心一点没有坏处哦！"
             }
@@ -365,7 +364,7 @@ var versionConfig = {
         "peopleNum":[2, 18],
         "rolesConfig":{
             "saved":"",
-            "roleSort":"wolf,prophet,witch,lover,guard,hunter,leader,idiot,mix,water,",
+            "roleSort":"wolf,prophet,witch,lover,guard,hunter,leader,idiot,mix,water",
             "default":"5,12",
             "4":"1,0,0,0,0,0,0,0,0,3",
             "5":"1,0,0,0,0,0,0,0,0,4",
