@@ -62,10 +62,12 @@
                     <div class="panel-body">
                         <table class="table table-bordered">
                             <tr ng-repeat="current in currentData">
-                                <td class="success" ng-bind="current.name|convent"></td>
-                                <td ng-bind="current.value|convent"></td>
+                                <td ng-bind="current.name|convent"></td>
+                                <td><span class="text-danger" ng-bind="current.value|convent" ></span></td>
                             </tr>
+
                         </table>
+                       角色提示:<span ng-bind="currentId|hint" ng-show="currentData.length > 0 "></span>
                     </div>
                     <div class="panel-footer">
                         <h3 class="panel-title">* 请用自己的手机拍照,以记住身份信息

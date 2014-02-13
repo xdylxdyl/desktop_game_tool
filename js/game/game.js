@@ -41,6 +41,14 @@ app.filter('convent',function(){
     }
 });
 
+app.filter('hint',function(){
+    return function(id){
+        var role=dataService.getGameDetail()[id];
+        var config=gameService.getHintConfig();
+        return config[role.role];
+    }
+});
+
 app.controller("gameModelList",function($scope) {
 
     $scope.officialList = dataService.getGameList(constants.listType.official);

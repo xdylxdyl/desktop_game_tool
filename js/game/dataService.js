@@ -230,5 +230,8 @@ var gameService = {
     getGameConfig:function () {
         var gid = getParameterFromUrl(location.href, "gameid")
         return dataService.getConfig(gid);
+    },
+    getHintConfig:function(){
+        return gameService.getGameConfig().rolesConfig.tips;
     }
 }
