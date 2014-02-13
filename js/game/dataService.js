@@ -88,7 +88,6 @@ var gameService = {
             playerNum = playerNum + parseInt(config.roles[i].num);
         }
         console.log("rolesArr:" + rolesArray + ",rolesNumArray:" + rolesNumArray);
-
         while (flag) {
             roleChooser = Math.floor(Math.random() * rolesArray.length); //0,1
             if (rolesNumArray[roleChooser] > 0) {
@@ -98,7 +97,6 @@ var gameService = {
             }
             if (count == playerNum + 1) break;
         }
-
         returnData = "[" + str.substring(0, str.length - 1) + "]";
         console.log(returnData + "\nroleMaker complete");
         return eval("(" + returnData + ")");
@@ -122,7 +120,6 @@ var gameService = {
             else
                 rolesNumArr = gameConfig.rolesConfig["default"].split(",");
         }
-
         var rolesNum = rolesArr.length;
         var returnData = [];
         for (var i = 0; i < rolesNum; i++) {
@@ -135,15 +132,6 @@ var gameService = {
         for (var i = data[0]; i < data[1]; i++) {
             returnData.push(i);
         }
-        return returnData;
-    },
-    buildGameConfigProperties:function (gc) {
-        var returnData = [];
-        for (var i = 0; i < gc.showProperties.length; i++) {
-            returnData.push(JsonUtil.toJSON("{'name':'" + gc.showProperties[i] + "'}"));
-        }
-        console.log("build Game config properties result:");
-        console.log(returnData);
         return returnData;
     },
     buildRoleMakeData:function (formData, playerNum) {
@@ -161,7 +149,6 @@ var gameService = {
     gameConfigMaker:function (config) {
         console.log("game config maker start");
         var gameConfig = config, a = "", b = "";
-        gameConfig.showPropertiesObj = this.buildGameConfigProperties(config);
         gameConfig.peopleNumList = this.buildGameConfigPeopleNumList(config.peopleNum);
         gameConfig.roles = this.buildGameConfigRoles(config);
         if (config.properties) {
@@ -205,22 +192,6 @@ var gameService = {
         console.log("all properties list:");
         console.log("build properties list complete");
         return temp;
-    },
-    buildGamePlayRoles:function (gc) {
-        var roleArr = [];
-        var arr = [];
-        for (var i = 0; i < gc.playerNum; i++) {
-            if (!JsonUtil.inArray(roleArr, gc.roleAssign[i].role))
-                roleArr.push(gc.roleAssign[i].role);
-        }
-        for (var i = 0; i < roleArr.length; i++) {
-            var count = 0;
-            for (var j = 0; j < gc.playerNum; j++)
-                if (roleArr[i] == gc.roleAssign[j].role)
-                    count++;
-            arr.push(JsonUtil.toJSON("{'name':'" + roleArr[i] + "','num':" + count + "}"));
-        }
-        return arr;
     },
     saveData:function (roleData, propertiesData) {
         JsonUtil.push(roleData, propertiesData);

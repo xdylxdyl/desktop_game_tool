@@ -90,7 +90,7 @@ app.controller("gamePlayCtrl",function($scope) {
 
     gc.roleAssign=dataService.getGameDetail();
     gc.playerNum = gc.roleAssign.length;
-    gc.roles=gameService.buildGamePlayRoles(gc);
+    gc.roles=dataService.getFormData()['roles'];
     /********** scope properties bind *************/
     $scope.currentData=[];
     $scope.gameConfig=gc;
@@ -135,7 +135,7 @@ app.controller("judgeScanCtrl",function($scope) {
     gameConfig.gameid=gameid;
     gameConfig.playerNum = gameDetail.length;
     gameConfig.roleAssign=gameDetail;
-    gameConfig.roles=gameService.buildGamePlayRoles(gameConfig);
+    gameConfig.roles=dataService.getFormData()['roles'];
     gameConfig.propertiesList=dataService.getFormData();
 
     $scope.gameConfig = gameConfig;
