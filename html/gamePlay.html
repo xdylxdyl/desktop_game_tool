@@ -78,7 +78,7 @@
                     擦掉身份，以免泄露
                 </button>
             </div>
-            <a ng-hide="currentId <= gameConfig.playerNum" class="btn btn-default"
+            <a ng-hide="currentId < gameConfig.playerNum" class="btn btn-default"
                ng-href="judgeScan.html?gameid={{gameConfig.gameid}}" onclick="buttonMedia()">
                 法官查看
             </a>
