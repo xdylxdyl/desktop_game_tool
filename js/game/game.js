@@ -44,6 +44,9 @@ app.filter('convent',function(){
 app.filter('hint',function(){
     return function(id){
         var role=dataService.getGameDetail()[id];
+        if(role==undefined){
+            return "";
+        }
         var config=gameService.getHintConfig();
         return config[role.role];
     }
@@ -104,23 +107,20 @@ app.controller("gamePlayCtrl",function($scope) {
     console.log(currentTempArr);
     /********************************************/
 
-    //if($scope.currentId==9) $scope.currentId="";
-    $scope.changeCurrentGamer=function(id){
-        $scope.currentData=[];
-        if(id > $scope.gameConfig.playerNum)
-            return;
-        $scope.currentId=id+1;
-        for(var i=0;i<gc.showProperties.length;i++){
-                    currentTempArr.push(JsonUtil.toJSON("{'name':'"+gc.showProperties[i]+"','value':'"+gc.roleAssign[id][gc.showProperties[i]]+"'}"));
-        }
-    }
     $scope.showCurrentGamer=function(){
         $scope.currentData=currentTempArr;
     }
     $scope.currentGamerEraser=function(id){
         currentTempArr=[];
         //$scope.currentId=id;
-        $scope.changeCurrentGamer(id);
+        $scope.currentData=[];
+        $scope.currentId=id+1;
+        if(id >= $scope.gameConfig.playerNum)
+            return;
+
+        for(var i=0;i<gc.showProperties.length;i++){
+                    currentTempArr.push(JsonUtil.toJSON("{'name':'"+gc.showProperties[i]+"','value':'"+gc.roleAssign[id][gc.showProperties[i]]+"'}"));
+        }
         eraserArr.push(id);
         if(id > $scope.gameConfig.playerNum) return;
         for(var i=0;i<gc.showProperties.length;i++){

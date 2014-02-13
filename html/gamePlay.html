@@ -78,12 +78,15 @@
                     擦掉身份，以免泄露
                 </button>
             </div>
-            <a ng-hide="currentId < gameConfig.playerNum" class="btn btn-default"
-               ng-href="judgeScan.html?gameid={{gameConfig.gameid}}" onclick="buttonMedia()">
-                法官查看
-            </a>
+        </div>
+        <div ng-show="currentId > gameConfig.playerNum" class="btn btn-default"> <a
+                       ng-href="judgeScan.html?gameid={{gameConfig.gameid}}" onclick="buttonMedia()">
+                        法官查看
+                    </a></div>
+
             <audio id="buttonAudio" src="../media/click.WAV" controls="controls" hidden="hidden"></audio>
         </div>
+    </div>
         <script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
         <script src="../js/framework/angular/angular.js"></script>
         <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
