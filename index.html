@@ -15,12 +15,26 @@
 <script src="js/game/game.js"></script>
 <script>
 
-    if(window.localStorage.getItem("version")!=constants.version.version){
-        window.localStorage.setItem("version",constants.version.version);
-        location.href="html/firstOpenUp.html";
+    var isShow = function () {
+        if (constants.version.debug) {
+            return true;
+        } else {
+            if (window.localStorage.getItem("version") != constants.version.version) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
-    else
-        location.href='html/list.html';
+    var isShow = isShow();
+
+    if (isShow) {
+
+        location.href = "html/firstOpenUp.html";
+    }
+    else {
+        location.href = 'html/list.html';
+    }
     <!--tab change end-->
 </script>
 </body>

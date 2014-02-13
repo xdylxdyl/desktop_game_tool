@@ -20,20 +20,22 @@
         </ul>
     </div>
     <!-- Tab panes -->
-    <div class="tab-content" >
+    <div class="tab-content">
         <div class="tab-pane active" id="home">
-            <div class="panel-group" >
+            <div class="panel-group">
                 <div class="panel panel-primary" ng-repeat="model in officialList">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a href="#" data-toggle="collapse" data-parent="#accordion" ng-bind="model.title" >
+                            <a href="#" data-toggle="collapse" data-parent="#accordion" ng-bind="model.title">
                             </a>
                         </h4>
                     </div>
                     <div class="panel-collapse collapse in">
                         <div class="panel-body">
-                           <ul  class="list-group">
-                                <li class='list-group-item' ng-repeat="version in model.versions"><a ng-href="gameInit.html?gameid={{version.gameid}}" ng-bind="version.name"></a></li>
+                            <ul class="list-group">
+                                <li class='list-group-item' ng-repeat="version in model.versions"><a
+                                        ng-href="gameInit.html?gameid={{version.gameid}}" ng-bind="version.name"></a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -41,20 +43,33 @@
             </div>
         </div>
         <div class="tab-pane" id="userDefine">
+            <div class="row clearfix">
+                <div class="col-md-12 column well">
+                    <p> 葡萄藤专注于桌游领域,除了您正在使用的桌游精灵之外,还为桌游爱好者提供以下服务</p>
+                    <ul>
+                        <li>在线桌游 <a href="http://www.ptteng.com">去看一下</a></li>
+                        <li>桌游百科 <a href="http://wiki.ptteng.com">去看一下</a></li>
+                        <li>桌游论坛 <a href="http://bbs.ptteng.com">去看一下</a></li>
+                        <li>桌游交流QQ群 290560933</li>
+                        <li>桌游微信订阅号 ptteng-com</li>
+
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-        <script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
-        <script src="../js/framework/angular/angular.js"></script>
-        <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
-        <script src="../js/game/config.js"></script>
-        <script src="../js/util/common_util.js"></script>
-        <script src="../js/game/dataService.js"></script>
-        <script src="../js/game/game.js"></script>
-        <script src="../js/game/domCtrl.js"></script>
+<script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
+<script src="../js/framework/angular/angular.js"></script>
+<script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
+<script src="../js/game/config.js"></script>
+<script src="../js/util/common_util.js"></script>
+<script src="../js/game/dataService.js"></script>
+<script src="../js/game/game.js"></script>
+<script src="../js/game/domCtrl.js"></script>
 
-        <script>
+<script>
 
-        </script>
-        </body>
-        </html>
+</script>
+</body>
+</html>
