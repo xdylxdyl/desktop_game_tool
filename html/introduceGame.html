@@ -24,7 +24,7 @@
 
 
 
-            <p><a class="btn" ng-href="gameConfig.rule.more" target="_blank">去官方论坛,查看更多 »</a></p>
+            <p><a class="btn"  href="#"  id="more" link="{{gameConfig.rule.more}}" >去官方论坛,查看更多 »</a></p>
 
 
             <a  class="btn btn-warning" ng-href="gameInit.html?gameid={{gameConfig.gameid}}">返回
@@ -49,6 +49,10 @@
         var me = document.getElementById("buttonAudio");
         me.play();
     }
+    $("#more").on("click",function(){
+        window.open($("#more").attr("link"), '_system')
+
+    })
 </script>
 </body>
 </html>
