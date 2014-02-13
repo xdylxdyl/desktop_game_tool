@@ -153,8 +153,8 @@ var versionConfig = {
         "type":"remote",
         "gameid":-1000,
         "playerNumDefault":8,
-        "showProperties":["role","card"],
-        "peopleNum":[2,9],
+        "showProperties":["role", "card"],
+        "peopleNum":[2, 18],
         "rolesConfig":{
             "saved":"",
             "roleSort":"ghost,water",
@@ -173,8 +173,8 @@ var versionConfig = {
         "type":"remote",
         "gameid":-1100,
         "playerNumDefault":8,
-        "showProperties":["role","card"],
-        "peopleNum":[2,9],
+        "showProperties":["role", "card"],
+        "peopleNum":[2, 18],
         "rolesConfig":{
             "roleSort":"ghost,water",
             "default":"1,1",
@@ -192,160 +192,145 @@ var versionConfig = {
         "name":"捉鬼游戏魂版",
         "type":"remote",
         "gameid":-1300,
-        "playerNum":8,
-        "showProperties":["role","card","ghost"],
-        "roles":[
-            {
-                "name":"幽灵",
-                "num":1
-            },
-            {
-                "name":"水民",
-                "num":7
-            },
-            {
-                "name":"魂",
-                "num":1
-            }
-        ]
+        "peopleNum":[2, 18],
+        "showProperties":["role", "card"],
+        "rolesConfig":{
+            "saved":"",
+            "roleSort":"ghost,soul,water",
+            "default":"1,1,6",
+            "4":"1,1,2",
+            "5":"1,1,3",
+            "6":"1,1,4",
+            "7":"2,1,4",
+            "8":"2,1,5",
+            "9":"2,1,6"
+        },
+        "properties":""
     },
     "-2000":{
         "name":"杀人游戏简化版",
         "type":"remote",
         "gameid":-2000,
-        "playerNum":8,
+        "peopleNum":[2, 18],
         "showProperties":["role"],
-        "roles":[
-
-            {
-                "name":"杀手",
-
-                "num":1
-            },
-            {
-                "name":"水民",
-                "num":7
-            }
-        ]
+        "rolesConfig":{
+            "saved":"",
+            "roleSort":"killer,water",
+            "default":"1,7",
+            "4":"1,3",
+            "5":"1,4",
+            "6":"1,5",
+            "7":"1,6",
+            "8":"1,7",
+            "9":"1,8"
+        },
+        "properties":""
     },
     "-2100":{
         "name":"杀人游戏警版",
         "type":"remote",
         "gameid":-2100,
-        "playerNum":8,
+        "peopleNum":[2, 18],
         "showProperties":["role"],
-        "roles":[
-
-            {
-                "name":"杀手",
-                "num":1
-            },
-            {
-                "name":"水民",
-                "num":7
-            },
-            {
-                "name":"警察",
-                "num":1
-            }
-        ]
+        "rolesConfig":{
+            "saved":"",
+            "roleSort":"killer,police,water",
+            "default":"1,1,7",
+            "4":"1,1,2",
+            "5":"1,1,3",
+            "6":"1,1,4",
+            "7":"1,1,5",
+            "8":"1,1,6",
+            "9":"2,2,5"
+        },
+        "properties":""
     },
     "-2200":{
         "name":"杀人游戏警版不翻牌",
         "type":"remote",
         "gameid":-2200,
         "showProperties":["role"],
-        "playerNum":8,
-        "roles":[
-
-            {
-                "name":"杀手",
-                "num":1
-            },
-            {
-                "name":"水民",
-                "num":7
-            },
-            {
-                "name":"警察",
-                "num":1
-            }
-        ]
+        "peopleNum":[2, 18],
+        "rolesConfig":{
+            "saved":"",
+            "roleSort":"killer,police,water",
+            "default":"1,1,7",
+            "4":"1,1,2",
+            "5":"1,1,3",
+            "6":"1,1,4",
+            "7":"1,1,5",
+            "8":"1,1,6",
+            "9":"2,2,5"
+        },
+        "properties":""
     },
     "-2300":{
         "name":"杀人游戏3.0",
         "type":"remote",
         "gameid":-2300,
         "showProperties":["role"],
-        "playerNum":8,
-        "roles":[
+        "peopleNum":[2, 18],
+        "rolesConfig":{
+            "saved":"",
+            "roleSort":"killer,police,awp,doctor,water",
+            "default":"1,1,1,1,5",
 
-            {
-                "name":"杀手",
-                "num":1
-            },
-            {
-                "name":"水民",
-                "num":5
-            },
-            {
-                "name":"警察",
-                "num":1
-            },
-            {
-                "name":"狙击",
-                "num":1
-            },
-            {
-                "name":"医生",
-                "num":1
-            }
-        ]
+            "5":"1,1,1,1,1",
+            "6":"1,1,1,1,2",
+            "7":"1,1,1,1,3",
+            "8":"1,1,1,1,4",
+            "9":"1,1,1,1,5"
+        },
+        "properties":""
     },
     "-3000":{
-         "name":"狼人杀",
-         "type":"remote",
-         "gameid":-3000,
+        "name":"狼人杀",
+        "type":"remote",
+        "gameid":-3000,
         "showProperties":["role"],
-        "playerNum":8,
-         "roles":[
-
-             {
-
-                 "name":"杀手",
-                 "num":1
-             },
-             {
-                 "name":"水民",
-                 "num":5
-             }
-
-         ]
-     },
+        "peopleNum":[2, 18],
+        "rolesConfig":{
+            "saved":"",
+            "roleSort":"killer,water",
+            "default":"1,7",
+            "4":"1,3",
+            "5":"1,4",
+            "6":"1,5",
+            "7":"1,6",
+            "8":"1,7",
+            "9":"1,8"
+        },
+        "properties":""
+    },
     "-4000":{
-         "name":"炸狼堡",
-         "type":"remote",
-         "gameid":-3000,
-         "playerNum":5,
+        "name":"炸狼堡",
+        "type":"remote",
+        "gameid":-3000,
+        "peopleNum":[2, 18],
         "showProperties":["role"],
-        "roles":[
+        "rolesConfig":{
+            "saved":"",
+            "roleSort":"wolf,water",
+            "default":"2,6",
 
-             {
-                 "name":"狼人",
-                 "num":2
-             },
-             {
-                 "name":"水民",
-                 "num":3
-             }
-
-         ]
+            "5":"2,3",
+            "6":"2,4",
+            "7":"2,5",
+            "8":"2,6",
+            "9":"2,7"
+        },
+        "properties":""
     },
     "CN":{
         "ghost":"幽灵",
         "water":"水民",
-        "role" :"角色",
-        "card" :"卡牌"
+        "role":"角色",
+        "card":"卡牌",
+        "soul":"魂",
+        "police":"警察",
+        "doctor":"医生",
+        "wolf":"狼人",
+        "awp":"狙击"
     }
 }
 
