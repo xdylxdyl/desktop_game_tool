@@ -94,13 +94,10 @@ app.controller("gamePlayCtrl",function($scope) {
     /********** scope properties bind *************/
     $scope.currentData=[];
     $scope.gameConfig=gc;
-    $scope.gamePlay=gc;
     $scope.currentId=1;
     for(var i=0;i<gc.showProperties.length;i++){
             currentTempArr.push(JsonUtil.toJSON("{'name':'"+gc.showProperties[i]+"','value':'"+gc.roleAssign[0][gc.showProperties[i]]+"'}"));
     }
-    console.log(currentTempArr);
-    /********************************************/
 
     $scope.showCurrentGamer=function(){
         $scope.currentData=currentTempArr;
@@ -109,18 +106,12 @@ app.controller("gamePlayCtrl",function($scope) {
         currentTempArr=[];
         $scope.currentData=[];
         $scope.currentId=id+1;
-        if(id >= $scope.gameConfig.playerNum)
-            return;
+        var ii=gc.showProperties.length;
+        if(id >= $scope.gameConfig.playerNum) return;
 
-        for(var i=0;i<gc.showProperties.length;i++){
+        for(var i=0;i<ii;i++){
                     currentTempArr.push(JsonUtil.toJSON("{'name':'"+gc.showProperties[i]+"','value':'"+gc.roleAssign[id][gc.showProperties[i]]+"'}"));
         }
-
-        if(id > $scope.gameConfig.playerNum) return;
-        for(var i=0;i<gc.showProperties.length;i++){
-           gc.roleAssign[id-1][gc.showProperties[i]]="";
-           $scope.gameConfig.roleAssign=gc.roleAssign;
-       }
     }
     $scope.gameExit = function(){
         dataService.deleteGameDetail();

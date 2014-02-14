@@ -16,6 +16,7 @@
     <div class="wrapTab">
         <ul class="nav nav-tabs" id="topTab">
             <li class="active"><a href="#home" data-toggle="tab">游戏列表</a></li>
+            <li><a href="#setting" data-toggle="tab">设置</a></li>
             <li><a href="#userDefine" data-toggle="tab">关于我们</a></li>
         </ul>
     </div>
@@ -33,8 +34,8 @@
                     <div class="panel-collapse collapse in">
                         <div class="panel-body">
                             <ul class="list-group">
-                                <li class='list-group-item' ng-repeat="version in model.versions"><a
-                                        ng-href="gameInit.html?gameid={{version.gameid}}" ng-bind="version.name"></a>
+                                <li class='list-group-item' ng-repeat="version in model.versions">
+                                    <a class='btn btn-danger  btn-block'ng-href="gameInit.html?gameid={{version.gameid}}" ng-bind="version.name"></a>
                                 </li>
                             </ul>
                         </div>
@@ -69,10 +70,12 @@
                     <h3 class="text-danger">友情推荐 </h3>
                                         <ul>
                                             <li> <a href="#" onclick="window.open('http://www.youxuanlicai.com/', '_system');">理财排行</a></li>
-
                                         </ul>
                 </div>
             </div>
+        </div>
+        <div class="tab-pane" id="setting">
+            设置界面
         </div>
     </div>
 </div>

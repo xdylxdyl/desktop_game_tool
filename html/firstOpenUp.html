@@ -68,6 +68,21 @@
        swipers.each(function(){
             $(this).width(w).height(h);
        });
+       $(window).resize(function(){
+           var w=window.innerWidth
+                   || document.documentElement.clientWidth
+                   || document.body.clientWidth;
+
+           var h=window.innerHeight
+                   || document.documentElement.clientHeight
+                   || document.body.clientHeight;
+           images.each(function(){
+               $(this).width(w).height(h);
+           });
+           swipers.each(function(){
+               $(this).width(w).height(h);
+           });
+       });
    });
     var mySwiper = new Swiper('.swiper-container', {
         mode:'horizontal',

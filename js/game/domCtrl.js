@@ -28,8 +28,7 @@ function checkForm(){
         if(items[i].style.display=='none')continue;
             sum=sum+parseInt(items[i].value);
     }
-
-    if(sum!=max.value){
+    if(sum!=max.value||!isReq()){
         bootbox.alert("请检查输入的数据或者游戏数据不完整！");
     }else{
         hidBtn.click();
@@ -38,12 +37,12 @@ function checkForm(){
 function isReq(){
         var items = document.getElementsByTagName("input");
         for(var i=0;i<items.length;i++){
-            if(items[i].style.display!="none"&&items[i].style.visibility!="hidden"&&items[i].type!='hidden'){
-                console.log(items[i]);
-                if(!items[i].value) return false;
+            if(!domUtil.hasClass(items[i],'ng-hide')&&items[i].type!='hidden'&&items[i].style.visibility!='hidden'){
+                if(!items[i].value)
+                    return false;
             }
         }
-        return true;
+    return true;
 }
 
 var buttonMedia = function(){
