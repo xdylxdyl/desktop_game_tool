@@ -1,95 +1,40 @@
 <!DOCTYPE html>
-<html  ng-app>
+<html ng-app>
 <head>
     <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+
+        .img-fly {
+            background-image: url(../img/starup/fly.png);
+            background-repeat:no-repeat;
+            background-position:center;
+            height: 100%;
+            width: 100%;
+            position:absolute;
+
+        }
+
+    </style>
 </head>
-<body  ng-controller="gameModelList">
-<!--
-<input type="button" value="add" id="add">
-<input type="button" value="get" id="get">
-<input type="button" value="delete" id="delete">
-<a ng-href="{{href}}">{{href}}</a>
+<body ng-controller="gameModelList">
 
-<div class="wrapTab">
-    <ul class="nav nav-tabs" id="topTab">
-        <li class="active"><a href="#home" data-toggle="tab">系统游戏</a></li>
-        <li><a href="#userDefine" data-toggle="tab">自定义游戏</a></li>
-    </ul>
+<div class="img-fly">
+
+
+
 </div>
-
-
-<div class="tab-content">
-    <div class="tab-pane active" id="home">
-
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                            Collapsible Group Item #1
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                     <a href="{{href}}">{{href}}</a>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                            Collapsible Group Item #2
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                        3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-                        laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
-                        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-                        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
-                        of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                            Collapsible Group Item #3
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                        3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-                        laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
-                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
-                        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-                        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
-                        of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="tab-pane" id="userDefine">
-
-        sssss
-    </div>
-</div>
--->
 
 
 <script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
@@ -125,19 +70,18 @@
     })
 
 
+    function gameModelList($scope) {
 
-function gameModelList($scope) {
+        $scope.href = "hello.html";
 
-       $scope.href ="hello.html";
-
-   }
-    var str1 = { "name": "cxh", "sex": "man" };
-    JsonUtil.push(str1,{"age":12,"student":"vin"});
+    }
+    var str1 = { "name":"cxh", "sex":"man" };
+    JsonUtil.push(str1, {"age":12, "student":"vin"});
     console.log(str1);
-    JsonUtil.pop(str1,"name");
+    JsonUtil.pop(str1, "name");
     console.log(str1);
 
-window.localStorage.clear();
+    window.localStorage.clear();
 </script>
 </body>
 </html>
