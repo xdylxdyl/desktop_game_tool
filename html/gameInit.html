@@ -16,7 +16,6 @@
                 <span ng-bind="gameConfig.name"></span>
                 <a class="btn  btn-danger pull-right" ng-href="introduceGame.html?gameid={{gameConfig.gameid}}">介绍</a>
             </h2>
-
             <p>some text</p>
         </div>
     </div>
@@ -50,7 +49,7 @@
             </div>
 
         </div>
-        <div class="panel panel-default" ng-repeat="role in gameConfig.roles">
+        <div class="panel panel-default" ng-repeat="role in gameConfig.gcRoles">
             <div class="panel-heading" ng-bind="role.name|convent"></div>
             <div class='panel-body' ng-repeat="properties in gameConfig.showProperties">
                 <div class="form-group" ng-if="properties == 'role' ">

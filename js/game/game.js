@@ -31,6 +31,7 @@ var app = angular.module('gameTool', [], function ($compileProvider) {
 });
 
 app.filter('convent',function(){
+    console.log("test convent");
    var  CN=dataService.getConfigCN();//获取汉字列表
     return function(input){
         if(input in CN)
@@ -41,17 +42,41 @@ app.filter('convent',function(){
 });
 
 app.filter('hint',function(){
-   var ROLES=dataService.getGameDetail();//获取细节
+   var ROLES=dataService.getGameDetail().role.obj;//获取细节
    var HINTCONFIG=gameService.getHintConfig();
     return function(id){
         var role=ROLES[id];
         if(role==undefined){
             return "";
         }
-        return HINTCONFIG[role.role];
+        return HINTCONFIG[role];
     }
 });
-
+app.filter('showCu',function(){
+    var gameDetail=dataService.getGameDetail();
+    var roles=gameDetail.role.obj;
+    var properties=gameDetail.properties;
+    return function(pro,id){
+            switch (pro){
+                case 'role':
+                     return roles[id];
+                default :
+                     return properties[roles[id]][pro];
+            }
+    }
+});
+app.filter('showJu',function(){
+    var gameDetail=dataService.getGameDetail();
+    var properties=gameDetail.properties;
+    return function(role,para){
+        switch (para) {
+            case 'role':
+                return properties[role]['num'];
+            default :
+                return properties[role][para];
+        }
+    }
+});
 app.controller("gameModelList",function($scope) {
 
     $scope.officialList = dataService.getGameList(constants.listType.official);
@@ -64,8 +89,7 @@ app.controller("gameInitCtrl",function($scope) {
    /***** init  ******/
         var gameConfig={},
         gc=gameService.getGameConfig();
-        $scope.gameid=gc.gameid;
-        $scope.gameConfig=gameService.gameConfigMaker(gc);
+        $scope.gameConfig=gameService.gameConfigMaker(gc,'init');
         $scope.peopleNum =gc.playerNumDefault;//init select
         $scope.gameChange=function(num){
             $scope.gameConfig.roles = gameService.buildGameConfigRoles(gc,num);
@@ -74,9 +98,8 @@ app.controller("gameInitCtrl",function($scope) {
             /*****  initVar => buildPropertiesList => roleMaker => setGameDetail ***/
            var formData=document.getElementsByTagName('input');
            var roleData=gameService.buildRoleMakeData(formData,gameConfig.playerNum);
-           var propertiesData=gameService.buildProperties(gc.showProperties,formData);
-            gameService.saveData(roleData,propertiesData);
-            dataService.setGameDetail(gameService.roleMaker(roleData),gc.showProperties,propertiesData);
+           var propertiesData=gameService.buildProperties(formData,gc);
+            dataService.setGameDetail(gameService.roleMaker(roleData),propertiesData);
         }
         $scope.gameExit = function(){
             dataService.deleteGameDetail();
@@ -85,33 +108,20 @@ app.controller("gameInitCtrl",function($scope) {
 
 app.controller("gamePlayCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid"),
-        gc=dataService.getConfig(gameid),
-        currentTempArr=[];
+        gc=dataService.getConfig(gameid);
 
-    gc.roleAssign=dataService.getGameDetail();
-    gc.playerNum = gc.roleAssign.length;
-    gc.roles=dataService.getFormData()['roles'];
+
     /********** scope properties bind *************/
-    $scope.currentData=[];
-    $scope.gameConfig=gc;
+    $scope.gameConfig=gameService.gameConfigMaker(gc,'play');
+    $scope.flag=false;
     $scope.currentId=1;
-    for(var i=0;i<gc.showProperties.length;i++){
-            currentTempArr.push(JsonUtil.toJSON("{'name':'"+gc.showProperties[i]+"','value':'"+gc.roleAssign[0][gc.showProperties[i]]+"'}"));
-    }
-
     $scope.showCurrentGamer=function(){
-        $scope.currentData=currentTempArr;
+        $scope.flag=true;
     }
     $scope.currentGamerEraser=function(id){
-        currentTempArr=[];
-        $scope.currentData=[];
         $scope.currentId=id+1;
-        var ii=gc.showProperties.length;
         if(id >= $scope.gameConfig.playerNum) return;
-
-        for(var i=0;i<ii;i++){
-                    currentTempArr.push(JsonUtil.toJSON("{'name':'"+gc.showProperties[i]+"','value':'"+gc.roleAssign[id][gc.showProperties[i]]+"'}"));
-        }
+        $scope.flag=false;
     }
     $scope.gameExit = function(){
         dataService.deleteGameDetail();
@@ -121,20 +131,11 @@ app.controller("gamePlayCtrl",function($scope) {
 app.controller("judgeScanCtrl",function($scope) {
     var gameid = getParameterFromUrl(location.href, "gameid");
     var gameConfig=dataService.getConfig(gameid);
-    var gameDetail=dataService.getGameDetail();
-
-    gameConfig.gameid=gameid;
-    gameConfig.playerNum = gameDetail.length;
-    gameConfig.roleAssign=gameDetail;
-    gameConfig.roles=dataService.getFormData()['roles'];
-    gameConfig.propertiesList=dataService.getFormData();
-
-    $scope.gameConfig = gameConfig;
+    $scope.gameConfig = gameService.gameConfigMaker(gameConfig,'play');
     $scope.gameExit = function(){
         dataService.deleteGameDetail();
     }
 });
-
 
 app.controller("gameTestCtrl",function($scope){
 

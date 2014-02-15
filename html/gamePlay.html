@@ -37,7 +37,7 @@
         </div>
     </div>
     <p>总人数<span ng-bind="gameConfig.playerNum"></span>(<span ng-repeat="role in gameConfig.roles">【<span
-            ng-bind="role.name|convent"></span>:<span ng-bind="role.num"></span>】</span>)</p>
+            ng-bind="gameConfig.rolesName[$index]|convent"></span>:<span ng-bind="role.num"></span>】</span>)</p>
     <hr>
     <div class="row">
         <div class="col-xs-4" ng-hide="currentId <= 1 ">
@@ -56,16 +56,15 @@
             <button id='showRoleButton' class="btn btn-warning " ng-click="showCurrentGamer()">查看身份</button>
             <div class="row container">
                 <hr>
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" ng-if="flag">
                     <div class="panel-heading"><h3 class="panel-title"><span ng-bind="currentId"></span>号玩家的身份信息</h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-bordered">
-                            <tr ng-repeat="current in currentData">
-                                <td ng-bind="current.name|convent"></td>
-                                <td><span class="text-danger" ng-bind="current.value|convent" ></span></td>
+                            <tr ng-repeat="current in gameConfig.showProperties">
+                                <td ng-bind="current|convent"></td>
+                                <td><span class="text-danger" ng-bind="current|showCu:currentId|convent" ></span></td>
                             </tr>
-
                         </table>
                        角色提示:<span ng-bind="currentId|hint" ng-show="currentData.length > 0 "></span>
                     </div>

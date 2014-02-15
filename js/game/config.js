@@ -174,7 +174,8 @@ var versionConfig = {
             "ghost":"幽灵",
             "water":"水民",
             "role":"角色",
-            "card":"卡牌"
+            "card":"卡牌",
+            "num":"数量"
         },
         "properties":"",
         "rule":{
@@ -215,6 +216,7 @@ var versionConfig = {
         "CN":{
             "ghost":"幽灵",
             "water":"水民",
+            "num":"数量",
             "role":"角色",
             "card":"卡牌"
         }
@@ -248,6 +250,7 @@ var versionConfig = {
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
+            "num":"数量",
             "ghost":"幽灵",
             "water":"水民",
             "role":"角色",
@@ -289,6 +292,7 @@ var versionConfig = {
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
+            "num":"数量",
             "killer":"杀手",
             "water":"水民",
             "role":"角色"
@@ -325,7 +329,7 @@ var versionConfig = {
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
-
+            "num":"数量",
             "killer":"杀手",
             "water":"水民",
             "role":"角色",
@@ -368,7 +372,7 @@ var versionConfig = {
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
-
+            "num":"数量",
             "killer":"杀手",
             "water":"水民",
             "role":"角色",
@@ -406,6 +410,7 @@ var versionConfig = {
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
+            "num":"数量",
             "killer":"杀手",
             "water":"水民",
             "role":"角色",
@@ -453,6 +458,7 @@ var versionConfig = {
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
+            "num":"数量",
             "water":"水民",
             "role":"角色",
             "wolf":"狼人",
@@ -496,6 +502,7 @@ var versionConfig = {
             "more":"http://bbs.ptteng.com"
             },
         "CN":{
+            "num":"数量",
             "water":"水民",
             "role":"角色",
             "wolf":"狼人"
