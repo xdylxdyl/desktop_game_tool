@@ -62,3 +62,9 @@ $('#showRoleButton').click(function(){
 $('#eraserButton').click(function(){
    $(this).addClass('disabled');
 });
+$('#goSetting').click(function(){
+    var setting={};
+    var voice = settingForm.voice.value;
+    setting.voice=voice;
+    dataService.updateSetting(setting);
+});

@@ -40,14 +40,16 @@
             ng-bind="gameConfig.rolesName[$index]|convent"></span>:<span ng-bind="role.num"></span>】</span>)</p>
     <hr>
     <div class="row">
-        <div class="col-xs-4" ng-hide="currentId <= 1 ">
-            <span class="label label-default pull-left prevRole" ng-bind="currentId-1">1</span>
+        <div class="col-xs-4" >
+            <span ng-hide="currentId <= 1 " class="label label-default pull-left prevRole" ng-bind="currentId-1">1</span>
+            <span ng-show="currentId <= 1 " class="label label-default pull-left prevRole">开始</span>
         </div>
         <div class="col-xs-4" ng-hide="currentId >= gameConfig.playerNum+1">
             <span class="label label-default pull-left currentRole" ng-bind="currentId">1</span>
         </div>
-        <div class="col-xs-4" ng-hide="currentId >= gameConfig.playerNum ">
-            <span class="label label-default pull-left nextRole" ng-bind="currentId+1">1</span>
+        <div class="col-xs-4" >
+            <span  ng-hide="currentId >= gameConfig.playerNum " class="label label-default pull-left nextRole" ng-bind="currentId+1">1</span>
+            <span  ng-show=" currentId >= gameConfig.playerNum" class="label label-default pull-left nextRole">结束</span>
         </div>
     </div>
     <hr>
@@ -74,8 +76,9 @@
                     </div>
                 </div>
                 <button id="eraserButton" class="btn btn-success disabled" ng-click="currentGamerEraser(currentId)">
-                    擦掉身份，以免泄露
+                    擦掉身份
                 </button>
+                <h4><small>以免泄露</small></h4>
             </div>
         </div>
         <div ng-show="currentId > gameConfig.playerNum">

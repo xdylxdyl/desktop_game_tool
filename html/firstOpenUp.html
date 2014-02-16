@@ -13,7 +13,14 @@
             padding: 0;
             overflow: hidden;
         }
-
+        .pagination{
+            position: absolute;
+            left: 0;
+            text-align: center;
+            bottom:5px;
+            width: 100%;
+            z-index: 999;
+        }
         .swiper-container, .swiper-slide {
 
         }
@@ -21,27 +28,27 @@
             position: relative;
             bottom: 10%;
         }
+
     </style>
 </head>
-<body class="swiper-container">
-<div class="img-fly"></div>
-
-
-<div class="swiper-wrapper">
-    <div class="swiper-slide">
-        <img class="img-responsive" src="../img/starup/rule.png"/>
-    </div>
-    <div class="swiper-slide">
-        <img src="../img/starup/no-network.jpg"/>
-    </div>
-    <div class=" text-center swiper-slide">
-
+<body>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img class="img-responsive" src="../img/starup/rule.png"/>
+        </div>
+        <div class="swiper-slide">
+            <img src="../img/starup/no-network.jpg"/>
+        </div>
+        <div class=" text-center swiper-slide">
             <img src="../img/starup/fly.png"/>
             <button class="btn btn-success" onclick="location.href='list.html'">开始桌游之旅</button>
-
+        </div>
     </div>
 </div>
-<div class="pagination"></div>
+<div class="pagination">
+
+</div>
 <script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../js/framework/angular/1.2.9/angular.js"></script>
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>

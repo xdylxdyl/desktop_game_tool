@@ -24,9 +24,14 @@ var dataService = {
         html5StorageService.delete("formData");
         html5StorageService.delete("gameDetail");
     },
-
     getConfigCN:function () {
         return html5StorageService.get("CN");
+    },
+    updateSetting:function(setting){
+        html5StorageService.update("setting",setting);
+    },
+    getSetting:function(){
+        return html5StorageService.get("setting");
     }
 }
 

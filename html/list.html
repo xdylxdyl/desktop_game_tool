@@ -79,10 +79,24 @@
             </div>
         </div>
         <div class="tab-pane" id="setting">
-            设置界面
+           <form role="form" name="settingForm">
+               <div class="form-group row">
+                   <label class="col-xs-4 control-label"><h4>选择声音</h4></label>
+                   <div class="col-xs-8">
+                       <select name='voice' class="form-control">
+                           <option value="king">国王</option>
+                           <option value="robber">强盗</option>
+                           <option value="white">小白</option>
+                           <option value="goblin">地精</option>
+                       </select>
+                   </div>
+               </div>
+               <button id="goSetting" class="btn btn-primary">确定</button>
+           </form>
         </div>
     </div>
 </div>
+<audio id="buttonAudio" src="../media/click.WAV" controls="controls" hidden="hidden"></audio>
 <script type="text/javascript" src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../js/framework/angular/1.2.9/angular.js"></script>
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
