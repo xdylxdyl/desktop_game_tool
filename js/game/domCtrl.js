@@ -38,7 +38,7 @@ function isReq(){
         var items = document.getElementsByTagName("input");
         for(var i=0;i<items.length;i++){
             if(!domUtil.hasClass(items[i],'ng-hide')&&items[i].type!='hidden'&&items[i].style.visibility!='hidden'){
-                if(!items[i].value)
+                if(!items[i].value )
                     return false;
             }
         }

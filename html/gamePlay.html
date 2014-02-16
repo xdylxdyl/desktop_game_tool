@@ -37,7 +37,7 @@
         </div>
     </div>
     <p>总人数<span ng-bind="gameConfig.playerNum"></span>(<span ng-repeat="role in gameConfig.roles">【<span
-            ng-bind="gameConfig.rolesName[$index]|convent"></span>:<span ng-bind="role.num"></span>】</span>)</p>
+            ng-bind="gameConfig.rolesName[$index]|convent"></span>:<span ng-bind="gameConfig.roles[gameConfig.rolesName[$index]].num"></span>】</span>)</p>
     <hr>
     <div class="row">
         <div class="col-xs-4" >

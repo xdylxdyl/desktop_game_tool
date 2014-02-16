@@ -15,7 +15,6 @@
                 <span ng-bind="gameConfig.name"></span>
                 <a class="btn btn-danger pull-right" ng-href="gameInit.html?gameid={{gameConfig.gameid}}" ng-click="gameExit()">重新开始</a>
             </h2>
-            <p>总人数<span ng-bind="gameConfig.playerNum"></span>(<span ng-repeat="role in gameConfig.roles">【<span ng-bind="gameConfig.rolesName[$index]|convent"></span>:<span ng-bind="role.num"></span>】</span>)</p>
             <div class="wrapTab">
                 <ul class="nav nav-tabs" id="topTab">
                     <li class="active"><a href="#home" data-toggle="tab">游戏设置</a></li>

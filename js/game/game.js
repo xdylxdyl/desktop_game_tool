@@ -77,6 +77,12 @@ app.filter('showJu',function(){
         }
     }
 });
+app.filter('key',function(){
+   return function(obj){
+            for(var i in obj)
+                return i;
+   }
+});
 app.controller("gameModelList",function($scope) {
 
     $scope.officialList = dataService.getGameList(constants.listType.official);
@@ -92,7 +98,7 @@ app.controller("gameInitCtrl",function($scope) {
         $scope.gameConfig=gameService.gameConfigMaker(gc,'init');
         $scope.peopleNum =gc.playerNumDefault;//init select
         $scope.gameChange=function(num){
-            $scope.gameConfig.roles = gameService.buildGameConfigRoles(gc,num);
+            $scope.gameConfig.gcRoles = gameService.buildGameConfigRoles(gc,num);
         }
         $scope.gameInit = function(){
             /*****  initVar => buildPropertiesList => roleMaker => setGameDetail ***/
