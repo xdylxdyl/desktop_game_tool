@@ -20,6 +20,7 @@
             return true;
         } else {
             if (window.localStorage.getItem("version") != constants.version.version) {
+                window.localStorage.setItem("version",constants.version.version);
                 return true;
             } else {
                 return false;
@@ -29,7 +30,6 @@
     var isShow = isShow();
 
     if (isShow) {
-
         location.href = "html/firstOpenUp.html";
     }
     else {
