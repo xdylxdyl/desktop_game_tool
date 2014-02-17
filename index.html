@@ -19,8 +19,7 @@
         if (constants.version.debug) {
             return true;
         } else {
-            if (window.localStorage.getItem("version") != constants.version.version) {
-                window.localStorage.setItem("version",constants.version.version);
+            if (window.localStorage.getItem(constants.version.key) != constants.version.version) {
                 return true;
             } else {
                 return false;
@@ -30,6 +29,7 @@
     var isShow = isShow();
 
     if (isShow) {
+        window.localStorage.setItem(constants.version.key,constants.version.version);
         location.href = "html/firstOpenUp.html";
     }
     else {
