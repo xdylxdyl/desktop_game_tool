@@ -159,7 +159,6 @@ var versionConfig = {
         "showProperties":["role", "card"],
         "peopleNum":[2, 18],
         "rolesConfig":{
-            "saved":"",
             "roleSort":"ghost,water",
             "default":"1,1",
             "4":"1,3",
@@ -197,7 +196,6 @@ var versionConfig = {
         "rolesConfig":{
             "roleSort":"ghost,water",
             "default":"1,1",
-            "saved":"",
             "4":"1,3",
             "5":"1,4",
             "6":"1,5",
@@ -231,7 +229,6 @@ var versionConfig = {
         "peopleNum":[2, 18],
         "showProperties":["role", "card"],
         "rolesConfig":{
-            "saved":"",
             "roleSort":"ghost,soul,water",
             "default":"1,1,6",
             "4":"1,1,2",
@@ -269,7 +266,6 @@ var versionConfig = {
         "peopleNum":[2, 18],
         "showProperties":["role", "card"],
         "rolesConfig":{
-            "saved":"",
             "roleSort":"ghost,soul,water",
             "default":"1,1,6",
             "4":"1,1,2",
@@ -306,7 +302,6 @@ var versionConfig = {
         "peopleNum":[2, 18],
         "showProperties":["role"],
         "rolesConfig":{
-            "saved":"",
             "roleSort":"killer,water",
             "default":"1,7",
             "4":"1,3",
@@ -341,7 +336,6 @@ var versionConfig = {
         "peopleNum":[2, 18],
         "showProperties":["role"],
         "rolesConfig":{
-            "saved":"",
             "roleSort":"killer,police,water",
             "default":"1,1,7",
             "4":"1,1,2",
@@ -378,7 +372,6 @@ var versionConfig = {
         "showProperties":["role"],
         "peopleNum":[2, 18],
         "rolesConfig":{
-            "saved":"",
             "roleSort":"killer,police,water",
             "default":"1,1,7",
             "4":"1,1,2",
@@ -415,7 +408,6 @@ var versionConfig = {
         "showProperties":["role"],
         "peopleNum":[2, 18],
         "rolesConfig":{
-            "saved":"",
             "roleSort":"killer,police,awp,doctor,water",
             "default":"1,1,1,1,5",
             "5":"1,1,1,1,1",
@@ -456,7 +448,6 @@ var versionConfig = {
            "showProperties":["role"],
            "peopleNum":[2, 18],
            "rolesConfig":{
-               "saved":"",
                "roleSort":"killer,police,pmine,kmine,water",
                "default":"1,1,1,1,5",
                "5":"1,1,1,1,1",
@@ -497,7 +488,6 @@ var versionConfig = {
         "showProperties":["role"],
         "peopleNum":[2, 18],
         "rolesConfig":{
-            "saved":"",
             "roleSort":"wolf,prophet,witch,lover,guard,hunter,leader,idiot,mix,water",
             "default":"5,12",
             "4":"1,0,0,0,0,0,0,0,0,3",
@@ -549,10 +539,8 @@ var versionConfig = {
         "peopleNum":[2, 18],
         "showProperties":["role"],
         "rolesConfig":{
-            "saved":"",
             "roleSort":"wolf,water",
             "default":"2,6",
-
             "5":"2,3",
             "6":"2,4",
             "7":"2,5",

@@ -80,6 +80,7 @@ var gameService = {
         return returnData;
     },
     buildGameConfigRoles:function (gameConfig, players) {
+        /**
         var rolesNumArr = [];
         var rolesArr = gameConfig.rolesConfig.roleSort.split(',');
             playerNum = gameConfig.playerNumDefault;
@@ -96,6 +97,7 @@ var gameService = {
         console.log(returnData);
         console.log("buildGameConfigRoles");
         return returnData;
+            **/
     },
     buildGameConfigPeopleNumList:function (data) {
         var returnData = [];
@@ -121,7 +123,7 @@ var gameService = {
         switch (type){
             case 'init':
                 gameConfig.peopleNumList = this.buildGameConfigPeopleNumList(config.peopleNum);
-                gameConfig.gcRoles = this.buildGameConfigRoles(config);
+                gameConfig.gcRoles = config.rolesConfig.roleSort.split(",");
                 break;
             default :
                 gameConfig.gameDetail=dataService.getGameDetail();
@@ -155,5 +157,25 @@ var gameService = {
         }
         return temp;
 
+    },
+    getGamePlayerList:function(gc){
+        var playerSplit=gc.peopleNum;
+        var gameObj = gc.rolesConfig;
+        var playerRoles=gc.rolesConfig.roleSort.split(",");
+        var returnObj={};
+        for(var i=playerSplit[0],ii=playerSplit[1];i<ii;i++){
+            if(i in gameObj){
+                for(var j= 0,tempObj={},jj=playerRoles.length;j<jj;j++){
+                    tempObj[playerRoles[j]]=gameObj[i].split(',')[j];
+                }
+            returnObj[i]=tempObj;
+            }
+        }
+        for(var k= 0,defaultObj={},kk=playerRoles.length;k<kk;k++ ){
+            defaultObj[playerRoles[k]]=gameObj["default"].split(",")[k];
+        }
+        console.log(defaultObj);
+        returnObj["default"]=defaultObj;
+        return returnObj;
     }
 }

@@ -83,6 +83,16 @@ app.filter('key',function(){
                 return i;
    }
 });
+app.filter('showInit',function(){
+    var gameConfig=gameService.getGameConfig();
+    var playerNumList=gameService.getGamePlayerList(gameConfig);
+    return function(role,playerNum){
+      if(playerNum in playerNumList)
+        return playerNumList[playerNum][role];
+      else
+        return playerNumList["default"][role];
+   }
+});
 app.controller("gameModelList",function($scope) {
 
     $scope.officialList = dataService.getGameList(constants.listType.official);
@@ -97,9 +107,6 @@ app.controller("gameInitCtrl",function($scope) {
         gc=gameService.getGameConfig();
         $scope.gameConfig=gameService.gameConfigMaker(gc,'init');
         $scope.peopleNum =gc.playerNumDefault;//init select
-        $scope.gameChange=function(num){
-            $scope.gameConfig.gcRoles = gameService.buildGameConfigRoles(gc,num);
-        }
         $scope.gameInit = function(){
             /*****  initVar => buildPropertiesList => roleMaker => setGameDetail ***/
            var formData=document.getElementsByTagName('input');
