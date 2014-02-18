@@ -37,8 +37,12 @@ var dataService = {
 
 
 var gameService = {
-    getGameConfig:function () {
-        var gid = getParameterFromUrl(location.href, "gameid");
+    getGameConfig:function (gid) {
+        console.log("gid "+gid);
+        if(gid==null){
+             gid = getParameterFromUrl(location.href, "gameid");
+        }
+
         return dataService.getConfig(gid);
     },
     getHintConfig:function(){
