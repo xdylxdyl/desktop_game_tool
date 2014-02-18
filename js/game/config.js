@@ -23,13 +23,14 @@ var gameList = [
                 "type":"remote",
                 "url":"officialGame/ghost_simple.json"
             },
-            {
-                "name":"白痴版(魂版)(1.5)",
-                "gameid":-1300,
-                "type":"remote",
-                "url":"officialGame/ghost_simple.json"
-            }
 
+
+            {
+                "name":"杀人版(3.0)",
+                "gameid":-1400,
+                "type":"remote",
+                "url":"officialGame/ghost_kill.json"
+            }
         ]
     },
     {
@@ -48,17 +49,19 @@ var gameList = [
                 "type":"remote",
                 "url":"officialGame/ghost_simple.json"
             },
-            {
-                "name":"不翻牌",
-                "gameid":-2200,
-                "type":"remote",
-                "url":"officialGame/ghost_simple.json"
-            },
+
+
             {
                 "name":"3.0",
                 "gameid":-2300,
                 "type":"remote",
                 "url":"officialGame/ghost_simple.json"
+            }  ,
+            {
+                "name":"地雷版",
+                "gameid":-2400,
+                "type":"remote",
+                "url":"officialGame/ghost_mine.json"
             }
 
         ]
@@ -179,7 +182,7 @@ var versionConfig = {
         },
         "properties":"",
         "rule":{
-            "foreword":"老虎老鼠,傻傻分不清楚",
+            "foreword":"风靡全国的捉鬼游戏",
             "text":"",
             "more":"http://bbs.ptteng.com"
         }
@@ -209,7 +212,7 @@ var versionConfig = {
         },
         "properties":"",
         "rule":{
-            "foreword":"最欢乐的游戏",
+            "foreword":"猜猜看，他的词到底是什么？",
             "text":"",
             "more":"http://bbs.ptteng.com"
         },
@@ -245,7 +248,45 @@ var versionConfig = {
         },
         "properties":"",
         "rule":{
-            "foreword":"自己究竟是什么角色呢",
+            "foreword":"你是人还是魂？别太自信哦！",
+            "text":"",
+            "more":"http://bbs.ptteng.com"
+        },
+        "CN":{
+            "num":"数量",
+            "ghost":"幽灵",
+            "water":"水民",
+            "role":"角色",
+            "card":"卡牌",
+            "soul":"魂"
+        }
+    },
+
+    "-1400":{
+        "name":"捉鬼游戏杀人版",
+        "type":"remote",
+        "gameid":-1400,
+        "peopleNum":[2, 18],
+        "showProperties":["role", "card"],
+        "rolesConfig":{
+            "saved":"",
+            "roleSort":"ghost,soul,water",
+            "default":"1,1,6",
+            "4":"1,1,2",
+            "5":"1,1,3",
+            "6":"1,1,4",
+            "7":"2,1,4",
+            "8":"2,1,5",
+            "9":"2,1,6",
+            "tips":{
+                "ghost":"胜负只在一念间！仔细分析，谨慎出手，误伤你的队友就不好了！",
+                "water":"胜负只在一念间！仔细分析，谨慎出手，误伤你的队友就不好了！",
+                "soul":"胜负只在一念间！仔细分析，谨慎出手，误伤你的队友就不好了！"
+            }
+        },
+        "properties":"",
+        "rule":{
+            "foreword":"比捉鬼更刺激，比杀人更好玩！",
             "text":"",
             "more":"http://bbs.ptteng.com"
         },
@@ -275,20 +316,14 @@ var versionConfig = {
             "8":"1,7",
             "9":"1,8",
             "tips":{
-                "killer":"要注意隐藏自己的身份！",
+                "killer":"积极发言分析，尽可能的伪装成水民，刀法也很重要哦",
                 "water":"通过逻辑分析抓出隐藏的杀手"
             }
         },
         "properties":"",
         "rule":{
-            "foreword":"将一切繁琐化为虚无,再重新演绎出无穷尽的变化",
-            "text":"<p> 关于简化,我有很多话要说.</p> <p> 有关于游戏本身的, 也有和游戏无关的, 但这就是简化吧, 简化从来就不会是一个单纯的游戏.</p>" +
-                "<p> 简化是杀人游戏的一种,一般认为这是最简单的版本,人称1.0版. </p>" +
-                "   <p>而实际上.简化是杀人游戏中最经典的版本,是最容易将水民的魅力和杀手的博弈发挥到极致的版本. </p>" +
-                "  <p> 简化是分成水民和杀手两种阵营的. </p>" +
-                " <p> 通常认为线杀的经典设置是8411.即8人,白天4分钟,晚上1分钟,遗言1分钟. </p>" +
-                "<p> 游戏往往是从白天开始,第一天是序幕,在一群认真游戏的玩家中,第一天是轻松也是暗流涌动的一天,如果你是水,你需要尽快的找出可以让你信任的玩家,找出你认为有可能是杀手的玩家,以便为第二天的正式交锋做准备." +
-                "<p> 尘埃落定,游戏结束.简化却在继续,我们也在继续.可惜生活中没有三人局.我和你都无法分辨谁才是真正的杀手,又或者,都不是杀手却可以互相伤害对方. 这就是简化</p>",
+            "foreword":"最纯粹的推理",
+            "text":"",
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
@@ -324,7 +359,7 @@ var versionConfig = {
         },
         "properties":"",
         "rule":{
-            "foreword":"只有黑白的世界.没有对错的分别",
+            "foreword":"警察与杀手的生死时速",
             "text":"",
             "more":"http://bbs.ptteng.com"
         },
@@ -334,7 +369,7 @@ var versionConfig = {
             "water":"水民",
             "role":"角色",
             "police":"警察"
-            }
+        }
     },
     "-2200":{
         "name":"杀人游戏警版不翻牌",
@@ -362,13 +397,7 @@ var versionConfig = {
         "properties":"",
 
         "rule":{"foreword":"谁是杀手谁是警察?死亡反而什么都无法证明",
-            "text":"<p> 关于简化,我有很多话要说.</p> <p> 有关于游戏本身的, 也有和游戏无关的, 但这就是简化吧, 简化从来就不会是一个单纯的游戏.</p>" +
-                 "<p> 简化是杀人游戏的一种,一般认为这是最简单的版本,人称1.0版. </p>" +
-                 "   <p>而实际上.简化是杀人游戏中最经典的版本,是最容易将水民的魅力和杀手的博弈发挥到极致的版本. </p>" +
-                 "  <p> 简化是分成水民和杀手两种阵营的. </p>" +
-                 " <p> 通常认为线杀的经典设置是8411.即8人,白天4分钟,晚上1分钟,遗言1分钟. </p>" +
-                 "<p> 游戏往往是从白天开始,第一天是序幕,在一群认真游戏的玩家中,第一天是轻松也是暗流涌动的一天,如果你是水,你需要尽快的找出可以让你信任的玩家,找出你认为有可能是杀手的玩家,以便为第二天的正式交锋做准备." +
-                 "<p> 尘埃落定,游戏结束.简化却在继续,我们也在继续.可惜生活中没有三人局.我和你都无法分辨谁才是真正的杀手,又或者,都不是杀手却可以互相伤害对方. 这就是简化</p>",
+            "text":"",
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
@@ -395,17 +424,16 @@ var versionConfig = {
             "8":"1,1,1,1,4",
             "9":"1,1,1,1,5",
             "tips":{
-                "killer":"通过分析发言找出警察，杀光他们！同时也要注意隐藏自己的身份！",
-                "police":"你是好人方的领路人，仔细分析，谨慎查证，用你的智慧带领平民走向胜利！",
-                "water":"通过逻辑分析抓出隐藏的杀手，同时也要通过巧妙的发言来保护警察！",
+                "killer":"寻找警察的同时也要注意避开医生的针法，大胆赌针也许会有意想不到的收获！",
+                "police":"医生的保护会让你更加勇敢，阳光地站出来带领平民吧，记得分配好特权的任务！",
+                "water":"通过逻辑分析抓出隐藏的杀手，同时也要通过巧妙的发言来保护特权！",
                 "awp":"最稳妥的方案是听从警察的吩咐，不要贸然开枪，也许你就是那个关键时刻扭转全局的人！",
                 "doctor":"你是好人方的保护者，重点保护警察和自己总是没错的，猜中杀手的心思会让你的胜率大大增加。"
             }
         },
         "properties":"",
-        "rule":
-        {
-            "foreword":"",
+        "rule":{
+            "foreword":"杀手与特权的博弈",
             "text":"",
             "more":"http://bbs.ptteng.com"
         },
@@ -416,11 +444,52 @@ var versionConfig = {
             "role":"角色",
             "police":"警察",
             "doctor":"医生",
-            "awp":"狙击",
-            prophet:"先知"
+            "awp":"狙击"
+
         }
 
     },
+    "-2400":{
+           "name":"杀人游戏地雷版",
+           "type":"remote",
+           "gameid":-2400,
+           "showProperties":["role"],
+           "peopleNum":[2, 18],
+           "rolesConfig":{
+               "saved":"",
+               "roleSort":"killer,police,pmine,kmine,water",
+               "default":"1,1,1,1,5",
+               "5":"1,1,1,1,1",
+               "6":"1,1,1,1,2",
+               "7":"1,1,1,1,3",
+               "8":"1,1,1,1,4",
+               "9":"1,1,1,1,5",
+               "tips":{
+                   "killer":"和匪雷密切配合会让你轻松取胜，杀人时注意避开可能是警雷的身份！",
+                   "police":"寻找杀手的时候不要忘记雷的存在，上票时谨慎一点总没错的！",
+                   "water":"通过逻辑分析抓出隐藏的杀手，同时也不要忘记雷的存在，掌握排雷的技巧很重要！",
+                   "kmine":"跳警察或胡乱发言求票都是不错的选择，炸死警察和平民就是成功，注意不要误伤自己人哦！",
+                   "pmine":"阳光地站出来带领好人方吧，炸死杀手就是胜利。"
+               }
+           },
+           "properties":"",
+           "rule":{
+               "foreword":"轰！爆炸啦！",
+               "text":"",
+               "more":"http://bbs.ptteng.com"
+           },
+           "CN":{
+               "num":"数量",
+               "killer":"杀手",
+               "water":"水民",
+               "role":"角色",
+               "police":"警察",
+               "kmine":"匪雷",
+               "pmine":"警雷"
+
+           }
+
+       },
     "-3000":{
         "name":"狼人杀",
         "type":"remote",
@@ -453,7 +522,7 @@ var versionConfig = {
         },
         "properties":"",
         "rule":{
-            "foreword":"",
+            "foreword":"杀人游戏与角色扮演的完美结合",
             "text":"",
             "more":"http://bbs.ptteng.com"
         },
@@ -476,7 +545,7 @@ var versionConfig = {
     "-4000":{
         "name":"炸狼堡",
         "type":"remote",
-        "gameid":-3000,
+        "gameid":-4000,
         "peopleNum":[2, 18],
         "showProperties":["role"],
         "rolesConfig":{
@@ -497,10 +566,10 @@ var versionConfig = {
         },
         "properties":"",
         "rule":{
-            "foreword":"",
+            "foreword":"信任与猜忌的悖论",
             "text":"",
             "more":"http://bbs.ptteng.com"
-            },
+        },
         "CN":{
             "num":"数量",
             "water":"水民",
