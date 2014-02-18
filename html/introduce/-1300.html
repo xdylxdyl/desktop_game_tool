@@ -7,14 +7,36 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../../js/framework/bootstrap/3.0.2/bootstrap.min.css">
 </head>
+<input type="hidden" ng-model="gid" value="-1300" id="gid">
 <body ng-controller="introduceGameCtrl">
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-12 column">
+                <div class="col-md-12 column">
+            <h2 ng-bind="gameConfig.name">
+            </h2>
 
+            <small ng-bind="gameConfig.rule.foreword">
+
+            </small>
+
+            <hr>
+            <p>
+            <div><pre></pre></div>
+
+
+
+            <p><a class="btn"  href="#"  id="more" link="{{gameConfig.rule.more}}" >去官方论坛,查看更多 »</a></p>
+
+
+            <a  class="btn btn-warning" ng-href="../gameInit.html?gameid={{gameConfig.gameid}}">返回
+            </a>
+            <button type="button" class="btn btn-success pull-right">播放语音介绍</button>
         </div>
     </div>
 </div>
+
+
+
 <script type="text/javascript" src="../../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../../js/framework/angular/1.2.9/angular.js"></script>
 <script src="../../js/framework/angular/1.2.9/angular-sanitize.js"></script>
@@ -23,5 +45,15 @@
 <script src="../../js/util/common_util.js"></script>
 <script src="../../js/game/dataService.js"></script>
 <script src="../../js/game/game.js"></script>
+<script>
+    function playMedia() {
+        var me = document.getElementById("buttonAudio");
+        me.play();
+    }
+    $("#more").on("click",function(){
+        window.open($("#more").attr("link"),'_system');
+
+    })
+</script>
 </body>
 </html>

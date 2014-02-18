@@ -7,14 +7,95 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../../js/framework/bootstrap/3.0.2/bootstrap.min.css">
 </head>
+<input type="hidden" ng-model="gid" value="-1000" id="gid">
+
 <body ng-controller="introduceGameCtrl">
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
+            <h2 ng-bind="gameConfig.name">
+            </h2>
 
+            <small ng-bind="gameConfig.rule.foreword">
+
+            </small>
+
+            <hr>
+            <p>
+
+            <div>
+
+
+<h2>1 角色和技能</h2>
+           <p>游戏分为两大阵营：水民和幽灵。</p>
+           <p>游戏开始时，每个玩家都会得到一个词，水民和幽灵玩家得到的词不同。</p>
+           <p><span style="color: #ff0000;">玩家不知道自己的身份。</span></p>
+           <p>A.幽灵</p>
+           <p>1.介绍 : 游戏中的少数，努力存活至总数不少于人即可取胜。</p>
+           <p>2.技能 : 投票</p>
+           <p>B.水民</p>
+           <p>1.介绍:游戏中的大多数，通过讨论和投票找出幽灵。</p>
+           <p>2.技能:投票</p>
+           <p>&nbsp;</p>
+           <p>技能说明</p>
+           <p>投票:白天才允许投票.在法官宣布投票以后,每个人都有投票选出自己心中幽灵的权利,但是只有一票,也可以不投.投票过程中不允许改票.</p>
+           <h2>2 过程</h2>
+           <p>游戏以“天”为单位进行。每一天分为<span style="color: #ff0000;"><strong>讨论</strong></span>和<span style="color: #ff0000;"><strong>投票</strong></span>两个阶段。</p>
+           <p><span style="color: #ff0000;">讨论阶段</span>：所有玩家自由发言。</p>
+           <p><span style="color: #ff0000;">投票阶段</span>：所有玩家投票指认心中的幽灵，法官按顺序统计每个玩家的得票数，得票最多的玩家出局。</p>
+
+           <p>&nbsp;</p>
+            <img src="ghost-1-flow.png" />
+           <h2>3 胜负</h2>
+           <p>幽灵：幽灵的人数不少于水民，幽灵胜利。</p>
+           <p>水民：所有幽灵出局，水民胜利。</p>
+           <h2>4 人数配置</h2>
+           <p>游戏可由4-14人同时进行。</p>
+           <table>
+           <tbody>
+           <tr>
+           <td valign="top" width="284">总人数</td>
+           <td valign="top" width="284">幽灵数</td>
+           </tr>
+           <tr>
+           <td valign="top" width="284">4-5</td>
+           <td valign="top" width="284">1</td>
+           </tr>
+           <tr>
+           <td valign="top" width="284">6-8</td>
+           <td valign="top" width="284">2</td>
+           </tr>
+           <tr>
+           <td valign="top" width="284">9-11</td>
+           <td valign="top" width="284">3</td>
+           </tr>
+           <tr>
+           <td valign="top" width="284">12-14</td>
+           <td valign="top" width="284">4</td>
+           </tr>
+           </tbody>
+           </table>
+           <p>&nbsp;</p>
+           <h2></h2>
+           <p>&nbsp;</p>
+           <p>&nbsp;</p>
+           <p>&nbsp;</p>
+           <p>&nbsp;</td>
+
+            </div>
+
+
+            <p><a class="btn" href="#" id="more" link="{{gameConfig.rule.more}}">去官方论坛,查看更多 »</a></p>
+
+
+            <a class="btn btn-warning" ng-href="../gameInit.html?gameid={{gameConfig.gameid}}">返回
+            </a>
+            <button type="button" class="btn btn-success pull-right">播放语音介绍</button>
         </div>
     </div>
 </div>
+
+
 <script type="text/javascript" src="../../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../../js/framework/angular/1.2.9/angular.js"></script>
 <script src="../../js/framework/angular/1.2.9/angular-sanitize.js"></script>
@@ -23,5 +104,15 @@
 <script src="../../js/util/common_util.js"></script>
 <script src="../../js/game/dataService.js"></script>
 <script src="../../js/game/game.js"></script>
+<script>
+    function playMedia() {
+        var me = document.getElementById("buttonAudio");
+        me.play();
+    }
+    $("#more").on("click", function () {
+        window.open($("#more").attr("link"), '_system');
+
+    })
+</script>
 </body>
 </html>

@@ -7,21 +7,123 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../../js/framework/bootstrap/3.0.2/bootstrap.min.css">
 </head>
+<input type="hidden" ng-model="gid" value="-2100" id="gid">
+
 <body ng-controller="introduceGameCtrl">
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
+            <h2 ng-bind="gameConfig.name">
+            </h2>
 
+            <small ng-bind="gameConfig.rule.foreword">
+
+            </small>
+
+            <hr>
+            <p>
+
+            <div>
+
+                    <p>当夜幕降临，隐藏在黑暗中的杀手亮出了利刃，手无寸铁的平民在哀求呼号中倒下……正义不会低头！在警长的带领下，平民们以手中的票权为武器对杀手宣战，誓要将隐匿的杀人犯绳之以法！</p>
+
+                    <p>&nbsp;</p>
+
+                    <p>1、角色和技能</p>
+
+                    <p>&nbsp;</p>
+
+                    <p>游戏分为两大阵营：杀手方和好人方。</p>
+
+                    <p>杀手方：</p>
+
+                    <p>杀手：每天夜里可以杀死一个人。</p>
+
+                    <p>好人方：</p>
+
+                    <p>警察：每天夜里可以查验一个人，得知其真实身份。</p>
+
+                    <p>平民：夜晚不能睁眼，通过白天的讨论和投票找出杀手。</p>
+
+                    <p>&nbsp;</p>
+
+                    <p>&nbsp;</p>
+
+                    <p>2、过程</p>
+
+                    <p>游戏按白天和夜晚交替进行，白天又分为讨论和投票两个阶段。</p>
+
+                    <p>讨论阶段：所有玩家自由发言。</p>
+
+                    <p>投票阶段：所有玩家投票指认心中的杀手，法官按顺序统计每个玩家的得票数，得票最多的玩家出局。</p>
+
+                    <p>夜晚：平民闭眼，杀手杀人，警察验人。</p>
+
+                    <p>&nbsp;</p>
+                    <img src="kill-2-flow.png">
+
+                    <p>3、胜负</p>
+
+                    <p>杀手方：杀手方人数不少于好人方，或警察全部出局，或平民全部出局，杀手胜利。</p>
+
+                    <p>好人方：所有杀手出局，好人胜利。</p>
+
+                    <p>&nbsp;</p>
+
+                    <p>4、人数配置</p>
+
+                    <p>游戏可由8-20人同时进行。</p>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td valign="top" width="284">8-10人</td>
+                            <td valign="top" width="284">2杀手2警察</td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="284">11-14人</td>
+                            <td valign="top" width="284">3杀手3警察</td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="284">15-17人</td>
+                            <td valign="top" width="284">4杀手4警察</td>
+                        </tr>
+                        <tr>
+                            <td valign="top" width="284">18-20人</td>
+                            <td valign="top" width="284">5杀手5警察</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <p><a class="btn" href="#" id="more" link="{{gameConfig.rule.more}}">去官方论坛,查看更多 »</a></p>
+
+
+                <a class="btn btn-warning" ng-href="../gameInit.html?gameid={{gameConfig.gameid}}">返回
+                </a>
+                <button type="button" class="btn btn-success pull-right">播放语音介绍</button>
+            </div>
         </div>
     </div>
-</div>
-<script type="text/javascript" src="../../js/framework/jquery/2.0.0/jquery.min.js"></script>
-<script src="../../js/framework/angular/1.2.9/angular.js"></script>
-<script src="../../js/framework/angular/1.2.9/angular-sanitize.js"></script>
-<script src="../../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
-<script src="../../js/game/config.js"></script>
-<script src="../../js/util/common_util.js"></script>
-<script src="../../js/game/dataService.js"></script>
-<script src="../../js/game/game.js"></script>
+
+
+    <script type="text/javascript" src="../../js/framework/jquery/2.0.0/jquery.min.js"></script>
+    <script src="../../js/framework/angular/1.2.9/angular.js"></script>
+    <script src="../../js/framework/angular/1.2.9/angular-sanitize.js"></script>
+    <script src="../../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
+    <script src="../../js/game/config.js"></script>
+    <script src="../../js/util/common_util.js"></script>
+    <script src="../../js/game/dataService.js"></script>
+    <script src="../../js/game/game.js"></script>
+    <script>
+        function playMedia() {
+            var me = document.getElementById("buttonAudio");
+            me.play();
+        }
+        $("#more").on("click", function () {
+            window.open($("#more").attr("link"), '_system');
+
+        })
+    </script>
 </body>
 </html>

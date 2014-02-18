@@ -7,7 +7,7 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../../js/framework/bootstrap/3.0.2/bootstrap.min.css">
 </head>
-<input type="hidden" ng-model="gid" value="-2000" id="gid">
+<input type="hidden" ng-model="gid" value="-1400" id="gid">
 
 <body ng-controller="introduceGameCtrl">
 <div class="container">
@@ -24,74 +24,71 @@
             <p>
 
             <div>
-
-                <p>当夜幕降临，隐藏在黑暗中的杀手亮出了利刃，手无寸铁的平民在哀求呼号中倒下……正义不会低头！平民们将以手中的票权为武器，将隐匿的杀手绳之以法！</p>
-
-                <p>&nbsp;</p>
-
                 <h1>1、角色和技能</h1>
 
                 <p>&nbsp;</p>
 
-                <p>游戏分为两大阵营：杀手和水民。</p>
+                <p>游戏分为两大阵营：水民和幽灵。</p>
 
-                <p>杀手：</p>
+                <p>每个玩家都会得到一个词，水民和幽灵玩家得到的词不同。玩家不知道自己是水民还是幽灵。</p>
 
-                <p>杀手：每天夜里可以杀死一个人。</p>
+                <p>幽灵：</p>
+
+                <p>幽灵：游戏中的少数，努力存活至总数不少于人即可取胜。</p>
 
                 <p>水民：</p>
 
-                <p>水民：夜晚不能睁眼，通过白天的讨论和投票找出杀手。</p>
+                <p>水民：游戏中的大多数，通过讨论和投票找出水民。</p>
 
                 <p>&nbsp;</p>
 
-                <p>3、过程</p>
+                <p>&nbsp;</p>
+
+                <p>2、过程</p>
 
                 <p>游戏按白天和夜晚交替进行，白天又分为讨论和投票两个阶段。</p>
 
                 <p>讨论阶段：所有玩家自由发言。</p>
 
-                <p>投票阶段：所有玩家投票指认心中的杀手，法官按顺序统计每个玩家的得票数，得票最多的玩家出局。</p>
+                <p>投票阶段：法官倒数“3、2、1”，想要投票的玩家第一时间举手，由法官决定第一个举手的玩家，由该玩家投票指认一个人。如果被指认的是水民，则被投者出局；如果被指认的是水民，则投票者出局。</p>
 
-                <p>夜晚：水民闭眼，杀手杀人。</p>
-
-                <p>&nbsp;</p>
-                <img src="kill-1-flow.png">
-
-                <p>2、胜负</p>
-
-                <p>杀手：杀手人数不少于水民，杀手胜利。</p>
-
-                <p>水民：所有杀手出局，水民胜利。</p>
+                <p>夜晚：法官依次召唤玩家，询问是否杀人并进行统计。如果被杀的是水民，则被杀者出局；如果被杀的是幽灵，则杀人者出局。</p>
 
                 <p>&nbsp;</p>
+            <img src="ghost-3-flow.png">
+
+                <p>3、胜负</p>
+
+                <p>幽灵方：幽灵的人数不少于水民，幽灵胜利。</p>
+
+                <p>水民方：所有幽灵出局，水民胜利。</p>
 
                 <p>&nbsp;</p>
 
-                <p>3、人数配置</p>
+                <p>4、人数配置</p>
 
-                <p>游戏可由6-18人同时进行。</p>
+                <p>游戏可由4-14人同时进行。</p>
+
                 <table>
                     <tbody>
                     <tr>
+                        <td valign="top" width="284">4-5人</td>
+                        <td valign="top" width="284">1鬼</td>
+                    </tr>
+                    <tr>
                         <td valign="top" width="284">6-8人</td>
-                        <td valign="top" width="284">1杀手</td>
+                        <td valign="top" width="284">2鬼</td>
                     </tr>
                     <tr>
                         <td valign="top" width="284">9-11人</td>
-                        <td valign="top" width="284">2杀手</td>
+                        <td valign="top" width="284">3鬼</td>
                     </tr>
                     <tr>
-                        <td valign="top" width="284">12-15人</td>
-                        <td valign="top" width="284">3杀手</td>
-                    </tr>
-                    <tr>
-                        <td valign="top" width="284">16-18人</td>
-                        <td valign="top" width="284">4杀手</td>
+                        <td valign="top" width="284">12-14人</td>
+                        <td valign="top" width="284">4鬼</td>
                     </tr>
                     </tbody>
                 </table>
-
             </div>
 
 

@@ -7,14 +7,129 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../../js/framework/bootstrap/3.0.2/bootstrap.min.css">
 </head>
+<input type="hidden" ng-model="gid" value="-4000" id="gid">
 <body ng-controller="introduceGameCtrl">
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-12 column">
+                <div class="col-md-12 column">
+            <h2 ng-bind="gameConfig.name">
+            </h2>
 
+            <small ng-bind="gameConfig.rule.foreword">
+
+            </small>
+
+            <hr>
+            <p>
+            <div>
+
+<p>&nbsp;</p>
+<p>月圆之夜，村民体内的黑暗血液被唤醒，他们变身为狼，张开了血腥的利爪……五座古怪的城堡出现在村庄外，狼嚎声打破原有的宁静。不安和猜疑四处弥漫，村民们开始呐喊。炸毁城堡是唯一的求生之路，但狼人就隐藏在他们之中……</p>
+<p>&nbsp;</p>
+<h1>1、角色和技能</h1>
+<p>&nbsp;</p>
+<p>游戏分为两大阵营：狼人方和村民方。</p>
+<p>狼人方：</p>
+<p>狼人：隐藏在村民中，设法阻碍村民炸毁狼堡。</p>
+<p>村民方：</p>
+<p>村民：成功炸毁五座狼堡中的三座。</p>
+<p>村长：村长由所有玩家轮流担任，负责提出本轮炸狼堡的人选名单。村长顺序由法官决定。</p>
+<p>&nbsp;</p>
+<h1>2、过程</h1>
+<p>游戏按白天和夜晚交替进行，白天又分为讨论和投票两个阶段。</p>
+<p>讨论阶段：村长提出本轮前往炸狼堡的人选名单，随后所有玩家自由发言。参与玩家数量不同时，每轮需要炸狼堡的人数也不同，具体数量见下表：</p>
+                    <img src="bufg-1-flow.png">
+<table>
+<tbody>
+<tr>
+<td valign="center" width="115">游戏人数</td>
+<td valign="center" width="110">5</td>
+<td valign="center" width="111">6</td>
+<td valign="center" width="117">7</td>
+<td valign="center" width="117">8-10</td>
+</tr>
+<tr>
+<td valign="center" width="115">1号狼堡</td>
+<td valign="center" width="110">2</td>
+<td valign="center" width="111">2</td>
+<td valign="center" width="117">2</td>
+<td valign="center" width="117">3</td>
+</tr>
+<tr>
+<td valign="center" width="115">2号狼堡</td>
+<td valign="center" width="110">3</td>
+<td valign="center" width="111">3</td>
+<td valign="center" width="117">3</td>
+<td valign="center" width="117">4</td>
+</tr>
+<tr>
+<td valign="center" width="115">3号狼堡</td>
+<td valign="center" width="110">2</td>
+<td valign="center" width="111">4</td>
+<td valign="center" width="117">3</td>
+<td valign="center" width="117">4</td>
+</tr>
+<tr>
+<td valign="center" width="115">4号狼堡</td>
+<td valign="center" width="110">3</td>
+<td valign="center" width="111">3</td>
+<td valign="center" width="117">4☆</td>
+<td valign="center" width="117">5☆</td>
+</tr>
+<tr>
+<td valign="center" width="115">5号狼堡</td>
+<td valign="center" width="110">3</td>
+<td valign="center" width="111">4</td>
+<td valign="center" width="117">4</td>
+<td valign="center" width="117">5</td>
+</tr>
+</tbody>
+</table>
+<p>☆7-10人游戏时攻击4号狼堡需要出现两张“失败牌”才算狼人获得一次胜利，否则村民获得一次胜利。</p>
+<p>&nbsp;</p>
+<p>投票阶段：村长宣布开始投票，所有玩家投票表决是否同意村长提出的名单，同意票超过半数则名单通过，进入夜晚，否则村长被罢免，由下一个村长重新提出炸狼堡人选。连续五次罢免村长则直接判狼人胜利。</p>
+<p>夜晚：如果有狼人入选炸狼堡名单，则可睁眼选择炸狼堡“成功”还是“失败”。村民不需睁眼，默认为成功。如果入选炸狼堡名单所有人都选择成功，则该狼堡被炸毁。反之炸狼堡失败，狼人成功守卫一个狼堡。7-10人游戏时攻击4号狼堡需要出现两次“失败”才能守住狼堡，否则狼堡被炸毁。</p>
+<p>&nbsp;</p>
+<h1>3、胜负</h1>
+<p>狼人方：成功守卫三座狼堡不被炸毁，狼人胜利。</p>
+<p>村民方：成功炸毁三座狼堡，村民胜利。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>4、人数配置</h1>
+<p>游戏可由5-10人同时进行。</p>
+<table>
+<tbody>
+<tr>
+<td valign="top" width="284">5-6人</td>
+<td valign="top" width="284">2狼人</td>
+</tr>
+<tr>
+<td valign="top" width="284">7-9人</td>
+<td valign="top" width="284">3狼人</td>
+</tr>
+<tr>
+<td valign="top" width="284">10人</td>
+<td valign="top" width="284">4狼人</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+
+
+
+            <p><a class="btn"  href="#"  id="more" link="{{gameConfig.rule.more}}" >去官方论坛,查看更多 »</a></p>
+
+
+            <a  class="btn btn-warning" ng-href="../gameInit.html?gameid={{gameConfig.gameid}}">返回
+            </a>
+            <button type="button" class="btn btn-success pull-right">播放语音介绍</button>
         </div>
     </div>
 </div>
+
+
+
 <script type="text/javascript" src="../../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../../js/framework/angular/1.2.9/angular.js"></script>
 <script src="../../js/framework/angular/1.2.9/angular-sanitize.js"></script>
@@ -23,5 +138,15 @@
 <script src="../../js/util/common_util.js"></script>
 <script src="../../js/game/dataService.js"></script>
 <script src="../../js/game/game.js"></script>
+<script>
+    function playMedia() {
+        var me = document.getElementById("buttonAudio");
+        me.play();
+    }
+    $("#more").on("click",function(){
+        window.open($("#more").attr("link"),'_system');
+
+    })
+</script>
 </body>
 </html>

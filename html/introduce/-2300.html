@@ -7,14 +7,108 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../../js/framework/bootstrap/3.0.2/bootstrap.min.css">
 </head>
+<input type="hidden" ng-model="gid" value="-2300" id="gid">
+
 <body ng-controller="introduceGameCtrl">
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
+            <h2 ng-bind="gameConfig.name">
+            </h2>
 
+            <small ng-bind="gameConfig.rule.foreword">
+
+            </small>
+
+            <hr>
+            <p>
+
+            <div><p>当夜幕降临，隐藏在黑暗中的杀手亮出了利刃，手无寸铁的平民在哀求呼号中倒下……正义不会低头！警长发出了召集令，狙击和医生大显身手，平民们以手中的票权为武器对杀手宣战，誓要将杀人犯绳之以法！</p>
+
+                <p>&nbsp;</p>
+
+                <p>1、角色和技能</p>
+
+                <p>&nbsp;</p>
+
+                <p>游戏分为两大阵营：杀手方和好人方。</p>
+
+                <p>杀手方：</p>
+
+                <p>杀手：每天夜里可以杀死一个人。</p>
+
+                <p>好人方：</p>
+
+                <p>警察：每天夜里可以查验一个人，得知其真实身份。</p>
+
+                <p>狙击：每局游戏中有一次机会，在夜晚开枪杀死一个人，狙击开枪前不能被杀死。</p>
+
+                <p>医生：每天夜里可以救治一个人，被救治的人当晚不能被杀死。如果连续两晚救治同一个人，而这个人又没有被杀，他会因救治过度而死。</p>
+
+                <p>平民：夜晚不能睁眼，通过白天的讨论和投票找出杀手。</p>
+
+                <p>&nbsp;</p>
+
+                <p>&nbsp;</p>
+
+                <p>2、过程</p>
+
+                <p>游戏按白天和夜晚交替进行，白天又分为讨论和投票两个阶段。</p>
+
+                <p>讨论阶段：所有玩家自由发言。</p>
+
+                <p>投票阶段：所有玩家投票指认心中的杀手，法官按顺序统计每个玩家的得票数，得票最多的玩家出局。</p>
+
+                <p>夜晚：平民闭眼，杀手杀人，警察验人，医生救人，狙击决定是否开枪杀死一个人。</p>
+
+                <p>&nbsp;</p>
+                <img src="kill-3-flow.png">
+
+                <p>3、胜负</p>
+
+                <p>杀手方：杀手方人数不少于好人方，或警察全部出局，或平民全部出局，杀手胜利。</p>
+
+                <p>好人方：所有杀手出局，好人胜利。</p>
+
+                <p>&nbsp;</p>
+
+                <p>4、人数配置</p>
+
+                <p>游戏可由9-20人同时进行。</p>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td valign="top" width="284">9-11人</td>
+                        <td valign="top" width="284">2杀手1警察1狙击1医生</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" width="284">12-14人</td>
+                        <td valign="top" width="284">3杀手2警察1狙击1医生</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" width="284">15-16人</td>
+                        <td valign="top" width="284">4杀手3警察1狙击1医生</td>
+                    </tr>
+                    <tr>
+                        <td valign="top" width="284">17-20人</td>
+                        <td valign="top" width="284">5杀手4警察1狙击1医生</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <p><a class="btn" href="#" id="more" link="{{gameConfig.rule.more}}">去官方论坛,查看更多 »</a></p>
+
+
+            <a class="btn btn-warning" ng-href="../gameInit.html?gameid={{gameConfig.gameid}}">返回
+            </a>
+            <button type="button" class="btn btn-success pull-right">播放语音介绍</button>
         </div>
     </div>
 </div>
+
+
 <script type="text/javascript" src="../../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../../js/framework/angular/1.2.9/angular.js"></script>
 <script src="../../js/framework/angular/1.2.9/angular-sanitize.js"></script>
@@ -23,5 +117,15 @@
 <script src="../../js/util/common_util.js"></script>
 <script src="../../js/game/dataService.js"></script>
 <script src="../../js/game/game.js"></script>
+<script>
+    function playMedia() {
+        var me = document.getElementById("buttonAudio");
+        me.play();
+    }
+    $("#more").on("click", function () {
+        window.open($("#more").attr("link"), '_system');
+
+    })
+</script>
 </body>
 </html>

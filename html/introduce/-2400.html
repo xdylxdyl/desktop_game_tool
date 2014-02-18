@@ -7,7 +7,7 @@
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="../../js/framework/bootstrap/3.0.2/bootstrap.min.css">
 </head>
-<input type="hidden" ng-model="gid" value="-2000" id="gid">
+<input type="hidden" ng-model="gid" value="-2400" id="gid">
 
 <body ng-controller="introduceGameCtrl">
 <div class="container">
@@ -23,29 +23,33 @@
             <hr>
             <p>
 
-            <div>
-
-                <p>当夜幕降临，隐藏在黑暗中的杀手亮出了利刃，手无寸铁的平民在哀求呼号中倒下……正义不会低头！平民们将以手中的票权为武器，将隐匿的杀手绳之以法！</p>
+            <div><p>当夜幕降临，隐藏在黑暗中的杀手亮出了利刃，手无寸铁的平民在哀求呼号中倒下……正义不会低头！在警长的带领下，平民们以手中的票权为武器对杀手宣战，誓要将隐匿的杀人犯绳之以法！</p>
 
                 <p>&nbsp;</p>
 
-                <h1>1、角色和技能</h1>
+                <p>1、角色和技能</p>
 
                 <p>&nbsp;</p>
 
-                <p>游戏分为两大阵营：杀手和水民。</p>
+                <p>游戏分为两大阵营：杀手方和好人方。</p>
 
-                <p>杀手：</p>
+                <p>杀手方：</p>
 
                 <p>杀手：每天夜里可以杀死一个人。</p>
 
-                <p>水民：</p>
+                <p>好人方：</p>
 
-                <p>水民：夜晚不能睁眼，通过白天的讨论和投票找出杀手。</p>
+                <p>警察：每天夜里可以查验一个人，得知其真实身份。</p>
+
+                <p>平民：夜晚不能睁眼，通过白天的讨论和投票找出杀手。</p>
+
+                <p>※地雷：每局游戏开始时会随机分配一个警雷或匪雷。警雷为好人方，匪雷为杀手方。当地雷被杀死时，所有杀手都会被炸死。当地雷被票死时，所有上票地雷的玩家被炸死。</p>
 
                 <p>&nbsp;</p>
 
-                <p>3、过程</p>
+                <p>&nbsp;</p>
+
+                <p>2、过程</p>
 
                 <p>游戏按白天和夜晚交替进行，白天又分为讨论和投票两个阶段。</p>
 
@@ -53,45 +57,42 @@
 
                 <p>投票阶段：所有玩家投票指认心中的杀手，法官按顺序统计每个玩家的得票数，得票最多的玩家出局。</p>
 
-                <p>夜晚：水民闭眼，杀手杀人。</p>
+                <p>夜晚：平民闭眼，杀手杀人，警察验人。</p>
 
                 <p>&nbsp;</p>
-                <img src="kill-1-flow.png">
+                <img src="kill-21-flow.png">
 
-                <p>2、胜负</p>
+                <p>3、胜负</p>
 
-                <p>杀手：杀手人数不少于水民，杀手胜利。</p>
+                <p>杀手方：杀手方人数不少于好人方，或警察全部出局，或平民全部出局，杀手胜利。</p>
 
-                <p>水民：所有杀手出局，水民胜利。</p>
-
-                <p>&nbsp;</p>
+                <p>好人方：所有杀手出局，好人胜利。</p>
 
                 <p>&nbsp;</p>
 
-                <p>3、人数配置</p>
+                <p>4、人数配置</p>
 
-                <p>游戏可由6-18人同时进行。</p>
+                <p>游戏可由8-20人同时进行。</p>
                 <table>
                     <tbody>
                     <tr>
-                        <td valign="top" width="284">6-8人</td>
-                        <td valign="top" width="284">1杀手</td>
+                        <td valign="top" width="284">8-10人</td>
+                        <td valign="top" width="284">2杀手2警察1地雷</td>
                     </tr>
                     <tr>
-                        <td valign="top" width="284">9-11人</td>
-                        <td valign="top" width="284">2杀手</td>
+                        <td valign="top" width="284">11-14人</td>
+                        <td valign="top" width="284">3杀手3警察1地雷</td>
                     </tr>
                     <tr>
-                        <td valign="top" width="284">12-15人</td>
-                        <td valign="top" width="284">3杀手</td>
+                        <td valign="top" width="284">15-17人</td>
+                        <td valign="top" width="284">4杀手4警察1地雷</td>
                     </tr>
                     <tr>
-                        <td valign="top" width="284">16-18人</td>
-                        <td valign="top" width="284">4杀手</td>
+                        <td valign="top" width="284">18-20人</td>
+                        <td valign="top" width="284">5杀手5警察1地雷</td>
                     </tr>
                     </tbody>
                 </table>
-
             </div>
 
 
