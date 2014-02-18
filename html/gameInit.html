@@ -16,7 +16,7 @@
                 <span ng-bind="gameConfig.name"></span>
                 <a class="btn  btn-danger pull-right" ng-href="introduce/{{gameConfig.gameid}}.html">介绍</a>
             </h2>
-            <p>some text</p>
+            <p ng-bind="gameConfig.rule.foreword"></p>
         </div>
     </div>
 </div>
