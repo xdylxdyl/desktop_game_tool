@@ -156,7 +156,7 @@ var introduceApp= angular.module('introduce', ["ngSanitize"], function ($compile
 
 introduceApp.controller("introduceGameCtrl",function($scope) {
 
-    $scope.gameConfig=gameService.getGameConfig();
+    $scope.gameConfig=gameService.getGameConfig($("#gid").val());
 
 
 });
