@@ -8,7 +8,7 @@ var dataService = {
     },
     getGameList:function (type) {
         var t = new Date().getTime();
-        dataService.updateVersion();
+
         var r = html5StorageService.get(type, constants.listModel[type]);
         console.log("get list use time is " + (new Date().getTime() - t));
         return r;
