@@ -868,7 +868,8 @@ var html5StorageService = {
 
     get:function (key, model, url) {
 
-        var isUpdate =  html5StorageService.checkVersion();
+        var isUpdate = html5StorageService.checkVersion();
+
         if (isUpdate) {
 
             r=model;
@@ -889,6 +890,10 @@ var html5StorageService = {
 
             }
 
+        }else{
+            if(model){
+                html5StorageService.update(key, model);
+            }
         }
         var result = eval('(' + window.localStorage.getItem(key) + ')');
         return result;
