@@ -156,7 +156,7 @@ var versionConfig = {
         "type":"remote",
         "gameid":-1000,
         "playerNumDefault":6,
-        "showProperties":["role", "card"],
+        "showProperties":["role"],
         "peopleNum":[3, 18],
         "rolesConfig":{
             "roleSort":"ghost,water",
@@ -244,7 +244,7 @@ var versionConfig = {
         "gameid":-1300,
         "peopleNum":[3, 18],
         "playerNumDefault":8,
-        "showProperties":["role", "card"],
+        "showProperties":["role"],
         "rolesConfig":{
             "roleSort":"ghost,soul,water",
             "default":"1,1,6",
