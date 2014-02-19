@@ -21,7 +21,7 @@ var constants = {
     version:{
         version:0.545,
         key:"dataVersion",
-        debug:true
+        debug:false
     }
 
 }
