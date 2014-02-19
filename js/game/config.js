@@ -611,16 +611,18 @@ var versionConfig = {
         "name":"炸狼堡",
         "type":"remote",
         "gameid":-4000,
-        "peopleNum":[2, 18],
+        "peopleNum":[5, 10],
+        "playerNumDefault":5,
         "showProperties":["role"],
         "rolesConfig":{
             "roleSort":"wolf,water",
-            "default":"2,6",
+            "default":"2,3",
             "5":"2,3",
             "6":"2,4",
-            "7":"2,5",
-            "8":"2,6",
-            "9":"2,7",
+            "7":"3,4",
+            "8":"3,5",
+            "9":"3,6",
+            "10":"4,6",
             "tips":{
                 "wolf":"想办法破坏平民间的信任！如果你被选中成为炸堡者，一定要利用好这个身份！",
                 "water":"信任比猜忌更重要，试着找到你的同伴，并且信任他！"
