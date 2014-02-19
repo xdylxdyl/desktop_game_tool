@@ -19,7 +19,7 @@ var constants = {
         "user":userList
     },
     version:{
-        version:0.54,
+        version:0.545,
         key:"dataVersion",
         debug:true
     }

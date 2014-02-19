@@ -851,7 +851,7 @@ var html5StorageService = {
                 html5StorageService.update(constants.version.key, constants.version.version);
                 return true;
             }
-            if (v < constants.version.version) {
+            if (v != constants.version.version) {
                 html5StorageService.update(constants.version.key, constants.version.version);
                 return true;
             }
