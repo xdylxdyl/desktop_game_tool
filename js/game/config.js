@@ -157,6 +157,7 @@ var versionConfig = {
         "gameid":-1000,
         "playerNumDefault":6,
         "showProperties":["card"],
+        "roleProperties":["role","card"],
         "peopleNum":[3, 18],
         "rolesConfig":{
             "roleSort":"ghost,water",
@@ -199,7 +200,8 @@ var versionConfig = {
         "type":"remote",
         "gameid":-1100,
         "playerNumDefault":8,
-        "showProperties":["role", "card"],
+        "showProperties":["role","card"],
+        "roleProperties":["role","card"],
         "peopleNum":[3, 18],
         "rolesConfig":{
             "roleSort":"ghost,water",
@@ -245,6 +247,7 @@ var versionConfig = {
         "peopleNum":[3, 18],
         "playerNumDefault":8,
         "showProperties":["card"],
+        "roleProperties":["role","card"],
         "rolesConfig":{
             "roleSort":"ghost,soul,water",
             "default":"1,1,6",
@@ -285,6 +288,7 @@ var versionConfig = {
         "peopleNum":[4, 15],
         "playerNumDefault":8,
         "showProperties":["role", "card"],
+        "roleProperties":["role","card"],
         "rolesConfig":{
             "roleSort":"ghost,water",
             "default":"2,6",
@@ -329,6 +333,7 @@ var versionConfig = {
         "peopleNum":[3, 18],
         "playerNumDefault":8,
         "showProperties":["role"],
+        "roleProperties":["role"],
         "rolesConfig":{
             "roleSort":"killer,water",
             "default":"1,7",
@@ -375,6 +380,7 @@ var versionConfig = {
         "peopleNum":[3, 20],
         "playerNumDefault":8,
         "showProperties":["role"],
+        "roleProperties":["role"],
         "rolesConfig":{
             "roleSort":"killer,police,water",
             "default":"1,1,7",
@@ -422,6 +428,7 @@ var versionConfig = {
         "type":"remote",
         "gameid":-2200,
         "showProperties":["role"],
+        "roleProperties":["role"],
         "peopleNum":[3, 20],
         "playerNumDefault":8,
         "rolesConfig":{
@@ -471,6 +478,7 @@ var versionConfig = {
         "type":"remote",
         "gameid":-2300,
         "showProperties":["role"],
+        "roleProperties":["role"],
         "peopleNum":[5, 20],
         "playerNumDefault":8,
         "rolesConfig":{
@@ -525,6 +533,7 @@ var versionConfig = {
         "type":"remote",
         "gameid":-2400,
         "showProperties":["role"],
+        "roleProperties":["role"],
         "peopleNum":[2, 18],
         "rolesConfig":{
             "roleSort":"killer,police,pmine,kmine,water",
@@ -566,6 +575,7 @@ var versionConfig = {
         "type":"remote",
         "gameid":-3000,
         "showProperties":["role"],
+        "roleProperties":["role"],
         "peopleNum":[6, 18],
         "playerNumDefault":8,
         "rolesConfig":{
@@ -628,6 +638,7 @@ var versionConfig = {
         "peopleNum":[5, 10],
         "playerNumDefault":5,
         "showProperties":["role"],
+        "roleProperties":["role"],
         "rolesConfig":{
             "roleSort":"wolf,water",
             "default":"2,3",

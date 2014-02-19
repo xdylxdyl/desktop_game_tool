@@ -52,7 +52,7 @@
         </div>
         <div class="panel panel-default" ng-repeat="role in gameConfig.gcRoles">
             <div class="panel-heading" ng-bind="role|convent"></div>
-            <div class='panel-body' ng-repeat="properties in gameConfig.showProperties">
+            <div class='panel-body' ng-repeat="properties in gameConfig.roleProperties">
                 <div class="form-group" ng-if="properties == 'role' ">
                     <label  class="col-xs-3 control-label">人数</label>
                     <div class="col-xs-9">
