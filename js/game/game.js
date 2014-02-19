@@ -19,9 +19,9 @@ var constants = {
         "user":userList
     },
     version:{
-        version:2,
+        version:2.3,
         key:"dataVersion",
-        debug:true
+        debug:false
     }
 
 }
@@ -32,7 +32,8 @@ var app = angular.module('gameTool', [], function ($compileProvider) {
 
 app.filter('convent',function(){
     console.log("test convent");
-   var  CN=dataService.getConfigCN();//获取汉字列表
+    var gameid = getParameterFromUrl(location.href, "gameid");
+   var  CN=dataService.getConfigCN(gameid);//获取汉字列表
     return function(input){
         if(input in CN)
             return CN[input];

@@ -867,33 +867,37 @@ var html5StorageService = {
 
 
     get:function (key, model, url) {
-        var result = eval('(' + window.localStorage.getItem(key) + ')');
-
 
         var isUpdate = false;
-        if (result == null || html5StorageService.checkVersion()) {
-            isUpdate = true;
+           if (result == null || html5StorageService.checkVersion()) {
+               isUpdate = true;
 
-        }
+           }
+
+
+
+
+
         console.log("data is update "+isUpdate);
         if (isUpdate) {
+            r=model;
             if (model != null) {
-                html5StorageService.update(key, model);
+
 
             } else {
 
                 if (url != null) {
-                    var r = ajaxJson(url, "GET", {}, null, 5000, "json", false);
-                    html5StorageService.update(key, r);
+                     r = ajaxJson(url, "GET", {}, null, 5000, "json", false);
+
                 } else {
 
 
                 }
 
             }
+            html5StorageService.update(key, r);
         }
-
-        result = eval('(' + window.localStorage.getItem(key) + ')');
+        var result = eval('(' + window.localStorage.getItem(key) + ')');
         return result;
     },
     delete:function (key) {

@@ -4,8 +4,6 @@
 var dataService = {
     getConfig:function (id) {
         var config = html5StorageService.get(id.toString(), versionConfig[id.toString()]);
-        html5StorageService.update("CN", versionConfig[id.toString()].CN);
-        console.log(config);
         return config;
     },
     getGameList:function (type) {
@@ -24,8 +22,9 @@ var dataService = {
         html5StorageService.delete("formData");
         html5StorageService.delete("gameDetail");
     },
-    getConfigCN:function () {
-        return html5StorageService.get("CN");
+    getConfigCN:function (id) {
+         return dataService.getConfig(id).CN;
+
     },
     updateSetting:function(setting){
         html5StorageService.update("setting",setting);
@@ -38,7 +37,6 @@ var dataService = {
 
 var gameService = {
     getGameConfig:function (gid) {
-        console.log("gid "+gid);
         if(gid==null){
              gid = getParameterFromUrl(location.href, "gameid");
         }
@@ -174,7 +172,6 @@ var gameService = {
         for(var k= 0,defaultObj={},kk=playerRoles.length;k<kk;k++ ){
             defaultObj[playerRoles[k]]=gameObj["default"].split(",")[k];
         }
-        console.log(defaultObj);
         returnObj["default"]=defaultObj;
         return returnObj;
     }
