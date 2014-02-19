@@ -157,10 +157,11 @@ var versionConfig = {
         "gameid":-1000,
         "playerNumDefault":6,
         "showProperties":["role", "card"],
-        "peopleNum":[2, 18],
+        "peopleNum":[3, 18],
         "rolesConfig":{
             "roleSort":"ghost,water",
             "default":"1,5",
+            "3":"1,2",
             "4":"1,3",
             "5":"1,4",
             "6":"2,4",
@@ -189,7 +190,8 @@ var versionConfig = {
         "rule":{
             "foreword":"风靡全国的捉鬼游戏",
             "text":"",
-            "more":"http://bbs.ptteng.com"
+            "more":"http://bbs.ptteng.com",
+            template:"第X天白天出局：XX；身份：XX。"
         }
     },
     "-1100":{
@@ -198,10 +200,11 @@ var versionConfig = {
         "gameid":-1100,
         "playerNumDefault":8,
         "showProperties":["role", "card"],
-        "peopleNum":[2, 18],
+        "peopleNum":[3, 18],
         "rolesConfig":{
             "roleSort":"ghost,water",
             "default":"2,6",
+            "3":"1,2",
             "4":"1,3",
             "5":"1,4",
             "6":"2,4",
@@ -223,6 +226,7 @@ var versionConfig = {
         "properties":"",
         "rule":{
             "foreword":"猜猜看，他的词到底是什么？",
+            template:"第X天白天出局：XX；身份：XX。",
             "text":"",
             "more":"http://bbs.ptteng.com"
         },
@@ -238,12 +242,13 @@ var versionConfig = {
         "name":"捉鬼游戏魂版",
         "type":"remote",
         "gameid":-1300,
-        "peopleNum":[4, 18],
-
+        "peopleNum":[3, 18],
+        "playerNumDefault":8,
         "showProperties":["role", "card"],
         "rolesConfig":{
             "roleSort":"ghost,soul,water",
             "default":"1,1,6",
+            "3":"1,1,1",
             "4":"1,1,2",
             "5":"1,1,3",
             "6":"1,1,4",
@@ -259,6 +264,7 @@ var versionConfig = {
         "properties":"",
         "rule":{
             "foreword":"你是人还是魂？别太自信哦！",
+            template:"第X天白天出局：XX；身份：XX。",
             "text":"",
             "more":"http://bbs.ptteng.com"
         },
@@ -303,6 +309,7 @@ var versionConfig = {
         "properties":"",
         "rule":{
             "foreword":"比捉鬼更刺激，比杀人更好玩！",
+            template:"第X天白天出局：XX；身份：XX；夜里出局：XX；身份：XX。",
             "text":"",
             "more":"http://bbs.ptteng.com"
         },
@@ -325,6 +332,7 @@ var versionConfig = {
         "rolesConfig":{
             "roleSort":"killer,water",
             "default":"1,7",
+            "3":"1,2",
             "4":"1,3",
             "5":"1,4",
             "6":"1,5",
@@ -348,6 +356,7 @@ var versionConfig = {
         "properties":"",
         "rule":{
             "foreword":"最纯粹的推理",
+            template:"第X天白天出局：XX；夜里出局：XX。",
             "text":"",
             "more":"http://bbs.ptteng.com"
         },
@@ -396,6 +405,7 @@ var versionConfig = {
         "properties":"",
         "rule":{
             "foreword":"警察与杀手的生死时速",
+            template:"第X天白天出局：XX；身份：XX。夜里出局：XX；身份：XX。 第X天查证：XX。身份：XX。",
             "text":"",
             "more":"http://bbs.ptteng.com"
         },
@@ -445,6 +455,7 @@ var versionConfig = {
 
         "rule":{"foreword":"谁是杀手谁是警察?死亡反而什么都无法证明",
             "text":"",
+            template:"第X天白天出局：XX；夜里出局：XX； 第X天查证：XX。。",
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
@@ -494,6 +505,7 @@ var versionConfig = {
         "rule":{
             "foreword":"杀手与特权的博弈",
             "text":"",
+            template:"第X天白天出局：XX；身份：XX。夜里出局：XX；身份：XX。 第X天查证：XX。身份：XX。医生救治：XX。 第X天夜里狙击开枪，射杀XX。",
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
@@ -534,6 +546,7 @@ var versionConfig = {
         "rule":{
             "foreword":"轰！爆炸啦！",
             "text":"",
+            template:"第X天白天出局：XX；身份：XX。夜里出局：XX；身份：XX。 第X天查证：XX。身份：XX。",
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
@@ -589,6 +602,7 @@ var versionConfig = {
         "rule":{
             "foreword":"杀人游戏与角色扮演的完美结合",
             "text":"",
+            template:"情侣：XX-XX。成为/未成为独立第三方。混血儿支持：XX。阵营：XX。混血儿杀人：XX。身份：XX。 第X天白天出局：XX；身份：XX。 第X天狼人杀人：XX；身份：XX；查证：XX。身份：XX；守护：XX。女巫复活：XX；身份：XX；下毒：XX；身份：XX。 猎人带走：XX。身份：XX。",
             "more":"http://bbs.ptteng.com"
         },
         "CN":{
@@ -633,6 +647,7 @@ var versionConfig = {
         "rule":{
             "foreword":"信任与猜忌的悖论",
             "text":"",
+            template:"X号狼堡.村长：XX；小组人选：XX；结果：XX",
             "more":"http://bbs.ptteng.com"
         },
         "CN":{

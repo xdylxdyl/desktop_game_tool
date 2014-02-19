@@ -840,13 +840,13 @@ function getUrlVars(url) {
 }
 
 var html5StorageService = {
-    checkVersion:function (key) {
+    checkVersion:function () {
 
 
         if (constants.version.debug) {
             return true;
         } else {
-            var v = html5StorageService.get(constants.version.key);
+            var v = eval('(' + window.localStorage.getItem(constants.version.key) + ')');
             if (v == null) {
                 html5StorageService.update(constants.version.key, constants.version.version);
                 return true;
@@ -868,26 +868,19 @@ var html5StorageService = {
 
     get:function (key, model, url) {
 
-        var isUpdate = false;
-           if (result == null || html5StorageService.checkVersion()) {
-               isUpdate = true;
-
-           }
-
-
-
-
-
-        console.log("data is update "+isUpdate);
+        var isUpdate =  html5StorageService.checkVersion();
         if (isUpdate) {
+
             r=model;
             if (model != null) {
 
 
+                html5StorageService.update(key, r);
             } else {
 
                 if (url != null) {
                      r = ajaxJson(url, "GET", {}, null, 5000, "json", false);
+                    html5StorageService.update(key, r);
 
                 } else {
 
@@ -895,7 +888,7 @@ var html5StorageService = {
                 }
 
             }
-            html5StorageService.update(key, r);
+
         }
         var result = eval('(' + window.localStorage.getItem(key) + ')');
         return result;

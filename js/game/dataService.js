@@ -7,6 +7,7 @@ var dataService = {
         return config;
     },
     getGameList:function (type) {
+        dataService.updateVersion();
         return html5StorageService.get(type, constants.listModel[type]);
     },
     setGameDetail:function (data, propertiesData) {
@@ -31,6 +32,9 @@ var dataService = {
     },
     getSetting:function(){
         return html5StorageService.get("setting");
+    },
+    updateVersion:function(){
+        html5StorageService.update( constants.version.key,constants.version.version)
     }
 }
 
