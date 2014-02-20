@@ -153,7 +153,7 @@ var gameService = {
         var temp = {};
         console.log("build properties list start");
         var roles = config.rolesConfig.roleSort.split(",");
-        var sp = config.showProperties;
+        var sp = config.roleProperties;
         for (var i = 0, ii = roles.length; i < ii; i++) {
             var itemObj = {};
             for (var j = 0, jj = sp.length; j < jj; j++) {
