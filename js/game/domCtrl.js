@@ -18,21 +18,7 @@ function linkClick(obj){
 }
 
 function checkForm(){
-    var items = document.getElementsByClassName("roleItem"),
-    sum   = 0,
-    max   = document.getElementById("hidPeopleNum"),
-    gameid = getParameterFromUrl(location.href, "gameid"),
-    hidBtn = document.getElementById("startButton");
 
-    for(var i= 0,ii=items.length;i<ii;i++){
-        if(items[i].style.display=='none')continue;
-            sum=sum+parseInt(items[i].value);
-    }
-    if(sum!=max.value||!isReq()){
-        bootbox.alert("请检查输入的数据或者游戏数据不完整！");
-    }else{
-        hidBtn.click();
-    }
 }
 function isReq(){
         var items = document.getElementsByTagName("input");
@@ -45,13 +31,28 @@ function isReq(){
     return true;
 }
 
-var buttonMedia = function(){
-    var media=document.getElementById("buttonAudio");
-    media.play();
-}
+$("#startButton").on("click",function(){
+    var items = document.getElementsByClassName("roleItem"),
+        sum   = 0,
+        max   = document.getElementById("hidPeopleNum"),
+        gameid = getParameterFromUrl(location.href, "gameid")
 
-$(".btn").on('click',buttonMedia);
-$("#fakeButton").on('click',checkForm);
+
+        for(var i= 0,ii=items.length;i<ii;i++){
+            if(items[i].style.display=='none')continue;
+                sum=sum+parseInt(items[i].value);
+        }
+        if(sum!=max.value||!isReq()){
+            bootbox.alert("请检查输入的数据或者游戏数据不完整！");
+        }else{
+            bootbox.alert("数据正确~~");
+
+        }
+
+
+});
+
+
 
 $('#showRoleButton').click(function(){
    var btn=$("#eraserButton");

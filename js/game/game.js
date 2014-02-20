@@ -58,7 +58,11 @@ app.filter('showCu', function () {
     var roles = gameDetail.role.obj;
     var properties = gameDetail.properties;
     return function (pro, id) {
+       if(!roles[id]){
+           return;
+       }
         switch (pro) {
+
             case 'role':
                 return roles[id];
             default :
@@ -110,17 +114,33 @@ app.controller("gameInitCtrl", function ($scope) {
     $scope.peopleNum = gc.playerNumDefault;//init select
     $scope.gameInit = function () {
         /*****  initVar => buildPropertiesList => roleMaker => setGameDetail ***/
+        console.log("xxxx");
 
-        try {
+        var items = document.getElementsByClassName("roleItem"),
+            sum = 0,
+            max = document.getElementById("hidPeopleNum"),
+            gameid = getParameterFromUrl(location.href, "gameid")
+
+
+        for (var i = 0, ii = items.length; i < ii; i++) {
+            if (items[i].style.display == 'none')continue;
+            sum = sum + parseInt(items[i].value);
+        }
+        if (sum != max.value || !isReq()) {
+            bootbox.alert("请检查输入的数据或者游戏数据不完整！");
+            console.log("wrong data");
+            return;
+        } else {
 
             var formData = document.getElementsByTagName('input');
             var roleData = gameService.buildRoleMakeData(formData, gameConfig.playerNum);
             var propertiesData = gameService.buildProperties(formData, gc);
             dataService.setGameDetail(gameService.roleMaker(roleData), propertiesData);
-        } catch (e) {
-            alert(" start game error " + e);
+            window.location.href = "gamePlay.html?gameid=" + $scope.gameConfig.gameid;
 
         }
+
+
     }
     $scope.gameExit = function () {
         dataService.deleteGameDetail();
