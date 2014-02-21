@@ -31,9 +31,9 @@
         <div class="col-md-12 column">
             <h2>
                 <span ng-bind="gameConfig.name"></span>
-                <a class="btn btn-danger pull-right" ng-href="gameInit.html?gameid={{gameConfig.gameid}}"
-                   ng-click="gameExit()">结束游戏</a>
+
             </h2>
+            <h3 class="clearfix"><a class="btn  btn-danger pull-right" ng-href="introduce/{{gameConfig.gameid}}.html">介绍</a></h3>
         </div>
     </div>
     <p>总人数<span ng-bind="gameConfig.playerNum"></span>(<span ng-repeat="role in gameConfig.roles">【<span

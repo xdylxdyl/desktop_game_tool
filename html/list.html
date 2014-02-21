@@ -8,17 +8,27 @@
 
     <link rel="stylesheet" type="text/css" href="../js/framework/bootstrap/3.0.2/bootstrap.min.css">
     <!--    <link rel="stylesheet" type="text/css" href="../css/game/style.css">-->
+    <style>
+       .nav-tabs{
+             margin-bottom: 1%;
+         }
+       .weixinImg{
+           margin: 0 auto;
+           text-align: center;
+       }
 
+    </style>
 </head>
+
 <body ng-controller="gameModelList">
 <!-- Nav tabs -->
 <div class="container">
-    <div class="wrapTab">
+
         <ul class="nav nav-tabs" id="topTab">
             <li class="active"><a href="#home" data-toggle="tab">游戏列表</a></li>
             <li><a href="#userDefine" data-toggle="tab">关于我们</a></li>
         </ul>
-    </div>
+
     <!-- Tab panes -->
     <div class="tab-content">
         <div class="tab-pane active" id="home">
@@ -62,12 +72,12 @@
                         <li><a a href="#" onclick="window.open('http://bbs.ptteng.com', '_system');">桌游论坛</a></li>
                         <li>桌游交流QQ群 290560933</li>
                         <li>桌游微信订阅号 ptteng-com</li>
-                        <hr>
-                        <li>桌游微信订阅号二维码
-                            <img src="../img/weixin/qrcode_for_gh_4df554005cf8_258.jpg">
-                        </li>
-
                     </ul>
+                    <hr>
+                    桌游微信订阅号二维码
+                    <div class="weixinImg">
+                        <img  src="../img/weixin/qrcode_for_gh_4df554005cf8_258.jpg">
+                    </div>
                     <hr>
                     <h3 class="text-danger">版本 </h3>
 
@@ -93,5 +103,21 @@
 <script src="../js/game/dataService.js"></script>
 <script src="../js/game/game.js"></script>
 <script src="../js/game/domCtrl.js"></script>
+<script>
+    $(document).ready(function(){
+        var w=window.innerWidth
+                || document.documentElement.clientWidth
+                || document.body.clientWidth;
+        var img = $('.weixinImg');
+        img.width(w);
+        $(window).resize(function(){
+            var w=window.innerWidth
+                    || document.documentElement.clientWidth
+                    || document.body.clientWidth;
+            img.width(w);
+
+        });
+    });
+</script>
 </body>
 </html>

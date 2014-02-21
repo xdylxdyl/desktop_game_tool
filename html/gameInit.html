@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="gameTool">
+<html ng-app="gameTool" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>用户自定义</title>
     <meta charset="utf-8">
@@ -14,8 +14,10 @@
         <div class="col-md-12 column">
             <h2>
                 <span ng-bind="gameConfig.name"></span>
-                <a class="btn  btn-danger pull-right" ng-href="introduce/{{gameConfig.gameid}}.html">介绍</a>
             </h2>
+            <h3 class="clearfix"><a class="btn  btn-danger pull-right" ng-href="introduce/{{gameConfig.gameid}}.html">介绍</a>
+            </h3>
+
             <p ng-bind="gameConfig.rule.foreword"></p>
         </div>
     </div>
@@ -34,16 +36,17 @@
             <div class="panel-heading"><h3 class="panel-title">总人数</h3></div>
             <div class="panel-body">
                 <div class="form-group">
+                    <h5 class="text-center"><small>此版本的最小人数为：{{gameConfig.peopleNum[0]}}最大人数为：{{gameConfig.peopleNum[1]}}</small></h5>
                     <label for="hidPeopleNum" class="col-xs-3 control-label">人数</label>
 
                     <div class="col-xs-9">
-                        <select class="form-control" ng-model='peopleNum'
+                       <!-- <select class="form-control" ng-model='peopleNum'
                                 ng-options="num for num in gameConfig.peopleNumList">
-                        </select>
-                        <input id="hidPeopleNum" type="hidden" value="{{peopleNum}}">
-                        <input type="hidden" required="required" class="form-control" name='maxPeople'
-                               value="{{gameConfig.playerNumDefault}}">
-                                                   <!--ng-onchange="{{gameChange(peopleNum)}}"-->
+                        </select>-->
+                        <input class="form-control" name='maxPeople' id="hidPeopleNum" min="{{gameConfig.peopleNum[0]}}" max="{{gameConfig.peopleNum[1]}}"  required="required" type="number" ng-model="peopleNum">
+                        <!-- <input type="hidden" required="required" class="form-control"
+                                value="{{gameConfig.playerNumDefault}}">
+                                                    ng-onchange="{{gameChange(peopleNum)}}"-->
 
                     </div>
                 </div>
@@ -56,8 +59,8 @@
                 <div class="form-group" ng-if="properties == 'role' ">
                     <label  class="col-xs-3 control-label">人数</label>
                     <div class="col-xs-9">
-                        <input type="number" name="{{role}}" ng-if="properties == 'role' "
-                               class="form-control roleItem roleNum" min="0" max="100" value="{{role|showInit:peopleNum}}"/>
+                        <input required="required" type="number" name="{{role}}" ng-if="properties == 'role' "
+                               class="form-control roleItem roleNum" min="0" max="{{peopleNum}}" value="{{role|showInit:peopleNum}}"/>
                     </div>
                 </div>
 
