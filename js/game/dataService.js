@@ -176,7 +176,7 @@ var gameService = {
         var gameObj = gc.rolesConfig;
         var playerRoles = gc.rolesConfig.roleSort.split(",");
         var returnObj = {};
-        for (var i = playerSplit[0], ii = playerSplit[1]; i < ii; i++) {
+        for (var i = playerSplit[0], ii = playerSplit[1]; i <= ii; i++) {
             if (i in gameObj) {
                 for (var j = 0, tempObj = {}, jj = playerRoles.length; j < jj; j++) {
                     tempObj[playerRoles[j]] = gameObj[i].split(',')[j];
