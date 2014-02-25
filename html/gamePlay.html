@@ -33,23 +33,29 @@
                 <span ng-bind="gameConfig.name"></span>
 
             </h2>
-            <h3 class="clearfix"><a class="btn  btn-danger pull-right" ng-href="introduce/{{gameConfig.gameid}}.html">介绍</a></h3>
+
+            <h3 class="clearfix"><a class="btn btn-danger pull-right"
+                                    ng-href="gameInit.html?gameid={{gameConfig.gameid}}"
+                                    ng-click="gameExit()">结束游戏</a></h3>
         </div>
     </div>
     <p>总人数<span ng-bind="gameConfig.playerNum"></span>(<span ng-repeat="role in gameConfig.roles">【<span
-            ng-bind="gameConfig.rolesName[$index]|convent"></span>:<span ng-bind="gameConfig.roles[gameConfig.rolesName[$index]].num"></span>】</span>)</p>
+            ng-bind="gameConfig.rolesName[$index]|convent"></span>:<span
+            ng-bind="gameConfig.roles[gameConfig.rolesName[$index]].num"></span>】</span>)</p>
     <hr>
     <div class="row">
-        <div class="col-xs-4" >
-            <span ng-hide="currentId <= 1 " class="label label-default pull-left prevRole" ng-bind="currentId-1">1</span>
+        <div class="col-xs-4">
+            <span ng-hide="currentId <= 1 " class="label label-default pull-left prevRole"
+                  ng-bind="currentId-1">1</span>
             <span ng-show="currentId <= 1 " class="label label-default pull-left prevRole">开始</span>
         </div>
         <div class="col-xs-4" ng-hide="currentId >= gameConfig.playerNum+1">
             <span class="label label-default pull-left currentRole" ng-bind="currentId">1</span>
         </div>
-        <div class="col-xs-4" >
-            <span  ng-hide="currentId >= gameConfig.playerNum " class="label label-default pull-left nextRole" ng-bind="currentId+1">1</span>
-            <span  ng-show=" currentId >= gameConfig.playerNum" class="label label-default pull-left nextRole">结束</span>
+        <div class="col-xs-4">
+            <span ng-hide="currentId >= gameConfig.playerNum " class="label label-default pull-left nextRole"
+                  ng-bind="currentId+1">1</span>
+            <span ng-show=" currentId >= gameConfig.playerNum" class="label label-default pull-left nextRole">结束</span>
         </div>
     </div>
     <hr>
@@ -65,13 +71,13 @@
                         <table class="table table-bordered">
                             <tr ng-repeat="current in gameConfig.showProperties">
                                 <td ng-bind="current|convent"></td>
-                                <td><span class="text-danger" ng-bind="current|showCu:currentId|convent" ></span></td>
+                                <td><span class="text-danger" ng-bind="current|showCu:currentId|convent"></span></td>
                             </tr>
                         </table>
-                       角色提示:<span ng-bind="currentId|hint"></span>
+                        角色提示:<span ng-bind="currentId|hint"></span>
                     </div>
                     <div class="panel-footer">
-                        <h3 class="panel-title">* 请用自己的手机拍照,以记住身份信息.    点击擦掉身份,以免泄露
+                        <h3 class="panel-title">* 请用自己的手机拍照,以记住身份信息. 点击擦掉身份,以免泄露
                         </h3>
                     </div>
                 </div>
@@ -83,12 +89,12 @@
         </div>
         <div ng-show="currentId > gameConfig.playerNum">
             <a class="btn btn-default" ng-href="judgeScan.html?gameid={{gameConfig.gameid}}">
-                        法官查看
+                法官查看
             </a>
         </div>
 
-        </div>
     </div>
+</div>
 <script src="../js/framework/jquery/2.0.0/jquery.min.js"></script>
 <script src="../js/framework/angular/1.2.9/angular.min.js"></script>
 <script src="../js/framework/bootstrap/3.0.2/bootstrap.min.js"></script>
