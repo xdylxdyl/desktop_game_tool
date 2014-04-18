@@ -23,13 +23,40 @@
 
             <div class="wrapTab">
                 <ul class="nav nav-tabs" id="topTab">
-                    <li class="active"><a href="#home" data-toggle="tab">游戏设置</a></li>
-                    <li><a href="#userDefine" data-toggle="tab">玩家身份</a></li>
-                    <li><a href="#judge" data-toggle="tab">法官日记</a></li>
+                    <li class="active"><a href="#home" data-toggle="tab">玩家身份</a></li>
+                    <li><a href="#userDefine" data-toggle="tab">法官日记</a></li>
+                    <li><a href="#judge" data-toggle="tab">游戏设置</a></li>
                 </ul>
             </div>
             <div class="tab-content" >
                 <div class="tab-pane active" id="home">
+                    <table class="table text-center table-bordered">
+                        <tr class="success">
+                            <td>编号</td>
+                            <td ng-repeat="item in gameConfig.roleProperties" ng-bind="item|convent"></td>
+                        </tr>
+                        <tr ng-repeat="items in gameConfig.roleAssign">
+                            <td ng-bind="$index+1">
+                            </td>
+                            <td ng-bind="gameConfig.roleAssign[$index+1]|convent">
+                            </td>
+                            <td ng-bind="items|showJu:properties" ng-if="properties != 'role'" ng-repeat="properties in gameConfig.roleProperties">
+
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+                <div class="tab-pane" id="userDefine">
+                    <textarea class="form-control" rows="5" ng-bind="gameConfig.rule.template">
+
+                    </textarea>
+
+                </div>
+                <div class="tab-pane" id="judge">
+              <!--      <button class="btn btn-info">背景乐</button>
+                    <h4><small>*晚上播放背景乐可以屏蔽干扰</small></h4>-->
+
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">
@@ -55,31 +82,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane" id="userDefine">
-                    <table class="table text-center table-bordered">
-                        <tr class="success">
-                            <td>编号</td>
-                            <td ng-repeat="item in gameConfig.roleProperties" ng-bind="item|convent"></td>
-                        </tr>
-                        <tr ng-repeat="items in gameConfig.roleAssign">
-                            <td ng-bind="$index+1">
-                            </td>
-                            <td ng-bind="gameConfig.roleAssign[$index+1]|convent">
-                            </td>
-                            <td ng-bind="items|showJu:properties" ng-if="properties != 'role'" ng-repeat="properties in gameConfig.roleProperties">
-
-                            </td>
-
-                        </tr>
-                    </table>
-                </div>
-                <div class="tab-pane" id="judge">
-              <!--      <button class="btn btn-info">背景乐</button>
-                    <h4><small>*晚上播放背景乐可以屏蔽干扰</small></h4>-->
-                    <textarea class="form-control" rows="5" ng-bind="gameConfig.rule.template">
-
-                    </textarea>
                 </div>
             </div>
         </div>
