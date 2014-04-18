@@ -31,7 +31,7 @@ var app = angular.module('gameTool', [], function ($compileProvider) {
 });
 
 app.filter('convent', function () {
-    console.log("test convent");
+
     var gameid = getParameterFromUrl(location.href, "gameid");
     var CN = dataService.getConfigCN(gameid);//获取汉字列表
     return function (input) {

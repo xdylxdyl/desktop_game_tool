@@ -141,6 +141,7 @@ var gameService = {
             default :
                 gameConfig.gameDetail = dataService.getGameDetail();
                 gameConfig.roleAssign = gameConfig.gameDetail.role.obj;
+
                 gameConfig.playerNum = config.gameDetail.role.arr.length;
                 gameConfig.roles = config.gameDetail.properties;
                 gameConfig.rolesName = config.rolesConfig.roleSort.split(',');

@@ -65,7 +65,7 @@
                         <tr ng-repeat="items in gameConfig.roleAssign">
                             <td ng-bind="$index+1">
                             </td>
-                            <td ng-bind="items|convent">
+                            <td ng-bind="gameConfig.roleAssign[$index+1]|convent">
                             </td>
                             <td ng-bind="items|showJu:properties" ng-if="properties != 'role'" ng-repeat="properties in gameConfig.roleProperties">
 
